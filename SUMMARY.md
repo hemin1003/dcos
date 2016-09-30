@@ -8,4 +8,5 @@
     * [通过GUI安装DCOS](通过gui.md)
 * [通过CLI](通过cli.md)
 * [DCOS的高级安装](dcos高级安装方式.md)
+* [FAQ](faq.md)
 
