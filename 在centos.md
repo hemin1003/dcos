@@ -1,18 +1,18 @@
 ### 在Centos7.2上安装Docker
 
-#### 更新Centos到最新版本
+#### 1.更新Centos到最新版本
 
 > `$ sudo yum upgrade --assumeyes --tolerant`
 > 
 > `$ sudo yum update --assumeyes`
 
-#### 检查内核版本&gt;3.10
+#### 2.检查内核版本&gt;3.10
 
 > `$ uname -r`
 > 
 > `3.10.0-327.10.1.el7.x86_64`
 
-#### 启用OverlayFS
+#### 3.启用OverlayFS
 
 > `$ sudo tee /etc/modules-load.d/overlay.conf <<-'EOF'`
 > 
@@ -20,17 +20,17 @@
 > 
 > `EOF`
 
-#### 重启系统
+#### 4.重启系统
 
 > `$ reboot`
 
-#### 检查OverlayFS是否启用
+#### 5.检查OverlayFS是否启用
 
 > `$ lsmod | grep overlay`
 > 
 > `overlay`
 
-#### 配置Docker的yum仓库
+#### 6.配置Docker的yum仓库
 
 > `$ sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'`
 > 
@@ -48,7 +48,7 @@
 > 
 > `EOF`
 
-#### 配置systemd服务在OverlayFS上运行Docker Daemon
+#### 7.配置systemd服务在OverlayFS上运行Docker Daemon
 
 > `$ sudo mkdir -p /etc/systemd/system/docker.service.d && sudo tee /etc/systemd/system/docker.service.d/override.conf <<- EOF`
 > 
@@ -60,7 +60,7 @@
 > 
 > `EOF`
 
-#### 安装Docker engine，daemon和service
+#### 8.安装Docker engine，daemon和service
 
 > `$ sudo yum install -y docker-engine-1.11.2`
 > 
@@ -68,7 +68,7 @@
 > 
 > `$ sudo systemctl enable docker`
 
-#### 完成，检查Docker是否正确安装
+#### 9.完成，检查Docker是否正确安装
 
 > `$ sudo docker ps`
 
