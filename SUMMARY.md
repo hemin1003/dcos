@@ -9,4 +9,6 @@
 * [通过CLI](通过cli.md)
 * [DCOS的高级安装](dcos高级安装方式.md)
 * [FAQ](faq.md)
+* [服务部署](服务部署.md)
+* [部署Cassandra到DCOS](部署cassandra到dc.md)
 
