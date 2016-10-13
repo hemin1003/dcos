@@ -11,4 +11,7 @@
 * [服务部署](服务部署.md)
 * [FAQ](faq.md)
 * [部署Cassandra到DCOS](部署cassandra到dc.md)
+* [Marathon-LB](marathon-lb.md)
+* [Docker Registry](docker-registry.md)
+* [Universe](universe.md)
 
