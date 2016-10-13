@@ -14,5 +14,7 @@
 * [Marathon-LB](marathon-lb.md)
 * [Docker Registry](docker-registry.md)
 * [Universe](universe.md)
+    * [DCOS 应用仓库之Universe](dcos-应用仓库之universe.md)
+    * [DCOS应用市场之应用仓库的管理](dcos应用市场之应用仓库的管理.md)
 * [Agent节点管理](agent节点管理.md)
 
