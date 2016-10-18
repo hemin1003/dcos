@@ -1,4 +1,6 @@
-# DC\/OS之概论
+# Summary
+
+## DC\/OS之概论
 
 * [Introduction](README.md)
   * [DCOS概览](dcos概览.md)
@@ -11,11 +13,8 @@
 
 * [通过CLI](通过cli.md)
 * [DCOS的高级安装](dcos高级安装方式.md)
-* 
 
 ## DC\/OS之原理
-
-
 
 ## DC\/OS之服务
 
@@ -30,7 +29,6 @@
 * [Universe](universe.md)
   * [DCOS 应用仓库之Universe](dcos-应用仓库之universe.md)
   * [DCOS应用市场之应用仓库的管理](dcos应用市场之应用仓库的管理.md)
-
 
 
 ## DC\/OS之开发
