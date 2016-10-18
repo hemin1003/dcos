@@ -1,6 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
+* [DCOS概览](dcos概览.md)
 * [环境搭建](环境搭建.md)
     * [本地开发环境](本地开发环境.md)
     * [内部测试环境](内部测试环境.md)
@@ -17,5 +18,5 @@
     * [DCOS 应用仓库之Universe](dcos-应用仓库之universe.md)
     * [DCOS应用市场之应用仓库的管理](dcos应用市场之应用仓库的管理.md)
 * [Agent节点管理](agent节点管理.md)
-* [DCOS之存储](dcos之存储.md)
+* DCOS概览
 
