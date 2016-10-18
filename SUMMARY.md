@@ -21,5 +21,5 @@
   * [DCOS应用市场之应用仓库的管理](dcos应用市场之应用仓库的管理.md)
 
 * [Agent节点管理](agent节点管理.md)
-* DCOS概览
+* [Jenkins on DCOS](jenkins-on-dcos.md)
 
