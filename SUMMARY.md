@@ -3,7 +3,7 @@
 ## DC\/OS之概论
 * [Introduction](README.md)
     * [DCOS概览](dcos概览.md)
-    * [DCOS系统组件](dcos.md)
+    * [DCOS系统组件](dcos-system-components.md)
 * [环境搭建](环境搭建.md)
     * [本地开发环境](本地开发环境.md)
     * [内部测试环境](内部测试环境.md)
