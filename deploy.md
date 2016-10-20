@@ -154,3 +154,7 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
 
 2）默认Tomcat安装包是不带Java运行环境的，如果要正确运行，一种可选的方案是添加JRE的下载URI，并修改命令脚本；一种是定制Tomcat，将JRE打包进去，下载的URI指向自定义的Tomcat下载位置。
 
+### 为服务添加负载均衡
+
+
+
