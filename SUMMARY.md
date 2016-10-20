@@ -12,6 +12,9 @@
 * [DCOS的高级安装](dcos高级安装方式.md)
 
 ## DC\/OS之原理
+* [服务发现与负载均衡](服务发现与负载均衡.md)
+* [VIPs](vips.md)
+* [Marathon-LB](marathon-lb.md)
 
 ## DC\/OS之服务
 * [Jenkins on DCOS](jenkins-on-dcos.md)
@@ -26,5 +29,5 @@
 * [DCOS应用市场之应用仓库的管理](dcos应用市场之应用仓库的管理.md)
 
 ## DC\/OS之应用
-* [持续集成与持续部署\(CI\/CD\)](持续集成与持续部署cicd.md)
+* [持续集成与持续部署\(CI\/CD\)](b持续集成与持续部署cicd.md)
 
