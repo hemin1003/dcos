@@ -18,7 +18,7 @@ DCOS Agent节点系统组件服务
 | Admin Router Reloader Timer |  |  |
 | Admin Router Service |  |  |
 | Diagnostics |  |  |
-|  |  |  |
+| Diagnostics Socket |  |  |
 |  |  |  |
 |  |  |  |
 |  |  |  |
