@@ -94,7 +94,7 @@ curl -X POST -H "Content-Type:application/json" "http://192.168.1.69:8080/v2/app
 ]
 ```
 
-完整的配置示例如下：
+完整的配置示例如下
 
 ```
 {
@@ -118,6 +118,5 @@ curl -X POST -H "Content-Type:application/json" "http://192.168.1.69:8080/v2/app
    }
  ]
 }
-
 ```
 
