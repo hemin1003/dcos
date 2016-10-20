@@ -16,7 +16,7 @@
 * [VIPs](vips.md)
 * [Marathon-LB](marathon-lb.md)
 * [Mesos-DNS](mesos-dns.md)
-* Spartan
+* [Spartan](spartan.md)
 
 ## DC\/OS之服务
 * [Jenkins on DCOS](jenkins-on-dcos.md)
