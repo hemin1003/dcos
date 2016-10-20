@@ -121,8 +121,30 @@ curl -X POST -H "Content-Type:application/json" "http://192.168.1.69:8080/v2/app
 ```
 
 补充：如果要在jenkins直接使用脚本配置，则可以如下定义脚本：
-```
-curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/apps -d '{ "id": "tomcat", "cmd": "mv *.war apache-tomcat-*/webapps && cd apache-tomcat-* && sed \"s/8080/$PORT/g\" < ./conf/server.xml > ./conf/server-mesos.xml && ./bin/catalina.sh run -config ./conf/server-mesos.xml", "mem": 512, "cpus": 1.0, "instances": 1, "uris": [ "http://mirrors.aliyun.com/apache/tomcat/tomcat-8/v8.5.6/bin/apache-tomcat-8.5.6.tar.gz", "http://192.168.1.54:8081/nexus/content/repositories/releases/com/example/example/1.0/example-1.0.war" ], "healthChecks": [   {     "protocol": "HTTP",     "portIndex": 0,     "path": "/",     "gracePeriodSeconds": 5,     "intervalSeconds": 20,     "maxConsecutiveFailures": 3   } ]}'
-```
 
+```
+curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/apps -d '
+{
+ "id": "tomcat",
+ "cmd": "mv *.war apache-tomcat-*/webapps && cd apache-tomcat-* && sed \"s/8080/$PORT/g\" < ./conf/server.xml > ./conf/server-mesos.xml && ./bin/catalina.sh run -config ./conf/server-mesos.xml",
+ "mem": 512,
+ "cpus": 1.0,
+ "instances": 1,
+ "uris": [
+ "http://mirrors.aliyun.com/apache/tomcat/tomcat-8/v8.5.6/bin/apache-tomcat-8.5.6.tar.gz",
+ "http://192.168.1.54:8081/nexus/content/repositories/releases/com/example/example/1.0/example-1.0.war"
+ ],
+ "healthChecks": [
+ {
+ "protocol": "HTTP",
+ "portIndex": 0,
+ "path": "/",
+ "gracePeriodSeconds": 5,
+ "intervalSeconds": 20,
+ "maxConsecutiveFailures": 3
+ }
+ ]
+}
+'
+```
 
