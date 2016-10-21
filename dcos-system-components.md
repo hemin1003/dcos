@@ -49,22 +49,7 @@ DCOS Agent节点系统组件服务
 
 
 
-| 系统组件 | 服务名称 | 描述 |
-| --- | --- | --- |
-| Admin Router Agent |  |  |
-| Admin Router Master |  |  |
-| Admin Router Reloader |  |  |
-| Admin Router Reloader Timer |  |  |
-| Admin Router Service |  |  |
-| Diagnostics |  |  |
-| Diagnostics Socket |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+
 
 Diagnostics
 
