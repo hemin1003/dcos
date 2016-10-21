@@ -38,18 +38,14 @@ DCOS Agent节点系统组件服务
 | History Service |  |  |
 | Mesos Master |  |  |
 | Mesos Persistent Volume Discovery |  |  |
-| Virtual Network Service |  |  |
-| OAuth |  |  |
-| Package service |  |  |
-| Signal |  |  |
-| Signal Timer |  |  |
-| REX-Ray |  |  |
-| System Package Manager API |  |  |
-| System Package Manager API socket |  |  |
-
-
-
-
+| Virtual Network Service | dcos-navstar.service | 该服务是一个守护进程，用来 |
+| OAuth | dcos-oauth.service | 该服务负责DC/OS的安全检查 |
+| Package service | dcos-cosmos.service | 内部打包API服务。当每次通过CLI执行“dcos package install”时都会调用该服务。该服务将DC/OS服务包从DC/OS Universe部署到你的DC/OS集群 |
+| Signal | dcos-signal.service | 该组件为帮助完善DC/OS，会周期性的向Mesosphere发送当前集群的概要信息反馈，并为集群问题提供高级检测。Signal查询Master节点上的诊断服务“/system/health/v1/report”，并将数据发送到SegmentIO，用于跟踪度量和客户支持 |
+| Signal Timer | dcos-signal.timer | 设置Signal组件每小时触发一次 |
+| REX-Ray | dcos-rexray.service | REX-Ray存储方案实现，让Marathon能够使用外部存储 |
+| System Package Manager API | dcos-pkgpanda-api.service | 创建链接，安装systemd服务单元，为每个主机建立指定角色（Master，Private Agent， Public Agent） |
+| System Package Manager API socket | dcos-pkgpanda-api.socket | System Package Manager API socket |
 
 Diagnostics
 
