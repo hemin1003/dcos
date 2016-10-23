@@ -1,6 +1,6 @@
 # Summary
 
-## DC\/OS之概论
+## DC\/OS之导论
 * [Introduction](README.md)
     * [DCOS概览](dcos概览.md)
     * [DCOS系统组件](dcos-system-components.md)
@@ -18,6 +18,7 @@
 * [Marathon-LB](marathon-lb.md)
 * [Mesos-DNS](mesos-dns.md)
 * [Spartan](spartan.md)
+* [存储策略与方案](存储策略与方案.md)
 
 ## DC\/OS之服务
 * [Jenkins on DCOS](jenkins-on-dcos.md)
