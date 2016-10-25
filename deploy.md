@@ -214,5 +214,13 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
 
 ![](/assets/dcos_jenkins_task_marathon_tomcat_004.png)
 
+保存任务配置，退出。Jenkins任务列表中可以看到根据上述配置创建的任务：
+
+![](/assets/dcos_jenkins_task_marathon_tomcat_0051.png)
+
+点击右侧执行图标，立即执行。Jenkins调用接口向DCOS集群部署启动一个`mesos-jenkins slave`节点，执行此任务：
+
+![](/assets/dcos_jenkins_task_marathon_tomcat_0052.png)
+
 ### 为服务添加负载均衡
 
