@@ -25,8 +25,8 @@
 ## DC\/OS之服务
 * [Jenkins on DCOS](jenkins-on-dcos.md)
     * [示例：在Jenkins上编译部署Tomcat应用](示例：在jenkins上编译部署tomcat应用.md)
-* [FAQ](faq.md)
 * [Deploy tomcat and a war](deploy.md)
+* [FAQ](faq.md)
 * [部署Cassandra到DCOS](部署cassandra到dc.md)
 * [Marathon-LB](marathon-lb.md)
 * [Docker Registry](docker-registry.md)

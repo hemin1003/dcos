@@ -1,4 +1,4 @@
-Deploy tomcat and a war to DCOS
+示例：在Jenkins on DCOS上编译部署Tomcat应用
 
 ### 准备工作
 
