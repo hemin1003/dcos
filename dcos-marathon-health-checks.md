@@ -13,6 +13,7 @@ HTTP响应在timeoutSeconds参数设定的时间间隔内返回。
 示例
 
 HTTP
+
 ```
 { 
   "path": "/api/health", 
@@ -24,6 +25,38 @@ HTTP
   "maxConsecutiveFailures": 3, 
   "ignoreHttp1xx": false 
 }
+```
+
+Mesos HTTP
+
+```
+{ 
+  "path": "/api/health", 
+  "portIndex": 0, 
+  "protocol": "MESOS_HTTP", 
+  "gracePeriodSeconds": 300, 
+  "intervalSeconds": 60, 
+  "timeoutSeconds": 20, 
+  "maxConsecutiveFailures": 3 
+}
+```
+
+secure HTTP
+
+```
+{ "path": "/api/health", "portIndex": 0, "protocol": "HTTPS", "gracePeriodSeconds": 300, "intervalSeconds": 60, "timeoutSeconds": 20, "maxConsecutiveFailures": 3, "ignoreHttp1xx": false}
+```
+
+TCP
+
+```
+{ "portIndex": 0, "protocol": "TCP", "gracePeriodSeconds": 300, "intervalSeconds": 60, "timeoutSeconds": 20, "maxConsecutiveFailures": 0}
+```
+
+COMMAND
+
+```
+{ "protocol": "COMMAND", "command": { "value": "curl -f -X GET http://$HOST:$PORT0/health" }, "gracePeriodSeconds": 300, "intervalSeconds": 60, "timeoutSeconds": 20, "maxConsecutiveFailures": 3}
 ```
 
 
