@@ -212,7 +212,7 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
 }'
 ```
 
-
+![](/assets/dcos_jenkins_task_marathon_tomcat_004.png)
 
 ### 为服务添加负载均衡
 
