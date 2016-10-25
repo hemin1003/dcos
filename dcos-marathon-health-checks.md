@@ -44,19 +44,42 @@ Mesos HTTP
 secure HTTP
 
 ```
-{ "path": "/api/health", "portIndex": 0, "protocol": "HTTPS", "gracePeriodSeconds": 300, "intervalSeconds": 60, "timeoutSeconds": 20, "maxConsecutiveFailures": 3, "ignoreHttp1xx": false}
+{ 
+  "path": "/api/health", 
+  "portIndex": 0, 
+  "protocol": "HTTPS", 
+  "gracePeriodSeconds": 300, 
+  "intervalSeconds": 60, 
+  "timeoutSeconds": 20, 
+  "maxConsecutiveFailures": 3, 
+  "ignoreHttp1xx": false
+}
 ```
 
 TCP
 
 ```
-{ "portIndex": 0, "protocol": "TCP", "gracePeriodSeconds": 300, "intervalSeconds": 60, "timeoutSeconds": 20, "maxConsecutiveFailures": 0}
+{ 
+  "portIndex": 0, 
+  "protocol": "TCP", 
+  "gracePeriodSeconds": 300, 
+  "intervalSeconds": 60, 
+  "timeoutSeconds": 20, 
+  "maxConsecutiveFailures": 0
+}
 ```
 
 COMMAND
 
 ```
-{ "protocol": "COMMAND", "command": { "value": "curl -f -X GET http://$HOST:$PORT0/health" }, "gracePeriodSeconds": 300, "intervalSeconds": 60, "timeoutSeconds": 20, "maxConsecutiveFailures": 3}
+{ 
+  "protocol": "COMMAND", 
+  "command": { "value": "curl -f -X GET http://$HOST:$PORT0/health" }, 
+  "gracePeriodSeconds": 300, 
+  "intervalSeconds": 60, 
+  "timeoutSeconds": 20, 
+  "maxConsecutiveFailures": 3
+}
 ```
 
 
