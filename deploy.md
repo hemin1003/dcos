@@ -1,6 +1,6 @@
 示例：在Jenkins on DCOS上编译部署Tomcat应用
 
-### 准备工作
+### 1.准备工作
 
 **Tomcat下载地址**
 
@@ -155,7 +155,7 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
 
 2）默认Tomcat安装包是不带Java运行环境的，如果要正确运行，一种可选的方案是添加JRE的下载URI，并修改命令脚本；一种是定制Tomcat，将JRE打包进去，下载的URI指向自定义的Tomcat下载位置。
 
-### 配置Jenkins任务
+### 2.配置Jenkins任务
 
 #### 全局设置
 
@@ -218,9 +218,13 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
 
 ![](/assets/dcos_jenkins_task_marathon_tomcat_0051.png)
 
+### 3.构建和执行
+
 点击右侧执行图标，立即执行。Jenkins调用接口向DCOS集群部署启动一个`mesos-jenkins slave`节点，执行此任务：
 
 ![](/assets/dcos_jenkins_task_marathon_tomcat_0052.png)
 
-### 为服务添加负载均衡
+### 4.为服务添加负载均衡
+
+通过Marathon-lb实现多个Tomcat节点的负载均衡。
 
