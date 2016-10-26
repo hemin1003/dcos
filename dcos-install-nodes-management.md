@@ -19,33 +19,33 @@
 
 **操作步骤**
 
-1. 使用scp将集群安装文件拷贝的新增Agent节点主机
+* 使用scp将集群安装文件拷贝的新增Agent节点主机
 
 `scp dcos-install.tar  <username>@<new-agent-node-ip>:~/dcos-install.tar`
 
-1. 登录到新增节点主机
+* 登录到新增节点主机
 
 `ssh <username>@<new-agent-node-ip>`
 
-1. 在新增节点上创建DCOS临时安装目录
+* 在新增节点上创建DCOS临时安装目录
 
 `sudo mkdir -p /opt/dcos_install_tmp`
 
-1. 解压上传的集群安装文件
+* 解压上传的集群安装文件
 
 `sudo tar -xf dcos-install.tar -C /opt/dcos_install_tmp`
 
-1. 执行下述命令添加节点
+* 执行下述命令添加节点
 
-添加私有Agent节点：
+> 添加私有Agent节点：
 
 `sudo bash /opt/dcos_install_tmp/dcos_install.sh slave`
 
-添加公有Agent节点：
+> 添加公有Agent节点：
 
 `sudo bash /opt/dcos_install_tmp/dcos_install.sh slave_public`
 
-1. 通过下述两个命令可以分别查询当前集群中私有节点和公有节点的数量
+* 通过下述两个命令可以分别查询当前集群中私有节点和公有节点的数量
 
 私有：
 

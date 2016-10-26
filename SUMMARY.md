@@ -7,7 +7,7 @@
 * [环境搭建](环境搭建.md)
     * [安装环境准备](dcos-install-default.md)
         * [在Centos上安装Docker](dcos-install-docker-on-centos.md)
-    * [通过GUI安装DCOS](通过gui.md)
+    * [GUI安装](dcos-install-by-gui.md)
     * [集群节点管理](dcos-install-nodes-management.md)
     * [本地开发环境](本地开发环境.md)
     * [备份集群安装文件](dcos-install-backup-installer-file.md)
