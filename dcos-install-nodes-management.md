@@ -29,16 +29,13 @@
 
 1. 在新增节点上创建DCOS临时安装目录
 
-
 `sudo mkdir -p /opt/dcos_install_tmp`
 
 1. 解压上传的集群安装文件
 
-
 `sudo tar -xf dcos-install.tar -C /opt/dcos_install_tmp`
 
 1. 执行下述命令添加节点
-
 
 添加私有Agent节点：
 
@@ -49,7 +46,6 @@
 `sudo bash /opt/dcos_install_tmp/dcos_install.sh slave_public`
 
 1. 通过下述两个命令可以分别查询当前集群中私有节点和公有节点的数量
-
 
 私有：
 
@@ -63,9 +59,19 @@
 
 可以从当前DCOS集群中删除单个节点，具体操作步骤如下：
 
+```
+sudo -i  /opt/mesosphere/bin/pkgpanda uninstall
 
+sudo reboot
 
-变更节点类型
+sudo rm -rf /opt/mesosphere /etc/mesosphere 
+```
 
+如果节点删除过程中出现异常，要手工检查`/etc/systemd/system`目录下是否存在以“dcos”开头的服务，需要手动清除。
 
+如果想完全清除节点上的所有集群相关的数据，需要再执行下述命令清理：
+
+`sudo rm -rf /var/lib/dcos /var/lib/mesos`
+
+### 变更节点类型
 
