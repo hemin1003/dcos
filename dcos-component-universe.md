@@ -95,5 +95,5 @@
 
 `dcos package repo add --index=0  http://192.168.1.88:8085/repo`
 
-
+![](/assets/dcos_universe_repository_config.png)
 
