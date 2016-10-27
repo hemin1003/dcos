@@ -1,32 +1,77 @@
-Marathon-LB
+## Marathon-LB
 
-实现服务发现的另外一种方法是在集群的每个主机上运行一个TCP\/HTTP的代理，透明地连接本地主机上的静态服务端口转发到个人的动态分配主机\/端口组合马拉松应用程序实例\(运行便任务\)。客户端很容易连接到服务端口，并且不需要知道服务发现实现的具体细节。如果所有的应用通过marathon加装，那这个方式就足够了。
+Marathon-LB集成了HAProxy，HAProxy提供了服务代理功能，并为TCP、HTTP应用的负载均衡，它支持SSL，HTTP压缩健康检查，Lua脚本等特性。因此，Marathon-LB既可以用作服务代理，也可以用作负载均衡和服务发现工具。
 
-Marathon-lb是一个**[Docker](http://lib.csdn.net/base/4 "Docker知识库")**化的应用，包含HAProxy，使用marathon rest api重新生成HAProxy配置。它支持高级功能像SSL卸载,粘性的连接,和基于VHost负载平衡,允许为你的marathon应用指定虚拟host。
+Marathon-LB是一个容器应用，它订阅了Marathon的事件总线，自动获取各个APP的信息，为每一组APP生成HAProxy配置，能够根据变更实时调整更新HAProxy的配置信息。
 
-当使用marathon-lb，注意requirePosts=true不是不须设置，其他的说明在[ports documentation](https://mesosphere.github.io/marathon/docs/ports.html)中查阅。
+![](/assets/dcos_marathon_lb_topology.png)
+
+如上图所示，Marathon-LB的应用场景非常灵活，例如：
+
+* Marathon-LB可用在边际节点上提供负载均衡和服务发现。在DCOS中可以部署于Public节点，为入口流量做路由负载。这种情况下可以将Public节点的IP通过A记录与内部或外部DNS记录绑定。
+
+* Marathon-LB可用于内部负载均衡和服务发现，外部流量的入口路由负载可以使用硬件设备如F5，或者是云负载如AWS的Elastic Load Balancer（ELB）。
+
+* Marathon-LB只用于内部负载均衡和服务发现。
+
+* 可以将内部LB和外部LB同时使用Marathon-LB，不同的服务根据需求开放给不同的Marathon-LB。
 
 
+### Marathon-LB的使用
 
-Marathon-lb既是一个服务发现工具，也是负载均衡工具，它集成了haproxy，自动获取各个app的信息，为每一组app生成haproxy配置，通过servicePort或者web虚拟主机提供服务。
+**注意：**默认配置下，Marathon-LB部署在Public节点上。如果需要用作内部负载均衡，可参考如下配置：
 
-要使用marathonn-lb，每组app必须设置HAPROXY\_GROUP标签。
+```
+{ 
+    "marathon-lb":{ 
+        "name":"marathon-lb-internal", 
+        "haproxy-group":"internal", 
+        "bind-http-https":false, 
+        "role":"" 
+    } 
+}
+```
 
-Marathon-lb运行时绑定在各组app定义的服务端口（servicePort，如果app不定义servicePort，marathon会随机分配端口号）上，可以通过marathon-lb所在节点的相关服务端口访问各组app。
+Marathon-LB在部署时，默认占用80，443，9090，9091，10000-10100端口（80、443端口已被Marathon-LB中的 HAProxy独占）。
 
-例如：marathon-lb部署在slave5，test-app 部署在slave1，test-app 的servicePort是10004，那么可以在slave5的 10004端口访问到test-app提供的服务。
+要使用Marathonn-LB，服务定义中必须设置`HAPROXY_GROUP`标签。
 
-由于servicePort 非80、443端口（80、443端口已被marathon-lb中的 haproxy独占），对于web服务来说不太方便，可以使用 haproxy虚拟主机解决这个问题：
+Marathon-LB运行时绑定在服务定义的服务端口`servicePort`（如果APP不定义servicePort，Marathon会随机分配端口号）上，然后，外部或内部服务请求可以通过Marathon-LB所在节点的相关服务端口访问具体的服务。
+
+例如：Marathon-LB部署在node1上，服务S1部署在node2上并且绑定的servicePort是10001，服务S2部署在node3上，那么S2可以通过node1上的100001端口访问部署在node2上的S1。
+
+S1：
+
+```
+{ 
+    "id": "S1", 
+    "container": { 
+        "type": "DOCKER", 
+        "docker": { 
+            "image": "service:1.0.0", 
+            "network": "BRIDGE", 
+            "portMappings": [ 
+                { "hostPort": 0, "containerPort": 8080, "servicePort": 10001 } 
+            ], 
+            "forcePullImage":true 
+        } 
+    }, 
+    "instances": 1, 
+    "cpus": 0.1, 
+    "mem": 65, 
+    "labels":{ "HAPROXY_GROUP":"external" } 
+}
+```
+
+通过增加`instances`的值，可以增加S1的部署实例，这些实例通过Marathon-LB进行负载调度。
+
+### 虚拟主机
+
+Marathon-LB的另一个重要特性是支持虚拟主机。
 
 在提供web服务的app配置里增加HAPROXY\_{n}\_VHOST（WEB虚拟主机）标签，marathon-lb会自动把这组app的WEB集群服务发布在marathon-lb所在节点的80和443端口上，用户设置DNS后通过虚拟主机名来访问。
 
-
-
-External
-
-需求：至少1个Public Node
-
-Internal
+### 为Marathon-LB启用SSL
 
 使用Let's Encrypt自动维护SSL Certificate，并配置marathon-lb使用cert启用SSL。
 
