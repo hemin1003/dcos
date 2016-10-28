@@ -17,6 +17,7 @@
     * [集群卸载](dcos-install-m-uninstall-all.md)
 
 ## DC\/OS之原理
+* [在Marathon中运行容器](dcos-container.md)
 * [Reservation](dcos-mesos-reservation.md)
 * [Authorization](dcos-mesos-authorization.md)
 * [服务发现与负载均衡](服务发现与负载均衡.md)

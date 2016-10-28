@@ -67,9 +67,34 @@ S1：
 
 ### 虚拟主机
 
-Marathon-LB的另一个重要特性是支持虚拟主机。
+Marathon-LB的另一个重要特性是支持虚拟主机。这一特性可以将HTTP请求准确路由到多个主机节点（FQDNs）中的一个。
 
-在提供web服务的app配置里增加HAPROXY\_{n}\_VHOST（WEB虚拟主机）标签，marathon-lb会自动把这组app的WEB集群服务发布在marathon-lb所在节点的80和443端口上，用户设置DNS后通过虚拟主机名来访问。
+例如：网络拓扑中存在ilovesteak.com和steaknow.com两个域名，这两个DNS域名都指向**同一个Marathon-LB的同一个端口**，Marathon-LB会根据请求域名的不同，将HTTP请求提交给所负载的具体的服务节点。
+
+S1:
+
+```
+{
+ "id": "S1",
+ "labels":{ 
+   "HAPROXY_GROUP":"external",
+   "HAPROXY_0_VHOST":"ilovesteak.com"
+ }
+}
+```
+
+S2:
+
+```
+{
+ "id": "S2",
+ "labels":{
+  "HAPROXY_GROUP":"external",
+  "HAPROXY_0_VHOST":"steaknow.com"
+}
+```
+
+通过添加`HAPROXY_{n}_VHOST`（WEB虚拟主机）标签，Marathon-LB会自动把服务以虚拟主机的形式公布出来。访问域名`steaknow.com`时，会直接访问该域名绑定的Marathon-LB的IP和端口，并通过Marathon-LB自动跳转到S2服务。标签中的“0”对应着servicePort的索引，如果有多个servicePort定义，可以相应的配置为0，1，2等等。
 
 ### 为Marathon-LB启用SSL
 
