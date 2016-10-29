@@ -33,9 +33,9 @@
 * [Mesos](dcos-mesos.md)
 * [Marathon](dcos-marathon.md)
     * [Health Checks and Task Termination](dcos-marathon-health-checks.md)
+* [Universe](dcos-component-universe.md)
 
 ## DC\/OS之服务
-* [Universe](dcos-component-universe.md)
 * [Jenkins on DCOS](jenkins-on-dcos.md)
     * [自定义Jenkins Slave容器镜像](dcos-service-jenkins-custom-dind.md)
     * [示例：在Jenkins on DCOS上编译部署Tomcat应用](deploy.md)
