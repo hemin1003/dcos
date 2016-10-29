@@ -19,6 +19,26 @@ VIPs的命名遵循如下规则：
 
 ### **AppC容器配置**
 
+```
+{
+ "id": "myservice",
+ "portDefinitions": [
+  {
+   "protocol": "tcp",
+   "port": 6666,
+   "labels": { "VIP_0": "myservice:6666" },
+   "name": "jmx"
+  },
+  {
+   "protocol": "tcp",
+   "port": 7777,
+   "labels": { "VIP_1": "myservice:7777" },
+   "name": "api"
+  }
+ ]
+}
+```
+
 如上示例，该配置定义了两个VIP：
 
 * `myservice.marathon.l4lb.thisdcos.directory:6666`
