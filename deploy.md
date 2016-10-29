@@ -198,7 +198,7 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
 { 
   "id": "nirvana.web", 
   "cmd": "mv content?* ROOT.war && mv *.war apache-tomcat-*/webapps && cd apache-tomcat-* && sed \"s/8080/$PORT/g\" < ./conf/server.xml > ./conf/server-mesos.xml && ./bin/catalina.sh run -config ./conf/server-mesos.xml", 
-  "mem": 2048, 
+  "mem": 4096, 
   "cpus": 0.5, 
   "instances": 1, 
   "disk": 10240, 
@@ -207,12 +207,12 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
      "http://192.168.1.54:8081/nexus/service/local/artifact/maven/content?r=snapshots&g=com.example&a=example&v=LATEST&p=war" 
   ], 
   "healthChecks": [ 
-    { "protocol": "HTTP", "portIndex": 0, "path": "/", "gracePeriodSeconds": 10, "intervalSeconds": 60, "maxConsecutiveFailures": 3 } 
+    { "protocol": "HTTP", "portIndex": 0, "path": "/service/healthcheck", "gracePeriodSeconds": 120, "intervalSeconds": 60, "maxConsecutiveFailures": 3 } 
   ]
 }'
 ```
 
-![](/assets/dcos_jenkins_task_marathon_tomcat_004.png)
+提示：1）Tomcat启动时如果设置了最低和最高JVM内存，上述配置的内存配置应该高于JVM最高内存配置。2）如果WEB应用的启动需要耗费一定的时间，注意设置健康检查的`gracePeriodSeconds`参数值。
 
 保存任务配置，退出。Jenkins任务列表中可以看到根据上述配置创建的任务：
 
@@ -226,5 +226,13 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
 
 ### 4.为服务添加负载均衡
 
-通过Marathon-lb实现多个Tomcat节点的负载均衡。
+通过Marathon-LB可以实现多个Tomcat节点的负载均衡。在下述示例中，我们部署**3**个Tomcat应用服务，每个Tomcat应用服务公开**8080**端口，然后通过Marathon-LB的**10010**端口统一对外提供服务。
+
+在实践下述示例步骤之前，确保：1）集群中部署了Public Agent节点；2）Marathon-LB已经安装在Public Agent节点上。
+
+首先，修改前述示例中Jenkins任务的构建脚本配置，添加端口定义和HAProxy标签：
+
+
+
+
 
