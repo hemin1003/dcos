@@ -25,6 +25,8 @@
     * [Marathon-LB](marathon-lb.md)
     * [Mesos-DNS](mesos-dns.md)
     * [Spartan](spartan.md)
+* [容器网络方案](网络与端口.md)
+    * [dcos\_network\_vips](dcosnetworkvips.md)
 * [存储策略与方案](存储策略与方案.md)
 * [Mesos](dcos-mesos.md)
 * [Marathon](dcos-marathon.md)
