@@ -237,7 +237,7 @@ mvn package deploy -DskipTests=true
 
 curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/apps -d '
 {
- "id": "nirvana.web",
+ "id": "/example",
  "cmd": "mv content?* ROOT.war && mv *.war apache-tomcat-*/webapps && cd apache-tomcat-* && sed \"s/8080/$PORT/g\" < ./conf/server.xml > ./conf/server-mesos.xml && ./bin/catalina.sh run -config ./conf/server-mesos.xml",
  "mem": 4096,
  "cpus": 0.5,
@@ -249,9 +249,9 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
  ],
  "portDefinitions":[
   {
-    "hostPort": 0, 
-    "containerPort": 8080, 
-    "servicePort": 10010
+    "protocol": "tcp", 
+    "port": 10010, 
+    "labels": { "VIP_0": "/example:10010" }
   }
  ],
  "labels": {
@@ -264,4 +264,24 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
 ```
 
 保存Jenkins任务配置，重启执行任务。
+
+Tomcat服务在DCOS中部署后，查看其中的一个服务实例：
+
+![](/assets/dcos_jenkins_tomcat_lb_003.png)
+
+在浏览器里调用服务并测试：
+
+![](/assets/dcos_jenkins_tomcat_lb_004.png)
+
+通过Marathon-LB的`10010`端口访问服务：
+
+![](/assets/dcos_jenkins_tomcat_lb_005.png)
+
+### 5.结论
+
+每一个独立的Tomcat容器内部服务实例的端口为`8080`，容器对外映射到Host主机的端口是随机的，如本例其中的一个Tomcat容器实例运行时映射的端口为`11907`。DCOS将`192.168.1.80:11907`通过Marathon-LB（部署在192.168.1.51）进行负载并通过端口`10010`对外提供服务。
+
+多个Tomcat实例通过端口`portDefinitions`和`HAPROXY_GROUP`标签定义与Public Agent节点上的Marathon-LB进行绑定。
+
+可以根据需要通过DCOS控制界面动态扩展或缩减Tomcat的实例数。
 
