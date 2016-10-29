@@ -28,7 +28,7 @@
 * [容器网络方案](dcos-network.md)
     * [使用VIPs](dcos-network-vips.md)
     * [基于VIPs的负载调度](dcos-network-vips-lb.md)
-    * [dcos-network-marathon-ports](dcos-network-marathon-ports.md)
+    * [应用服务端口配置](dcos-network-marathon-ports.md)
 * [存储策略与方案](存储策略与方案.md)
 * [Mesos](dcos-mesos.md)
 * [Marathon](dcos-marathon.md)
