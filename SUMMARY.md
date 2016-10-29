@@ -28,6 +28,7 @@
 * [容器网络方案](dcos-network.md)
     * [使用VIPs](dcos-network-vips.md)
     * [基于VIPs的负载调度](dcos-network-vips-lb.md)
+    * [dcos-network-marathon-ports](dcos-network-marathon-ports.md)
 * [存储策略与方案](存储策略与方案.md)
 * [Mesos](dcos-mesos.md)
 * [Marathon](dcos-marathon.md)
@@ -43,7 +44,6 @@
 * [Marathon-LB](marathon-lb.md)
     * [为Marathon-LB启用SSL](dcos-service-marathon-lb-ssl.md)
 * [Docker Registry](docker-registry.md)
-* [Universe](universe.md)
 * [DCOS 应用仓库之Universe](dcos-应用仓库之universe.md)
 * [DCOS应用市场之应用仓库的管理](dcos应用市场之应用仓库的管理.md)
 
