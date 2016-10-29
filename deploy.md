@@ -230,9 +230,38 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
 
 在实践下述示例步骤之前，确保：1）集群中部署了Public Agent节点；2）Marathon-LB已经安装在Public Agent节点上。
 
-首先，修改前述示例中Jenkins任务的构建脚本配置，添加端口定义和HAProxy标签：
+首先，修改前述示例中Jenkins任务的构建脚本配置，添加端口定义和HAPROXY\_GROUP标签：
 
+```
+mvn package deploy -DskipTests=true
 
+curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/apps -d '
+{
+ "id": "nirvana.web",
+ "cmd": "mv content?* ROOT.war && mv *.war apache-tomcat-*/webapps && cd apache-tomcat-* && sed \"s/8080/$PORT/g\" < ./conf/server.xml > ./conf/server-mesos.xml && ./bin/catalina.sh run -config ./conf/server-mesos.xml",
+ "mem": 4096,
+ "cpus": 0.5,
+ "instances": 3,
+ "disk": 10240,
+ "uris": [
+ "http://192.168.1.54:8081/nexus/content/groups/public/com/caiyi/tomcat/tomcat-server/8.5.6/tomcat-server-8.5.6-jre.tar.gz",
+ "http://192.168.1.54:8081/nexus/service/local/artifact/maven/content?r=snapshots&g=com.example&a=example&v=LATEST&p=war"
+ ],
+ "portDefinitions":[
+  {
+    "hostPort": 0, 
+    "containerPort": 8080, 
+    "servicePort": 10010
+  }
+ ],
+ "labels": {
+  "HAPROXY_GROUP": "external"
+ },
+ "healthChecks": [
+ { "protocol": "HTTP", "portIndex": 0, "path": "/service/healthcheck", "gracePeriodSeconds": 120, "intervalSeconds": 60, "maxConsecutiveFailures": 3 }
+ ]
+}'
+```
 
-
+保存Jenkins任务配置，重启执行任务。
 
