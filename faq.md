@@ -22,13 +22,23 @@
 
 `service docker restart`
 
-
-
 #### 安装过程中，待安装的服务一直处于Staging状态
 
-可能的原因有两个：一个是无法连接到Universe，一个是系统报：Insufficient resource ...。 
+可能的原因有两个：一个是无法连接到Universe，一个是系统报：Insufficient resource ...。
 
 前者是因为Universe配置的问题，例如Mesos Agent无法访问5000端口，可参考上一个问题；
 
 后者是因为slave集群内没有private agent或者private agent的资源不够。待部署的Service设置的资源Role，默认为“**\***”，需要设置为：“**slave\_public**”。
+
+#### Centos 7上Docker镜像运行错误
+
+[Docker run fails with "invalid argument" when using overlay driver on top of xfs](https://github.com/docker/docker/issues/10294)
+
+解决方案：升级Linux内核至3.18.4+
+
+```
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+yum --enablerepo=elrepo-kernel install kernel-ml
+```
 
