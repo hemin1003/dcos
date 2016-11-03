@@ -93,3 +93,9 @@ VIPs的命名遵循如下规则：
 
 ![](/assets/dcos_network_vip_docker.png)
 
+### FAQ
+
+在DCOS集群中，启用VIP的服务（&lt;service-name&gt;.marathon.l4lb.thisdcos.directory）仅在该服务通过健康检查（Health Check）时才能激活。
+
+This won't cause downtime during a rolling upgrade as the "older" version will be active until the "newer" version responds correctly to the health check, then the load balancer gets updated to the "newer". The VIP is active at all times, but traffic will be sent to the "older" until the "newer" comes up. Then the upgrade is performed according to the parameters specified in the marathon app definition \(which define "how quickly to upgrade"\)
+

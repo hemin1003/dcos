@@ -6,7 +6,7 @@
 
 登录到Bootstrap节点，执行下面的命令：
 
-`sudo bash dcos\_generate\_config.sh --uninstall`
+`sudo bash dcos_generate_config.sh --uninstall`
 
 命令执行后控制台输出类似下面的内容：
 
