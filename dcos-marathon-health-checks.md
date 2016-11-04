@@ -73,6 +73,29 @@ TCP
 }
 ```
 
+源代码：
+
+```
+def tcp( 
+ task: Task, 
+ check: MarathonTcpHealthCheck, 
+ host: String, port: Int): Future[Option[HealthResult]] = { 
+  val address = s"$host:$port" 
+  val timeoutMillis = check.timeout.toMillis.toInt 
+  log.debug("Checking the health of [{}] via TCP", address)
+
+  Future {     
+   val address = new InetSocketAddress(host, port)     
+   val socket = new Socket     
+   scala.concurrent.blocking {     
+    socket.connect(address, timeoutMillis)     
+    socket.close() 
+   } 
+  Some(Healthy(task.taskId, task.runSpecVersion, Timestamp.now())) 
+}(ThreadPoolContext.ioContext) }
+
+```
+
 COMMAND
 
 ```
@@ -114,7 +137,6 @@ COMMAND
 **h** 健康的应用服务实例数
 
 ![](/assets/dcos_marathon_app_state.png)
-
 
 #### 任务终止
 
