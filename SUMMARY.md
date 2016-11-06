@@ -10,13 +10,14 @@
     * [GUI安装](dcos-install-by-gui.md)
     * [本地开发环境](本地开发环境.md)
     * dcos-install-by-cli
-    * dcos-install-by-advanced-mode
+    * [dcos-install-by-advanced-mode](dcos-install-by-advanced-mode.md)
 * [集群环境维护](dcos-install-maintainance.md)
     * [备份集群安装文件](dcos-install-backup-installer-file.md)
     * [集群节点管理](dcos-install-nodes-management.md)
     * [集群卸载](dcos-install-m-uninstall-all.md)
 
 ## DC\/OS之原理
+* [Exhibitor](dcos-exhibitor.md)
 * [在Marathon中运行容器](dcos-container.md)
 * [Reservation](dcos-mesos-reservation.md)
 * [Authorization](dcos-mesos-authorization.md)
