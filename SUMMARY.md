@@ -60,9 +60,8 @@
 * [DCOS应用市场之应用仓库的管理](dcos应用市场之应用仓库的管理.md)
 
 ## DC\/OS之应用
-* [持续集成与持续部署\(CI\/CD\)](b持续集成与持续部署cicd.md)
-* [持续集成与持续部署](b持续集成与持续部署cicd.md)
-    * [应用打包与镜像构建](自动打包构建镜像.md)
-    * [持续集成与构建](持续集成与构建.md)
-    * [持续部署](持续部署.md)
+* [持续集成与持续部署](dcos-usage-cicd.md)
+    * [应用打包与镜像构建](dcos-usage-cicd-build-by-maven.md)
+    * [持续集成与构建](dcos-usage-cicd-integration.md)
+    * [持续部署](dcos-usage-cicd-deploy.md)
 
