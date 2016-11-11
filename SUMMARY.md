@@ -1,17 +1,16 @@
 # Summary
 
 ## DC\/OS之导论
-* [Introduction](README.md)
+* [导论](README.md)
     * [DCOS概览](dcos概览.md)
     * [DCOS系统组件](dcos-system-components.md)
-    * [基础理论](基础理论.md)
+    * [基础理论](dcos-basic-theory.md)
 * [环境搭建](环境搭建.md)
     * [安装环境准备](dcos-install-default.md)
         * [在Centos上安装Docker](dcos-install-docker-on-centos.md)
     * [GUI安装](dcos-install-by-gui.md)
-    * [本地开发环境](本地开发环境.md)
-    * dcos-install-by-cli
-    * [dcos-install-by-advanced-mode](dcos-install-by-advanced-mode.md)
+    * [通过CLI安装](dcos-install-by-cli.md)
+    * [高级安装](dcos-install-by-advanced-mode.md)
 * [集群环境维护](dcos-install-maintainance.md)
     * [备份集群安装文件](dcos-install-backup-installer-file.md)
     * [集群节点管理](dcos-install-nodes-management.md)
@@ -60,11 +59,14 @@
 * [DCOS应用市场之应用仓库的管理](dcos应用市场之应用仓库的管理.md)
 
 ## DCOS之管理
-* [dcos-admin-cli](dcos-admin-cli.md)
+* [DCOS CLI](dcos-admin-cli.md)
+* [DCOS 管理UI](dcos-admin-ui.md)
 
 ## DC\/OS之应用
 * [持续集成与持续部署](dcos-usage-cicd.md)
     * [应用打包与镜像构建](dcos-usage-cicd-build-by-maven.md)
     * [持续集成与构建](dcos-usage-cicd-integration.md)
     * [持续部署](dcos-usage-cicd-deploy.md)
+
+## DCOS之开发
 
