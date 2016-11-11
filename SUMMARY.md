@@ -19,7 +19,6 @@
 * [系统服务](dcos-system-components.md)
 * [资源调度策略](dcos-theory-schedule-strategy.md)
 * [Exhibitor服务](dcos-component-exhibitor.md)
-* [在Marathon中运行容器](dcos-container.md)
 * [Reservation](dcos-mesos-reservation.md)
 * [Authorization](dcos-mesos-authorization.md)
 * [存储策略与方案](dcos-storage.md)
@@ -45,8 +44,6 @@
     * [容器运行管理](dcos-marathon-container.md)
 * [Universe](dcos-component-universe.md)
     * [应用的管理](dcos-component-universe-usage.md)
-
------
 
 ## DC\/OS之服务
 * [HDFS on DCOS](hdfs-on-jenkins.md)
