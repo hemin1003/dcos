@@ -37,7 +37,19 @@
   * [持久化卷](dcos-storage-persistent-volume.md)
     * [本地持久化卷](dcos-storage-persistent-volume-local.md)
     * [外部持久化卷](外部持久化卷.md)
-* [服务发现与负载均衡](服务发现与负载均衡.md) * [VIPs](vips.md) * [Marathon-LB](marathon-lb.md) * [Mesos-DNS](mesos-dns.md) * [Spartan](spartan.md)* [容器网络方案](dcos-network.md) * [服务端口配置](dcos-network-marathon-ports.md) * [使用VIPs](dcos-network-vips.md) * [基于VIPs的负载调度](dcos-network-vips-lb.md)* [Mesos](dcos-mesos.md)* [Marathon](dcos-marathon.md) * [Health Checks and Task Termination](dcos-marathon-health-checks.md)* [Universe](dcos-component-universe.md)
+* [服务发现与负载均衡](服务发现与负载均衡.md) 
+    * [VIPs](vips.md) 
+    * [Marathon-LB](marathon-lb.md) 
+    * [Mesos-DNS](mesos-dns.md) 
+    * [Spartan](spartan.md)
+* [容器网络方案](dcos-network.md) 
+    * [服务端口配置](dcos-network-marathon-ports.md) 
+    * [使用VIPs](dcos-network-vips.md) 
+    * [基于VIPs的负载调度](dcos-network-vips-lb.md)
+* [Mesos](dcos-mesos.md)
+* [Marathon](dcos-marathon.md) 
+    * [Health Checks and Task Termination](dcos-marathon-health-checks.md)
+* [Universe](dcos-component-universe.md)
 
 
 ## DC\/OS之服务
