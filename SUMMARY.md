@@ -39,6 +39,9 @@
     * [外部持久化卷](外部持久化卷.md)
 
 
+
+---
+
 * [服务发现与负载均衡](服务发现与负载均衡.md)
   * [VIPs](vips.md)
   * [Marathon-LB](marathon-lb.md)
@@ -56,7 +59,8 @@
   * [容器运行管理](dcos-marathon-container.md)
 
 * [Universe](dcos-component-universe.md)
-  * [应用的管理]（dcos-component-universe-usage.md）
+  * [\[应用的管理\]（dcos-component-universe-usage.md）](/dcos-component-universe-usage.md)
+
 
 ## DC\/OS之服务
 
