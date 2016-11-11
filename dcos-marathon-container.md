@@ -79,11 +79,36 @@ Docker容器化依赖外部Docker引擎来运行Docker容器镜像。采用Docke
 }
 ```
 
-使用次有容器镜像
+示例中的端口定义再简单总结一下，详细信息可参考**[服务端口配置](/dcos-network-marathon-ports.md)**章节。
 
-静态端口绑定
+1）**hostPort**，值为0（默认值）时，是一个在Agent主机上随机分配的端口，该端口属于Mesos管理的端口资源的一部分。该配置可选。
 
+2）**containerPort**，是指应用在容器内监听的端口。该配置可选且默认值为0。取默认值0时，Marathon将该端口设置为与hostPort相同的值。这要求容器内应用通过获取传递进容器的环境变量$PORT0，$PORT1，...设定应用的启动端口。
 
+3）**servicePort**，是一个用于服务发现的辅助配置，Marathon并不实际使用该端口配置，但它会确保该端口在整个集群内唯一。该配置可选且默认值为0。取默认值0时，端口被随机分配，范围介于\[local\_port\_min, local\_port\_max\]之间，默认值为10000~20000。
 
+**静态端口绑定**
 
+如果为hostPort设置了非默认值0，必须确保设定的端口值处于Mesos资源提供的范围内。默认情况下，Mesos的Agent节点提供的端口资源范围是\[31000-32000\]，该默认值可以通过参数调整：
+
+--resources="ports\(\*\):\[8000-9000, 31000-32000\]"
+
+DCOS默认设置的端口资源范围\(`/opt/mesosphere/etc/mesos-slave`\)为：
+
+```json
+{
+    "name":"ports",
+    "type":"RANGES",
+    "ranges": {
+        "range": [
+            {"begin": 1025, "end": 2180},
+            {"begin": 2182, "end": 3887},
+            {"begin": 3889, "end": 5049},
+            {"begin": 5052, "end": 8079},
+            {"begin": 8082, "end": 8180},
+            {"begin": 8182, "end": 32000}
+        ]
+    }
+}
+```
 
