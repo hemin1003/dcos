@@ -3,7 +3,6 @@
 ## DC\/OS之导论
 * [导论](README.md)
     * [DCOS概览](dcos概览.md)
-    * [DCOS系统组件](dcos-system-components.md)
     * [基础理论](dcos-basic-theory.md)
 * [环境搭建](环境搭建.md)
     * [安装环境准备](dcos-install-default.md)
@@ -11,12 +10,13 @@
     * [GUI安装](dcos-install-by-gui.md)
     * [通过CLI安装](dcos-install-by-cli.md)
     * [高级安装](dcos-install-by-advanced-mode.md)
-* [集群环境维护](dcos-install-maintainance.md)
+* [集群维护](dcos-install-maintainance.md)
     * [备份集群安装文件](dcos-install-backup-installer-file.md)
     * [集群节点管理](dcos-install-nodes-management.md)
     * [集群卸载](dcos-install-m-uninstall-all.md)
 
 ## DC\/OS之原理
+* [系统服务](dcos-system-components.md)
 * [资源调度策略](dcos-theory-schedule-strategy.md)
 * [Exhibitor服务](dcos-component-exhibitor.md)
 * [在Marathon中运行容器](dcos-container.md)
