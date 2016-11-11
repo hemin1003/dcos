@@ -16,8 +16,8 @@
     * [集群卸载](dcos-install-m-uninstall-all.md)
 
 ## DC\/OS之原理
-* [系统服务](dcos-system-components.md)
 * [资源调度策略](dcos-theory-schedule-strategy.md)
+* [系统服务](dcos-system-components.md)
 * [Exhibitor服务](dcos-component-exhibitor.md)
 * [Reservation](dcos-mesos-reservation.md)
 * [Authorization](dcos-mesos-authorization.md)
