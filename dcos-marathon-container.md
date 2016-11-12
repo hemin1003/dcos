@@ -118,17 +118,62 @@ DCOS默认设置的端口资源范围\(`/opt/mesosphere/etc/mesos-slave`\)为：
 
 在应用JSON定义的uris字段里添加一个.**dockercfg**文件路径配置。Docker的$HOME环境变量会设置为$MESOS\_SANDBOX，因此可以自动获取docker配置文件。
 
-Registry 2.0 - Docker 1.6 and up
+#### Registry 2.0 - Docker 1.6 and up
 
 在应用JSON定义的uris字段里添加一个**docker.tar.gz**文件路径配置。docker.tar.gz文件需要包含`.docker`目录及该目录下的`.docker/config.json`。
 
-步骤1：制作docker.tar.gz
+**步骤1：制作docker.tar.gz**
 
 1）登录到容器镜像仓库，登录后自动在用户目录下创建了一个.docker和.docker\/config.json文件。
 
+```
+$ docker login some.docker.host.com 
+    Username: foo 
+    Password: 
+    Email: foo@bar.com
+```
 
+2）压缩.docker目录
 
+```
+$ cd ~ 
+$ tar czf docker.tar.gz .docker
+```
 
+3）检查压缩包的正确性
+
+```
+$ tar -tvf ~/docker.tar.gz 
+    drwx------ root/root 0 2015-07-28 02:54 .docker/ 
+    -rw------- root/root 114 2015-07-28 01:31 .docker/config.json
+```
+
+4）将.docker.tar.gz放置到一个Mesos\/Marathon可访问的位置（该位置必须被所有节点访问到）
+
+```
+$ cp docker.tar.gz /etc/
+```
+
+**步骤2：在应用JSON中设置.docker.tar.gz的文件路径**
+
+```json
+{ 
+    "id": "/some/name/or/id", 
+    "cpus": 1, 
+    "mem": 1024, 
+    "instances": 1, 
+    "container": { 
+        "type": "DOCKER", 
+        "docker": { 
+            "image": "some.docker.host.com/namespace/repo", 
+            "network": "HOST" 
+        } 
+    }, 
+    "uris": [ "file:///etc/docker.tar.gz" ] 
+}
+```
+
+应用部署时，Docker会根据文件提供的身份凭据登录镜像仓库拉取镜像。
 
 ### 高级参数配置
 
