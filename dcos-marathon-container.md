@@ -79,7 +79,7 @@ Docker容器化依赖外部Docker引擎来运行Docker容器镜像。采用Docke
 }
 ```
 
-示例中的端口定义再简单总结一下，详细信息可参考**[服务端口配置](/dcos-network-marathon-ports.md)**章节。
+示例中的端口定义再简单总结一下，详细信息可参考[**服务端口配置**](/dcos-network-marathon-ports.md)章节。
 
 1）**hostPort**，值为0（默认值）时，是一个在Agent主机上随机分配的端口，该端口属于Mesos管理的端口资源的一部分。该配置可选。
 
@@ -113,6 +113,22 @@ DCOS默认设置的端口资源范围\(`/opt/mesosphere/etc/mesos-slave`\)为：
 ```
 
 ### 访问私有Docker仓库
+
+#### Registry 1.0 - Docker pre 1.6
+
+在应用JSON定义的uris字段里添加一个.**dockercfg**文件路径配置。Docker的$HOME环境变量会设置为$MESOS\_SANDBOX，因此可以自动获取docker配置文件。
+
+Registry 2.0 - Docker 1.6 and up
+
+在应用JSON定义的uris字段里添加一个**docker.tar.gz**文件路径配置。docker.tar.gz文件需要包含`.docker`目录及该目录下的`.docker/config.json`。
+
+步骤1：制作docker.tar.gz
+
+1）登录到容器镜像仓库，登录后自动在用户目录下创建了一个.docker和.docker\/config.json文件。
+
+
+
+
 
 ### 高级参数配置
 
@@ -162,4 +178,50 @@ ENTRYPOINT ["echo"]
 ```
 
 #### 特权模式和自定义Docker选项
+
+Marathon 自0.7.6版本开始，新增了两个字段：`privileged` 和 `parameters`。privileged字段允许用户以特权模式运行容器，默认值为false。parameters字段允许用户为`docker run`提供自定义的命令行参数，使用该特性时要注意，随着Mesos容器化的发展，当Mesos与Docker引擎的交互不通过CLI方式时，该特性可能将不再被支持。
+
+```json
+{ 
+    "id": "privileged-job", 
+    "container": { 
+        "docker": { 
+            "image": "mesosphere/inky", 
+            "privileged": true, 
+            "parameters": [ 
+                { "key": "hostname", "value": "a.corp.org" }, 
+                { "key": "volumes-from", "value": "another-container" }, 
+                { "key": "lxc-conf", "value": "..." }     
+            ] 
+        }, 
+        "type": "DOCKER", 
+        "volumes": [] 
+    }, 
+    "args": ["hello"], 
+    "cpus": 0.2, "mem": 32.0, "instances": 1 
+}
+```
+
+### Mesos容器化
+
+Marathon自1.3.0版本开始不再依赖原生的Docker引擎来运行docker容器镜像。Mesos容器化使用通用容器运行时（2016年7月发布的Mesos 1.0版本）来运行docker容器镜像。通用容器运行时直接使用原生的操作系统特性配置和启动Docker或[AppC](https://github.com/appc/spec)容器镜像并提供隔离。
+
+Mesos容器化提供了新的属性字段“credential”定义访问容器镜像仓库的身份凭据：
+
+```json
+{ 
+    "id": "mesos-docker", 
+    "container": { 
+        "docker": { 
+            "image": "mesosphere/inky", 
+            "credential": { "principal": "alice", "secret": "wonderland" } 
+        }, 
+        "type": "MESOS" 
+    }, 
+    "args": ["hello"], 
+    "cpus": 0.2, 
+    "mem": 16.0, 
+    "instances": 1 
+}
+```
 
