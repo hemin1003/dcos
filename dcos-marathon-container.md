@@ -79,7 +79,7 @@ Docker容器化依赖外部Docker引擎来运行Docker容器镜像。采用Docke
 }
 ```
 
-示例中的端口定义再简单总结一下，详细信息可参考[**服务端口配置**](/dcos-network-marathon-ports.md)章节。
+示例中的端口定义再简单总结一下，详细信息可参考**[服务端口配置](/dcos-network-marathon-ports.md)**章节。
 
 1）**hostPort**，值为0（默认值）时，是一个在Agent主机上随机分配的端口，该端口属于Mesos管理的端口资源的一部分。该配置可选。
 
@@ -120,9 +120,13 @@ DCOS默认设置的端口资源范围\(`/opt/mesosphere/etc/mesos-slave`\)为：
 
 Marathon 0.8.2 和 Mesos 0.22.0版本开始支持在启动任务时强制拉取（即使本地已存在）容器镜像：
 
-
-
+```json
+{ "type": "DOCKER", "docker": { "image": "group/image", "forcePullImage": true } }
+```
 #### **Command vs Args**
+
+Marathon自0.7.0版本开始在应用的JSON定义中支持args字段。在同一应用JSON定义中不能同时出现cmd和args。cmd字段在任务启动时以“`/bin/sh -c '${app.cmd}'`”执行。
+args字段提供了一种与容器定义进行交互的方式，如自定义Docker容器中的
 
 #### 特权模式和自定义Docker选项
 
