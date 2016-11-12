@@ -1,4 +1,4 @@
-### Health Checks and Task Termination
+### 应用健康检查
 
 #### 健康检查
 
@@ -9,6 +9,7 @@
 * HTTP响应返回代码为200至399（含399）之间。
 
 * 响应在timeoutSeconds参数设定的时间间隔内返回。
+
 
 如果应用健康检查失败，而且超过了参数maxConsecutiveFailures的设定值，这个任务会被杀死。
 
@@ -146,4 +147,6 @@ COMMAND
 TASK\_KILLING是任务的一个状态，意味着该任务收到一个Kill请求，当前正处于宽限期。其它工具如负载均衡或服务发现不应再将请求路由到该任务。
 **taskKillGracePeriodSeconds**
 尽管健康检查可以让你确定一个应用服务不健康时可以kill掉它，taskKillGracePeriodSeconds允许设置一个值，这个值定义了executor向任务发送SIGTERM消息通知任务停止到executor再次发送SIGKILL消息正式杀掉该任务之间的时间间隔。这个参数在任务不会立即停止，而是需要一个退出时间时非常有用。如果没有设置此参数，其默认值为3秒钟。
+
+如何手动管理任务，请参考DCOS CLI及管理UI相关章节。
 

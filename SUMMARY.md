@@ -40,7 +40,7 @@
     * [基于VIPs的负载调度](dcos-network-vips-lb.md)
 * [Mesos](dcos-mesos.md)
 * [Marathon](dcos-marathon.md)
-    * [Health Checks and Task Termination](dcos-marathon-health-checks.md)
+    * [应用健康检查](dcos-marathon-health-checks.md)
     * [容器运行管理](dcos-marathon-container.md)
 * [Universe](dcos-component-universe.md)
     * [应用的管理](dcos-component-universe-usage.md)
