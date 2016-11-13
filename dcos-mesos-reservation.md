@@ -151,6 +151,7 @@ $ curl -i \
 
 * 409 Conflict: Insufficient resources to satisfy the reserve operation.
 
+
 #### \/unreserve \(since 0.25.0\)
 
 ```
@@ -173,12 +174,12 @@ $ curl -i \
 
 * 409 Conflict: Insufficient resources to satisfy the unreserve operation.
 
+
 ### 查看预留的资源
 
-集群中每个Agent节点上的资源预留信息可以通过Master查询\/slaves返回的信息（位于reserved\_resources\_all节点下）查看。这些信息也可以在Agent节点上的\/state管理接口下查看。可以通过这些接口确认在Agent节点上的资源动态预留是否成功。
+集群中每个Agent节点上的资源预留信息可以通过Master查询`http://<Master-IP>:5050/slaves`返回的信息（位于reserved\_resources\_all节点下）查看。这些信息也可以在Agent节点上的`http://<Master-IP>:5050/state`管理接口下查看。可以通过这些接口确认在Agent节点上的资源动态预留是否成功。
 
-提示：
-在DCOS中，可以通过访问：`http://<Master-IP>/mesos`查看所有的Agents列表，并查看特定Agent上的资源预留:
+**提示：**在DCOS中，除了上述接口外，也可以通过访问：`http://<Master-IP>/mesos`查看所有的Agents列表，并查看特定Agent上的资源预留:
 ![](/assets/dcos-mesos-agents.png)
 
 ### 参考
