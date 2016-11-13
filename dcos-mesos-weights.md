@@ -51,5 +51,29 @@ $ curl -d @weights.json -X PUT http://<master-ip>:<port>/weights
 
 ### 查询权重设置
 
+调用以下指令查询权重
 
+```
+$ curl -X GET http://<master-ip>:<port>/weights
+```
+
+该指令的响应如下：
+
+```json
+[ 
+    { 
+        "role": "role2", 
+        "weight": 3.5 
+    }, 
+    { 
+        "role": "role1", 
+        "weight": 2.0 
+    } 
+]
+```
+
+调用权重更细节看的响应值为下列之一：
+
+* 200 OK: Success.\* 
+* 401 Unauthorized: Unauthenticated request.
 
