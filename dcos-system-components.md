@@ -1,6 +1,6 @@
 ## DCOS之系统组件服务
 
-DCOS由一组（超过30个）系统服务组成，其中包括大家所熟知的Mesos、Marathon、Zookeeper及Rexray等。根据组成DCOS集群节点职能的不同，位于这些节点上的系统服务稍有差别。
+DCOS由一组（超过30个）系统服务组成，包括大家所熟知的Mesos、Marathon、Zookeeper及Rexray等。根据组成DCOS集群节点职能的不同，位于这些节点上的系统服务稍有差别。
 
 ### Master节点系统服务\(V1.8.4\)
 
