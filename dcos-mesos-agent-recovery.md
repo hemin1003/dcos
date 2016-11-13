@@ -53,3 +53,7 @@ ExecStart=/usr/bin/mesos-agent
 KillMode=control-cgroup
 ```
 
+### 参考
+
+https:\/\/github.com\/apache\/mesos\/blob\/master\/docs\/agent-recovery.md
+
