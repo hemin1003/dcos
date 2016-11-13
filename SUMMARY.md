@@ -23,8 +23,8 @@
 ## DC\/OS之原理
 
 * [理解DCOS](dcos-theory-overview.md)
-  * [Docker Swarm vs Mesos vs Kubernetties](dcos-theory-solutions-martrix.md)
   * [资源调度策略](dcos-theory-schedule-strategy.md)
+  * [Docker Swarm vs Mesos vs Kubernetties](dcos-theory-solutions-martrix.md)
 
 * [Mesos](dcos-mesos.md)
   * [资源与属性](dcos-mesos-attributes-and-resources.md)
@@ -47,6 +47,9 @@
     * [本地持久化卷](dcos-storage-persistent-volume-local.md)
     * [外部持久化卷](外部持久化卷.md)
 
+
+
+---
 
 * [服务发现与负载均衡](服务发现与负载均衡.md)
   * [VIPs](vips.md)
