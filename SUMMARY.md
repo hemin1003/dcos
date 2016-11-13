@@ -16,6 +16,8 @@
     * [集群卸载](dcos-install-m-uninstall-all.md)
 
 ## DC\/OS之原理
+* [Mesos](dcos-mesos.md)
+    * [dcos-mesos-attributes-and-resources](dcos-mesos-attributes-and-resources.md)
 * [资源调度策略](dcos-theory-schedule-strategy.md)
 * [系统服务](dcos-system-components.md)
 * [Exhibitor服务](dcos-component-exhibitor.md)
@@ -38,7 +40,6 @@
     * [服务端口配置](dcos-network-marathon-ports.md)
     * [使用VIPs](dcos-network-vips.md)
     * [基于VIPs的负载调度](dcos-network-vips-lb.md)
-* [Mesos](dcos-mesos.md)
 * [Marathon](dcos-marathon.md)
     * [应用健康检查](dcos-marathon-health-checks.md)
     * [容器运行管理](dcos-marathon-container.md)

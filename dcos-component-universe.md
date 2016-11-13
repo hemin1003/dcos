@@ -10,7 +10,7 @@
   git clone https://github.com/mesosphere/universe.git
   ```
 
-  确认当前工作分支位于`version-3.x`上。
+  确认当前工作分支位于`version-3.x`上。实际应用中很可能需要自定义或Patch部分应用服务，因此，推荐Fork仓库到自己的账户下。
 
 2. 确保**jsonschema**工具在命令行环境中可用：
 
