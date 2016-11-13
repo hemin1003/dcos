@@ -42,19 +42,63 @@ $ mesos-slave  --master=<ip>:<port>  --resources="cpus:4;mem:2048;cpus(ads):8;me
 框架可以在资源供应环节设置资源动态预留。假定框架收到了12CPUs和6144MB内存的资源供应：
 
 ```json
-{ "id": <offer_id>, "framework_id": <framework_id>, "slave_id": <slave_id>, "hostname": <hostname>, "resources": [ { "name": "cpus", "type": "SCALAR", "scalar": { "value": 12 }, "role": "*", }, { "name": "mem", "type": "SCALAR", "scalar": { "value": 6144 }, "role": "*", } ] }
+{ 
+    "id": <offer_id>, 
+    "framework_id": <framework_id>, 
+    "slave_id": <slave_id>, 
+    "hostname": <hostname>, 
+    "resources": [ 
+        { "name": "cpus", "type": "SCALAR", "scalar": { "value": 12 }, "role": "*", }, 
+        { "name": "mem", "type": "SCALAR", "scalar": { "value": 6144 }, "role": "*", } 
+    ] 
+}
 ```
 
 如果框架想预留8CPUs和4096MB内存，则框架向Master返回如下的响应消息。如果框架向Master注册时提供了principal，则响应消息中的值必须与注册时的值一致，否则可以提供任意值或空值，但principal字段必须存在。
 
 ```json
-{ "type": Offer::Operation::RESERVE, "reserve": { "resources": [ { "name": "cpus", "type": "SCALAR", "scalar": { "value": 8 }, "role": <framework_role>, "reservation": { "principal": <framework_principal> } }, { "name": "mem", "type": "SCALAR", "scalar": { "value": 4096 }, "role": <framework_role>, "reservation": { "principal": <framework_principal> } } ] } }
+{ 
+    "type": Offer::Operation::RESERVE, 
+    "reserve": { 
+        "resources": [ 
+            { 
+                "name": "cpus", 
+                "type": "SCALAR", 
+                "scalar": { "value": 8 }, 
+                "role": <framework_role>, 
+                "reservation": { "principal": <framework_principal> } 
+            }, 
+            { 
+                "name": "mem", 
+                "type": "SCALAR", 
+                "scalar": { "value": 4096 }, 
+                "role": <framework_role>, 
+                "reservation": { "principal": <framework_principal> } 
+            } 
+        ] 
+    } 
+}
 ```
 
 如果资源预留成功，则随后的资源供应会包含下述资源：
 
 ```json
-{ "id": <offer_id>, "framework_id": <framework_id>, "slave_id": <slave_id>, "hostname": <hostname>, "resources": [ { "name": "cpus", "type": "SCALAR", "scalar": { "value": 8 }, "role": <framework_role>, "reservation": { "principal": <framework_principal> } }, { "name": "mem", "type": "SCALAR", "scalar": { "value": 4096 }, "role": <framework_role>, "reservation": { "principal": <framework_principal> } }, ] }
+{ 
+    "id": <offer_id>, 
+    "framework_id": <framework_id>, 
+    "slave_id": <slave_id>, 
+    "hostname": <hostname>, 
+    "resources": [ 
+        { 
+            "name": "cpus", "type": "SCALAR", "scalar": { "value": 8 }, 
+            "role": <framework_role>, "reservation": { "principal": <framework_principal> } 
+        }, 
+        { 
+            "name": "mem", "type": "SCALAR", "scalar": { "value": 4096 }, 
+            "role": <framework_role>, "reservation": { "principal": <framework_principal> } 
+        }, 
+    ] 
+}
 ```
 
 #### Offer::Operation::Unreserve
@@ -62,7 +106,21 @@ $ mesos-slave  --master=<ip>:<port>  --resources="cpus:4;mem:2048;cpus(ads):8;me
 框架可以在资源供应环节撤销对资源的动态预留。继续沿用上例，如果希望撤销之前预留的8CPUs和4096MB内存资源，则可以在收到资源供应消息时，返回如下响应消息：
 
 ```json
-{ "type": Offer::Operation::UNRESERVE, "unreserve": { "resources": [ { "name": "cpus", "type": "SCALAR", "scalar": { "value": 8 }, "role": <framework_role>, "reservation": { "principal": <framework_principal> } }, { "name": "mem", "type": "SCALAR", "scalar": { "value": 4096 }, "role": <framework_role>, "reservation": { "principal": <framework_principal> } } ] } }
+{ 
+    "type": Offer::Operation::UNRESERVE, 
+    "unreserve": { 
+        "resources": [ 
+            { 
+                "name": "cpus", "type": "SCALAR", "scalar": { "value": 8 }, 
+                "role": <framework_role>, "reservation": { "principal": <framework_principal> } 
+            }, 
+            { 
+                "name": "mem", "type": "SCALAR", "scalar": { "value": 4096 }, 
+                "role": <framework_role>, "reservation": { "principal": <framework_principal> } 
+            } 
+        ] 
+    } 
+}
 ```
 
 撤销成功后，撤销的资源就可以重新分配给其它框架。
@@ -74,22 +132,46 @@ $ mesos-slave  --master=<ip>:<port>  --resources="cpus:4;mem:2048;cpus(ads):8;me
 #### \/reserve \(since 0.25.0\)
 
 ```
-$ curl -i \ -u <operator_principal>:<password> \ -d slaveId=<slave_id> \ -d resources='[ { "name": "cpus", "type": "SCALAR", "scalar": { "value": 8 }, "role": "ads", "reservation": { "principal": <operator_principal> } }, { "name": "mem", "type": "SCALAR", "scalar": { "value": 4096 }, "role": "ads", "reservation": { "principal": <operator_principal> } } ]' \ -X POST http://<ip>:<port>/master/reserve
+$ curl -i \ 
+    -u <operator_principal>:<password> \ 
+    -d slaveId=<slave_id> \ 
+    -d resources='[ { "name": "cpus", "type": "SCALAR", "scalar": { "value": 8 }, "role": "ads", "reservation": { "principal": <operator_principal> } }, { "name": "mem", "type": "SCALAR", "scalar": { "value": 4096 }, "role": "ads", "reservation": { "principal": <operator_principal> } } ]' \ 
+    -X POST http://<ip>:<port>/master/reserve
 ```
 
 上述请求的响应为下述中的一种：
 
-202 Accepted: Request accepted \(see below\).400 BadRequest: Invalid arguments \(e.g., missing parameters\).401 Unauthorized: Unauthenticated request.403 Forbidden: Unauthorized request.409 Conflict: Insufficient resources to satisfy the reserve operation.
+* 202 Accepted: Request accepted \(see below\).
+
+* 400 BadRequest: Invalid arguments \(e.g., missing parameters\).
+
+* 401 Unauthorized: Unauthenticated request.
+
+* 403 Forbidden: Unauthorized request.
+
+* 409 Conflict: Insufficient resources to satisfy the reserve operation.
 
 #### \/unreserve \(since 0.25.0\)
 
 ```
-$ curl -i \ -u <operator_principal>:<password> \ -d slaveId=<slave_id> \ -d resources='[ { "name": "cpus", "type": "SCALAR", "scalar": { "value": 8 }, "role": "ads", "reservation": { "principal": <reserver_principal> } }, { "name": "mem", "type": "SCALAR", "scalar": { "value": 4096 }, "role": "ads", "reservation": { "principal": <reserver_principal> } } ]' \ -X POST http://<ip>:<port>/master/unreserve
+$ curl -i \ 
+    -u <operator_principal>:<password> \ 
+    -d slaveId=<slave_id> \ 
+    -d resources='[ { "name": "cpus", "type": "SCALAR", "scalar": { "value": 8 }, "role": "ads", "reservation": { "principal": <reserver_principal> } }, { "name": "mem", "type": "SCALAR", "scalar": { "value": 4096 }, "role": "ads", "reservation": { "principal": <reserver_principal> } } ]' \ 
+    -X POST http://<ip>:<port>/master/unreserve
 ```
 
 上述请求的响应为下述中的一种：
 
-202 Accepted: Request accepted \(see below\).400 BadRequest: Invalid arguments \(e.g., missing parameters\).401 Unauthorized: Unauthenticated request.403 Forbidden: Unauthorized request.409 Conflict: Insufficient resources to satisfy the unreserve operation.
+* 202 Accepted: Request accepted \(see below\).
+
+* 400 BadRequest: Invalid arguments \(e.g., missing parameters\).
+
+* 401 Unauthorized: Unauthenticated request.
+
+* 403 Forbidden: Unauthorized request.
+
+* 409 Conflict: Insufficient resources to satisfy the unreserve operation.
 
 ### 查看预留的资源
 
