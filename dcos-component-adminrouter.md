@@ -8,3 +8,7 @@ Adminrouter开放路由列表如下：
 
 ![](/assets/dcos-admin-router-table.png)
 
+### 参考
+
+https:\/\/github.com\/dcos\/adminrouter
+
