@@ -17,7 +17,9 @@
 
 ## DC\/OS之原理
 * [Mesos](dcos-mesos.md)
-    * [dcos-mesos-attributes-and-resources](dcos-mesos-attributes-and-resources.md)
+    * [资源与属性](dcos-mesos-attributes-and-resources.md)
+    * [dcos-mesos-roles](dcos-mesos-roles.md)
+    * [权重（Weights）](dcos-mesos-weights.md)
 * [资源调度策略](dcos-theory-schedule-strategy.md)
 * [系统服务](dcos-system-components.md)
 * [Exhibitor服务](dcos-component-exhibitor.md)
