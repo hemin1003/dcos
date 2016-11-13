@@ -16,6 +16,7 @@
   * [GUI安装](dcos-install-by-gui.md)
 
   * [通过CLI安装](dcos-install-by-cli.md)
+
   * [高级安装](dcos-install-by-advanced-mode.md)
 
 * [集群维护](dcos-install-maintainance.md)
@@ -59,10 +60,6 @@
     * [本地持久化卷](dcos-storage-persistent-volume-local.md)
     * [外部持久化卷](外部持久化卷.md)
 
-
-
----
-
 * [服务发现与负载均衡](服务发现与负载均衡.md)
 
   * [VIPs](vips.md)
@@ -97,6 +94,7 @@
 * [FAQ](faq.md)
 
 * [部署Cassandra到DCOS](部署cassandra到dc.md)
+
 * [Marathon-LB](marathon-lb.md)
 
   * [为Marathon-LB启用SSL](dcos-service-marathon-lb-ssl.md)
@@ -104,6 +102,7 @@
 * [Docker Registry](docker-registry.md)
 
 * [DCOS 应用仓库之Universe](dcos-应用仓库之universe.md)
+
 * [DCOS应用市场之应用仓库的管理](dcos应用市场之应用仓库的管理.md)
 
 ## DCOS之管理
