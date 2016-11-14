@@ -6,3 +6,7 @@ Mesos-DNS对每个mesos任务生成一个SRV记录（包括marathon应用实例�
 
 
 
+查看所有服务
+
+http:\/\/my-cluster\/mesos\_dns\/v1\/enumerate
+

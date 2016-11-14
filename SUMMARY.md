@@ -33,6 +33,7 @@
     * [Adminrouter](dcos-component-adminrouter.md)
     * [Cosmos](dcos-component-cosmos.md)
     * [Minuteman](dcos-component-minuteman.md)
+    * [Spartan](dcos-component-spartan.md)
 * [存储策略与方案](dcos-storage.md)
     * [存储驱动](存储驱动.md)
     * [磁盘资源](dcos-storage-multi-disks.md)

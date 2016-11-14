@@ -53,6 +53,10 @@ ExecStart=/usr/bin/mesos-agent
 KillMode=control-cgroup
 ```
 
+### 扩展
+
+Marathon默认为运行的任务启用了检查点，但这要求Agent节点服务本身启用了检查点功能。Marathon的检查点功能可以通过命令行参数`--[disable_]checkpoint`来控制，该参数是可选的，且默认值是：`enabled`。
+
 ### 参考
 
 https:\/\/github.com\/apache\/mesos\/blob\/master\/docs\/agent-recovery.md
