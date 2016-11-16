@@ -1,4 +1,4 @@
-# DC\/OS step by step
+# DC\/OS修炼之路
 
 A book about DC\/OS to record my own experience
 
@@ -13,10 +13,4 @@ Master节点需要部署几个？
 开发测试环境中，1个master即可，master节点故障仅对新的服务部署及现有环境配置修改产生影响，不对当前正在运行的集群及服务造成影响。如果想确保开发测试环境的可靠性，推荐3个节点。
 
 生成环境中，根据规模，3个节点或5个节点即可。Master节点数不是越多越好，Master节点数量与集群性能成反比。
-
-
-
-
-
-
 
