@@ -70,7 +70,22 @@ for i in $(curl -sS master.mesos:5050/slaves | jq '.slaves[] | .hostname' | tr -
 
 ### 使用自签名证书搭建私有容器仓库
 
-创建自签名证书
+#### 创建自签名证书
+
+确保创建自签名证书的主机上安装了OpenSSL（本例使用DCOS集群中的一个Master节点，OpenSSL位于`/opt/mesosphere/packages/openssl--8042860cf76ca9ef965af9ee6d59acace266356e`。
+
+创建一个`certs`目录：
+
+```
+cd ~
+mkdir  certs
+cd certs
+cp /opt/mesosphere/packages/openssl--8042860cf76ca9ef965af9ee6d59acace266356e/etc/ssl/openssl.cnf ./openssl.cnf
+sed -i "/\[ v3_ca \]/a subjectAltName = IP:192.168.0.1" ./openssl.cnf
+openssl req -config ./openssl.cnf -newkey rsa:2048 -nodes -keyout domain.key -x509 -days 365 -out domain.crt -subj "/C=CN/ST=SH/L=Shang Hai/O=example.com/CN=192.168.0.1"
+```
+
+#### 部署Registry到DCOS集群
 
 ```json
 { 
