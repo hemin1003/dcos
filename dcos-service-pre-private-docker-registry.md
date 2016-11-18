@@ -184,11 +184,15 @@ dcos marathon app add docker-registry.json
 
 如果前述私有容器仓库搭建过程中采用的是VIP模式，则在集群内部访问容器仓库时，需要使用VIP：“192.168.0.1”。
 
-`curl -k https://192.168.0.1/v2/_catalog`
+```
+curl -k https://192.168.0.1/v2/_catalog
+```
 
 在Dockerfile中设置基础镜像时，也需要进行调整：
 
-`FROM 192.168.0.1/base/docker-tomcat-base`
+```
+FROM 192.168.0.1/base/docker-tomcat-base
+```
 
 另外，除了前述提到的DnD需要映射主机的`/etc/docker/certs.d`来使用私有容器的签名证书外，对于一些由服务动态创建的容器也需要添加映射配置，如Jenkins动态创建的Slave容器主机。否则，可能会碰到类似`x509: certificate signed by unknown authority`的异常。
 
@@ -202,15 +206,21 @@ dcos marathon app add docker-registry.json
 
 假设Public Agent节点的IP地址为192.168.1.50，则
 
-`curl -k https://192.168.1.50:5000/v2/_catalog`
+```
+curl -k https://192.168.1.50:5000/v2/_catalog
+```
 
 可以向仓库推送容器镜像：
 
-`docker push 192.168.1.50:5000/base/docker-tomcat-base`
+```
+docker push 192.168.1.50:5000/base/docker-tomcat-base
+```
 
 在Dockerfile中设置基础镜像时，同样需要进行调整：
 
-`FROM 192.168.1.50：5000/base/docker-tomcat-base`
+```
+FROM 192.168.1.50：5000/base/docker-tomcat-base
+```
 
 第二种方案是为部署的Registry服务设置固定的hostPort（如5000），并固定到一个Agent节点（如：192.168.1.70）上，则可以用与MLB方案相同的方式访问容器仓库。
 
