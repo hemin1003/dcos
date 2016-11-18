@@ -18,7 +18,7 @@ MAINTAINER：格式为MAINTAIER&lt;name&gt;，指定维护者信息。
 
 这实际上就是在容器构建时需要执行哪些指令，例如容器构建时需要下拉代码，但是默认启动的容器中是没有Git指令的，就需要下载，可以执行：RUN apt-get install -y git，然后RUN git clonexxxx
 
-**CMD：******指定容器启动后执行的命令，一般都是早就写好的脚本，例如：CMD\[“\/run.sh”\]。注意：如果Dockerfile中指定了多条命令，只有最后一条会被执行。如果用户启动时候加了运行的命令，则会覆盖掉CMD指定的指令。
+**CMD：**_**\*\***_指定容器启动后执行的命令，一般都是早就写好的脚本，例如：CMD\[“\/run.sh”\]。注意：如果Dockerfile中指定了多条命令，只有最后一条会被执行。如果用户启动时候加了运行的命令，则会覆盖掉CMD指定的指令。
 
 **EXPOSE：**
 
@@ -46,7 +46,7 @@ MAINTAINER：格式为MAINTAIER&lt;name&gt;，指定维护者信息。
 
 \[“\/data”\]创建一个挂在点，可以从本机或其他容器挂载的挂载点。意思就是从容器中暴露出一部分，和外界共享这块东西，一般放数据库的数据或者是代码。在容器启动运行的时候，如果需要将volume暴露的东西和本地的一个文件夹进行映射，想要通过本地文件直接访问容器中暴露的部分，可以在运行的时候进行映射：
 
-docker run –v 本地路径：容器需要挂载的路径image 
+docker run –v 本地路径：容器需要挂载的路径image
 
 但是有一个问题，在构建完毕第一次进行启动的时候，会以映射的本地环境为主，所以如果说本地环境为空，那么对应的容器中的文件将会变为空。
 
@@ -67,6 +67,14 @@ docker run –v 本地路径：容器需要挂载的路径image
 配置当所创建的景象作为其他新创建景象的基础镜像时，所执行的操作指令。
 
 例如，Dockerfile使用如下内容创建了镜像image-A
+
+FROM image-A
+
+\#自动添加
+
+ADD . \/app\/src
+
+RUN \/usr\/local\/bin\/Python-build–dir\/app\/src
 
 ### 示例（[docker-tomcat-base](https://github.com/christtrc/docker-tomcat-base)）
 

@@ -59,7 +59,6 @@
     * [应用的管理](dcos-component-universe-usage.md)
 
 ## DC\/OS之服务
-* [搭建私有容器仓库](dcos-service-pre-private-docker-registry.md)
 * [Jenkins on DCOS](jenkins-on-dcos.md)
     * [自定义Jenkins Slave容器镜像](dcos-service-jenkins-custom-dind.md)
     * [示例：在Jenkins on DCOS上编译部署Tomcat应用](deploy.md)
@@ -74,6 +73,7 @@
 * [容器与镜像](dcos-usage-dockers.md)
     * [Dockerfile](dcos-usage-docker-dockerfile.md)
     * [同一容器中部署多个APP](dcos-usage-docker-multi-app-in-one.md)
+* [私有容器仓库](dcos-service-pre-private-docker-registry.md)
 * [持续集成与持续部署](dcos-usage-cicd.md)
     * [应用打包与镜像构建](dcos-usage-cicd-build-by-maven.md)
     * [持续集成与构建](dcos-usage-cicd-integration.md)
