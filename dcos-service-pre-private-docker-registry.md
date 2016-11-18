@@ -170,11 +170,15 @@ for i in $MESOS_AGENTS; do ssh "$i" -oStrictHostKeyChecking=no "sudo systemctl r
 
 WEB API
 
-`curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/apps --data @docker-registry.json`
+```
+curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/apps --data @docker-registry.json
+```
 
 或 CLI
 
-`dcos marathon app add docker-registry.json`
+```
+dcos marathon app add docker-registry.json
+```
 
 ### 在集群内部访问容器仓库
 
