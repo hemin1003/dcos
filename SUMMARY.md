@@ -14,6 +14,8 @@
     * [备份集群安装文件](dcos-install-backup-installer-file.md)
     * [集群节点管理](dcos-install-nodes-management.md)
     * [集群卸载](dcos-install-m-uninstall-all.md)
+* [FAQ](dcos-install-faq.md)
+* [FAQ](faq.md)
 
 ## DC\/OS之原理
 * [理解DCOS](dcos-theory-overview.md)
@@ -64,7 +66,6 @@
     * [示例：在Jenkins on DCOS上编译部署Tomcat应用](deploy.md)
 * [HDFS on DCOS](dcos-service-hdfs.md)
 * [Cassandra on DCOS](dcos-service-cassandra.md)
-* [FAQ](faq.md)
 
 ## DCOS之管理
 * [DCOS CLI](dcos-admin-cli.md)
