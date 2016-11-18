@@ -63,9 +63,9 @@
     * [自定义Jenkins Slave容器镜像](dcos-service-jenkins-custom-dind.md)
     * [示例：在Jenkins on DCOS上编译部署Tomcat应用](deploy.md)
 * [HDFS on DCOS](hdfs-on-jenkins.md)
-* [dcos-service-cassandra](dcos-service-cassandra.md)
+* [HDFS on DCOS](dcos-service-hdfs.md)
+* [Cassandra on DCOS](dcos-service-cassandra.md)
 * [FAQ](faq.md)
-* [部署Cassandra到DCOS](部署cassandra到dc.md)
 * [DCOS 应用仓库之Universe](dcos-应用仓库之universe.md)
 * [DCOS应用市场之应用仓库的管理](dcos应用市场之应用仓库的管理.md)
 
