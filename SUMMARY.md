@@ -15,7 +15,6 @@
     * [集群节点管理](dcos-install-nodes-management.md)
     * [集群卸载](dcos-install-m-uninstall-all.md)
 * [FAQ](dcos-install-faq.md)
-* [FAQ](faq.md)
 
 ## DC\/OS之原理
 * [理解DCOS](dcos-theory-overview.md)
