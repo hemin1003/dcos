@@ -85,13 +85,23 @@ sed -i "/\[ v3_ca \]/a subjectAltName = IP:192.168.0.1" ./openssl.cnf
 openssl req -config ./openssl.cnf -newkey rsa:2048 -nodes -keyout domain.key -x509 -days 365 -out domain.crt -subj "/C=CN/ST=SH/L=Shang Hai/O=example.com/CN=192.168.0.1"
 ```
 
+使用与Docker配合工作的VIP创建自签名证书有点复杂，因为必须要修改OpenSSL的配置以将VIP包含在证书的主题备用名称中。
+
+**注1：**此处IP“192.168.0.1”为**虚拟**IP，仅在DCOS集群内部可见，因此可以根据需要使用任意自定义的IP地址。该配置对应的Marathon JSON定义请参考本章后续小节。
+
+注2：除了直接使用VIP，还可以使用服务的Mesos-DNS名称或引用第4层负载均衡VIP的名称创建证书。
+
+使用Mesos DNS：
+
+
+
 #### 部署Registry到DCOS集群
 
 ```json
 { 
     "id": "/registry", "cpus": 0.5, "mem": 128, "disk": 0, "instances": 1, 
     "constraints": [["hostname","LIKE","192.168.1.80"]], 
-    "container": { 
+    "coainer": { 
         "docker": { 
             "image": "registry", "forcePullImage": false, "privileged": false, 
             "portMappings": [ { 
