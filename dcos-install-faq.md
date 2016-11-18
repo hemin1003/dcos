@@ -43,15 +43,13 @@ service docker restart
 
 [Docker run fails with "invalid argument" when using overlay driver on top of xfs](https://github.com/docker/docker/issues/10294)
 
-解决方案：升级Linux内核至3.18.4+
+解决方案：升级Linux内核至3.18.4
 
 ```
-
 rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
 
 rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
 
 yum --enablerepo=elrepo-kernel install kernel-ml
-
 ```
 
