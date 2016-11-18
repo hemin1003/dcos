@@ -75,6 +75,7 @@
     * [应用打包与镜像构建](dcos-usage-cicd-build-by-maven.md)
     * [持续集成与构建](dcos-usage-cicd-integration.md)
     * [持续部署](dcos-usage-cicd-deploy.md)
+* [dcos-usage-dockers](dcos-usage-dockers.md)
 
 ## DCOS之开发
 
