@@ -71,11 +71,13 @@
 * [DCOS 管理UI](dcos-admin-ui.md)
 
 ## DC\/OS之应用
+* [容器与镜像](dcos-usage-dockers.md)
+    * [Dockerfile](dcos-usage-docker-dockerfile.md)
+    * [同一容器中部署多个APP](dcos-usage-docker-multi-app-in-one.md)
 * [持续集成与持续部署](dcos-usage-cicd.md)
     * [应用打包与镜像构建](dcos-usage-cicd-build-by-maven.md)
     * [持续集成与构建](dcos-usage-cicd-integration.md)
     * [持续部署](dcos-usage-cicd-deploy.md)
-* [dcos-usage-dockers](dcos-usage-dockers.md)
 
 ## DCOS之开发
 
