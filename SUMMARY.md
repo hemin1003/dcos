@@ -57,6 +57,7 @@
     * [容器运行管理](dcos-marathon-container.md)
 * [Universe](dcos-component-universe.md)
     * [应用的管理](dcos-component-universe-usage.md)
+* [容器化](dcos-mesos-containerizer.md)
 
 ## DC\/OS之服务
 * [Jenkins on DCOS](jenkins-on-dcos.md)
