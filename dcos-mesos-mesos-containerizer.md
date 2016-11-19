@@ -72,9 +72,13 @@ Docker Runtime隔离器为docker镜像的运行时配置（例如，`Entrypoint/
 
 用户可以在CommandInfo中指定shell，value和arguments，它们表示在下表的第一列中。0表示未指定，1表示指定。第一行表示Entrypoint和Cmd如何在docker镜像中定义。列表中除了第一行和第一列以及标识为Error的单元格，其它的格子内第一个元素为可执行命令，其余的为附加的参数。
 
-
+![](/assets/dcos_mesos_docker_runtime_isolator.png)
 
 ### **The **`cgroups/net_cls`** Isolator**
+
+cgroups\/net\_cls隔离器允许用户为Mesos集群中的容器提供网络性能隔离和网络分段。要启用cgroups\/net\_cls isolator，在启动Agent时将`cgroups/net_cls`附加到`--isolation`参数。
+
+顾名思义，该隔离器为Linux cgroups启用net\_cls子系统，并为MesosContainerizer启动的每个容器分配一个net\_cls cgroup。net\_cls子系统的目标是允许内核使用32位句柄标记来自容器的数据包。这些句柄可以由诸如qdisc（用于流量工程）和net-filter（用于防火墙）的内核模块使用，以实施用户指定的网络性能和安全策略。基于net\_cls句柄的策略可以由用户通过用户空间的工具（如[tc](http://tldp.org/HOWTO/Traffic-Control-HOWTO/software.html#s-iproute2-tc)和[iptables](http://linux.die.net/man/8/iptables)）指定。
 
 ### **The **`docker/volume`** Isolator**
 
