@@ -62,6 +62,18 @@ xfs_io -r -c stat /mnt/mesos/
 
 ### **Docker Runtime Isolator**
 
+Docker Runtime隔离器为docker镜像的运行时配置（例如，`Entrypoint/Cmd`，`Env`等）提供支持。这个隔离器与`--image_providers = docker`绑定。如果`--image_providers`包含`docker`，则必须使用此隔离器。否则，Agent将拒绝启动。
+
+要启用Docker Runtime隔离器，在启动Agent时将`docker/runtime`附加到`--isolation`参数。
+
+目前，Docker运行时隔离器支持对docker镜像默认的Entrypoint，Cmd，Env和WorkingDir指令进行配置。用户可以使用CommandInfo来覆盖镜像中的默认Entrypoint和Cmd（有关详细信息，请参见下文）。CommandInfo应该位于TaskInfo或ExecutorInfo内部（取决于任务是command task还是custom executor）。
+
+如果用户在CommandInfo中指定了一个命令，该命令将覆盖docker镜像中的默认Entrypoint\/Cmd。否则，将使用默认Entrypoint\/Cmd并为其附加CommandInfo中指定的参数。详细信息如下表所示。
+
+用户可以在CommandInfo中指定shell，value和arguments，它们表示在下表的第一列中。0表示未指定，1表示指定。第一行表示Entrypoint和Cmd如何在docker镜像中定义。列表中除了第一行和第一列以及标识为Error的单元格，其它的格子内第一个元素为可执行命令，其余的为附加的参数。
+
+
+
 ### **The **`cgroups/net_cls`** Isolator**
 
 ### **The **`docker/volume`** Isolator**
