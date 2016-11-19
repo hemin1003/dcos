@@ -80,6 +80,12 @@ cgroups\/net\_cls隔离器允许用户为Mesos集群中的容器提供网络性�
 
 顾名思义，该隔离器为Linux cgroups启用net\_cls子系统，并为MesosContainerizer启动的每个容器分配一个net\_cls cgroup。net\_cls子系统的目标是允许内核使用32位句柄标记来自容器的数据包。这些句柄可以由诸如qdisc（用于流量工程）和net-filter（用于防火墙）的内核模块使用，以实施用户指定的网络性能和安全策略。基于net\_cls句柄的策略可以由用户通过用户空间的工具（如[tc](http://tldp.org/HOWTO/Traffic-Control-HOWTO/software.html#s-iproute2-tc)和[iptables](http://linux.die.net/man/8/iptables)）指定。
 
+The 32-bit handle associated with a net\_cls cgroup can be specified by writing the handle to the `net_cls.classid`file, present within the net\_cls cgroup. The 32-bit handle is of the form `0xAAAABBBB`, and consists of a 16-bit primary handle 0xAAAA and a 16-bit secondary handle 0xBBBB. You can read more about the use cases for the primary and secondary handles in the [Linux kernel documentation for net\_cls](https://www.kernel.org/doc/Documentation/cgroup-v1/net_cls.txt).
+
+By default, the cgroups\/net\_cls isolator does not manage the net\_cls handles, and assumes the operator is going to manage\/assign these handles. To enable the management of net\_cls handles by the cgroups\/net\_cls isolator you need to specify a 16-bit primary handle, of the form 0xAAAA, using the `--cgroups_net_cls_primary_handle` flag at agent startup.
+
+Once a primary handle has been specified for an agent, for each container the cgroups\/net\_cls isolator allocates a 16-bit secondary handle. It then assigns the 32-bit combination of the primary and secondary handle to the net\_cls cgroup associated with the container by writing to `net_cls.classid`. The cgroups\/net\_cls isolator exposes the assigned net\_cls handle to operators by exposing the handle as part of the `ContainerStatus` —associated with any task running within the container— in the agent's [\/state](https://github.com/apache/mesos/blob/master/docs/endpoints/slave/state.md) endpoint.
+
 ### **The **`docker/volume`** Isolator**
 
 ### **The **`network/cni`** Isolator**
