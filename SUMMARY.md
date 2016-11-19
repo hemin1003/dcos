@@ -58,8 +58,9 @@
 * [Universe](dcos-component-universe.md)
     * [应用的管理](dcos-component-universe-usage.md)
 * [容器化](dcos-mesos-containerizer.md)
-
------
+    * [容器化实现细节](dcos-mesos-containerizer-internals.md)
+    * [Mesos Containerizer](dcos-mesos-mesos-containerizer.md)
+    * [Docker Containerizer](dcos-mesos-docker-containerizer.md)
 
 ## DC\/OS之服务
 * [Jenkins on DCOS](jenkins-on-dcos.md)
