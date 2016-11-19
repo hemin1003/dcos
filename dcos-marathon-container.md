@@ -79,7 +79,7 @@ Docker容器化依赖外部Docker引擎来运行Docker容器镜像。采用Docke
 }
 ```
 
-示例中的端口定义再简单总结一下，详细信息可参考[**服务端口配置**](/dcos-network-marathon-ports.md)章节。
+示例中的端口定义再简单总结一下，详细信息可参考**[服务端口配置](/dcos-network-marathon-ports.md)**章节。
 
 1）**hostPort**，值为0（默认值）时，是一个在Agent主机上随机分配的端口，该端口属于Mesos管理的端口资源的一部分。该配置可选。
 
@@ -269,4 +269,18 @@ Mesos容器化提供了新的属性字段“credential”定义访问容器镜�
     "instances": 1 
 }
 ```
+
+在Mesos容器化（type:MESOS）中，Mesos使用**CURL**从容器仓库拉取Docker镜像。CURL默认会校验服务器端SSL证书，DCOS中的CURL使用`CAfile`（而不是`CApath`）来查找信任的证书列表。默认CAfile的位置为：
+
+```
+/opt/mesosphere/active/python-requests/lib/python3.5/site-packages/requests/cacert.pem
+```
+
+如果在实际环境中使用了自签名的证书构建的私有容器仓库，则需要将签名证书添加到所有Agent节点上CURL的证书信任列表中。`cacert.pem`存放的证书是PEM格式，对于crt格式的证书，可通过下面的命令进行转换：
+
+```
+openssl x509 -in ca.crt -out ca.pem -outform PEM
+```
+
+
 

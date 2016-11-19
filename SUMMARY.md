@@ -3,7 +3,7 @@
 ## DC\/OS之导论
 * [导论](README.md)
     * [DCOS概览](dcos概览.md)
-    * [基础理论](dcos-basic-theory.md)
+    * [系统基础](dcos-basic-theory.md)
 * [环境搭建](环境搭建.md)
     * [安装环境准备](dcos-install-default.md)
         * [在Centos上安装Docker](dcos-install-docker-on-centos.md)
