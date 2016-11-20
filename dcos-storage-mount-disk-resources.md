@@ -10,9 +10,11 @@
 
 #### NFS存储设备
 
-\/usr\/bin\/mount -t nfs -o rw,noatime 192.168.1.12:\/node \/dcos\/volume0
+```
+/usr/bin/mount -t nfs -o rw,noatime 192.168.1.12:/node /dcos/volume0
+```
 
-上述示例将地址为192.168.1.12的主机上的\/node存储挂载到了需要添加资源的Agent节点上。
+上述示例将地址为192.168.1.12的主机上的`/node`存储挂载到了需要添加资源的Agent节点上。
 
 #### loop设备
 
@@ -26,7 +28,7 @@ sudo mkfs -t ext4 /dev/loop0
 sudo losetup -d /dev/loop0
 ```
 
-将loop设备添加到fstab并挂载
+将loop设备添加到**fstab**并挂载
 
 ```
 echo "/root/volume0.img /dcos/volume0 auto loop 0 2" | sudo tee -a /etc/fstab $ sudo mount /dcos/volume0
