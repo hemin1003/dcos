@@ -64,9 +64,13 @@ Mesos自1.0版本开始支持使用Docker的config.json文件设置访问私有�
 }"
 ```
 
+除了给Agent传递参数，另一种方式是在APP的JSON定义中同uri提供docker的config.json的位置，详细信息可参考“[容器运行管理](/dcos-marathon-container.md)”。
 
+### **CommandInfo在运行Docker镜像时的作用**
 
+参考“[容器运行管理](/dcos-marathon-container.md)”章节。
 
+### 在Agent恢复时恢复Docker容器
 
-
+无论Agent节点本身是否在Docker容器中运行，Docker容器化器都支持在Agent节点重新启动时恢复Docker容器。当启用--docker\_mesos\_image参数时，Docker容器化器假定其本身在容器中运行，并相应地修改其恢复的机制来启动docker容器。
 
