@@ -54,13 +54,11 @@
     * [本地持久化卷](dcos-storage-persistent-volume-local.md)
     * [外部持久化卷](外部持久化卷.md)
 
-
 * [服务发现与负载均衡](服务发现与负载均衡.md)
   * [VIPs](vips.md)
   * [Mesos-DNS](mesos-dns.md)
   * [Marathon-LB](dcos-component-marathon-lb.md)
     * [为Marathon-LB启用SSL](dcos-service-marathon-lb-ssl.md)
-
 
 * [容器网络方案](dcos-network.md)
   * [服务端口配置](dcos-network-marathon-ports.md)
