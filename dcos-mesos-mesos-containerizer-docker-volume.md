@@ -4,6 +4,8 @@
 
 ### 工作机理
 
+![](/assets/docker-volume-isolator.png)
+
 docker\/volume隔离器使用dvdcli（来自EMC的开源命令行工具）与Docker卷插件交互。
 
 当启动使用Docker卷的新任务时，docker\/volume隔离器将调用dvdcli将相应的Docker卷挂载到主机上，然后挂载到容器上。
