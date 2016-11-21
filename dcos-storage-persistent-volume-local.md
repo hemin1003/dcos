@@ -31,11 +31,30 @@
 }
 ```
 
-containerPath：应用读取和写入数据的路径。它必须是相对于容器的单级路径;它不能包含正斜杠（\/）（可以是“data”，但不能是“\/data”，“\/var\/ data”或“var\/data”）。如果应用程序需要绝对路径或带斜杠的相对路径，请使用此配置。
+**containerPath：**应用读取和写入数据的路径。它必须是相对于容器的单级路径;它不能包含正斜杠（\/）（可以是“`data`”，但不能是“`/data`”，“`/var/ data`”或“`var/data`”）。如果应用程序需要绝对路径或带斜杠的相对路径，请使用此配置。
 
-mode： 卷的访问模式。目前，“RW”是唯一可选的值，可以让应用从卷读取和写入卷。
+**mode： **卷的访问模式。目前，“RW”是唯一可选的值，可以让应用从卷读取和写入卷。
 
-persistent.size：持久卷的大小（以MB为单位）。
+**persistent.size：**持久卷的大小（以MB为单位）。
+
+需要在APP的JSON定义中设置“`residency`”节点以便告诉Marathon设置有状态应用程序。目前，唯一有效的选项是：
+
+```
+"residency": { "taskLostBehavior": "WAIT_FOREVER" }
+```
+
+设置不受支持的容器路径
+
+`containerPath`的值必须是相对的，以便于向运行的容器动态添加本地持久性卷，并确保跨操作系统的一致性。但是，应用程序有时可能需要绝对路径或容器路径，或含有斜线（\/）的相对路径。
+
+如果应用程序需要上述不受支持的`containerPath`，则可以通过配置两个卷的方式实现。首先，第一个卷具有所需的绝对容器路径，并且没有`persistent`参数，而且第一个卷的hostPath参数将与第二个卷的containerPath值所定义的相对路径相匹配。
+
+```
+"volumes": [
+    { "containerPath": "/var/lib/data", "hostPath": "mydata", "mode": "RW" }
+    { "containerPath": "mydata", "mode": "RW", "persistent": { "size": 1000 } }
+]
+```
 
 
 
