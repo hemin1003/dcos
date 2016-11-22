@@ -1,8 +1,14 @@
 ## 有状态应用服务
 
+使用了持久化卷的应用通常称为有状态应用。
+
 ### 有状态应用的伸缩
 
 ### 有状态应用的升级或重启
+
+有状态应用一旦部署，将于所部署的节点建立绑定，在对其维护操作时要注意操作步骤。在DC\/OS中，默认有状态应用程序的UpgradeStrategy是minimumHealthCapacity为0.5和maximumOverCapacity为0。如果覆盖此默认值，新的配置必须保持低于这些值，以便通过验证。UpgradeStrategy必须保持低于这些值，因为Marathon需要能够在启动新服务之前杀死旧的服务，以便新服务可以接管资源预留和持久化卷。而且，为防止创建额外的持久化卷，Marathon不能创建额外的服务（因为maximumOverCapacity&gt; 0会导致创建额外的服务）。
+
+**注意：**对于有状态应用程序，Marathon永远不会启动比UpgradeStrategy中指定的实例更多的实例，并且将在升级或重新启动期间杀死旧实例，而不是先创建新实例。
 
 ### 内部机理
 
@@ -41,6 +47,7 @@ Mesos临时沙箱仍然是stdout和stderr日志的输出位置。要查看这些
 * 定位包含持久化卷的Agent节点并删除其中的数据。
 
 * 向Marathon发送包含`wipe=true`参数的HTTP DELETE请求。
+
 
 如下示例：
 
