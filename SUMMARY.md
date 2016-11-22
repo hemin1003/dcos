@@ -62,6 +62,7 @@
 * [Marathon](dcos-marathon.md)
     * [应用健康检查](dcos-marathon-health-checks.md)
     * [容器运行管理](dcos-marathon-container.md)
+    * [应用服务部署](dcos-marathon-app-deployments.md)
 * [Universe](dcos-component-universe.md)
     * [应用的管理](dcos-component-universe-usage.md)
 
