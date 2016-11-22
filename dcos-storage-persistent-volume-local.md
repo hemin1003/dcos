@@ -58,5 +58,8 @@
 
 ### 参考
 
-https:\/\/mesosphere.github.io\/marathon\/docs\/persistent-volumes.html
+* [有状态应用服务](/dcos-service-stateful.md)
+
+* https:\/\/mesosphere.github.io\/marathon\/docs\/persistent-volumes.html
+
 
