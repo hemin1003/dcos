@@ -39,6 +39,7 @@ Marathon将仅在以下情况下调度资源预留与取消的操作：
 
 * 维护人员使用`wipe=true`参数显式删除一个或多个挂起的应用。
 
+
 如果预留资源或创建持久化卷失败，创建的应用将在task\_reservation\_timeout配置的时间（默认值：20秒）后超时，然后将进行新的预留尝试。如果应用处于`LOST`（因为所在Agent节点的网络断开连接或系统崩溃），资源预留和持久化卷都不会超时，此时需要手动删除和擦除任务，以便让Marathon启动一个新的应用。
 
 参考：[应用服务部署](/dcos-marathon-app-deployments.md)。
@@ -80,7 +81,7 @@ Mesos临时沙箱仍然是stdout和stderr日志的输出位置。要查看这些
 * 向Marathon发送包含`wipe=true`参数的HTTP DELETE请求。
 
 
-如下示例：
+如下示例（使用[httpie](https://httpie.org/)）：
 
 ```
 $ http GET http://dcos/service/marathon/v2/apps/postgres/tasks 

@@ -48,6 +48,19 @@ VIPs的命名遵循如下规则：
 
 客户端（注：此处指DCOS集群中的其他服务）可以通过调用端口为6666的VIP访问服务提供的JMX管理功能，可以通过调用端口为7777的VIP访问服务提供的业务API。
 
+在DC\/OS集群节点内，可以通过以下命令检查服务是否可用:
+
+```
+curl myservice.marathon.l4lb.thisdcos.directory:6666 -vv
+```
+
+注意，
+
+* VIPs不支持ping命令。VIPs在DC\/OS中并不是标准意义上的IP地址，仅仅是IP:端口的组合，如果向`myservice.marathon.l4lb.thisdcos.directory`发送**ping**指令，实际上是向`myservice.marathon.l4lb.thisdcos.directory`发送了ICMP请求，而LB被配置为截获和负载指向`myservice.marathon.l4lb.thisdcos.directory:6666`组合的地址的流量。
+
+* VIP\_N标签的值，除了是一个名称:端口之外，也可以定义为一个IP:端口，例如：`"labels": { "VIP_0": "10.21.1.15:6666" }`。此时，可以通过`10.21.1.15:6666`来访问该服务。
+
+
 上述配置也可以通过DCOS的WEB管理控制台进行配置：
 
 ![](/assets/dcos_network_vip_appc.png)
