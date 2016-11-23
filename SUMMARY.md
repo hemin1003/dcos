@@ -20,6 +20,7 @@
 * [理解DCOS](dcos-theory-overview.md)
     * [资源调度策略](dcos-theory-schedule-strategy.md)
     * [Docker Swarm vs Mesos vs Kubernetties](dcos-theory-solutions-martrix.md)
+    * [DC\/OS内部端口](dcos-dcos-admin-ports.md)
 * [Mesos](dcos-mesos.md)
     * [资源与属性](dcos-mesos-attributes-and-resources.md)
     * [角色（Roles）](dcos-mesos-roles.md)
@@ -73,6 +74,7 @@
     * [示例：在Jenkins on DCOS上编译部署Tomcat应用](deploy.md)
 * [HDFS on DCOS](dcos-service-hdfs.md)
 * [Cassandra on DCOS](dcos-service-cassandra.md)
+* [服务的管理](dcos-service-management.md)
 
 ## DCOS之管理
 * [DCOS CLI](dcos-admin-cli.md)
