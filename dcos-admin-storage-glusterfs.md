@@ -133,7 +133,9 @@ volume start: glusterfs: success
 
 #### 设置GlusterFS客户端
 
-客户端为node-22。安装GlusterFS客户端:
+客户端为node-22。配置hosts文件，使其能够识别node-24，node-25和node-26。
+
+安装GlusterFS客户端:
 
 ```
 [root@node-22 ~]# yum install -y glusterfs-client
@@ -154,7 +156,7 @@ volume start: glusterfs: success
 node-24:/glusterfs on /mnt/glusterfs type fuse.glusterfs (rw,relatime,user_id=0,group_id=0,default_permissions,allow_other,max_read=131072)
 ```
 
-运行df -h命令：
+运行`df -h`命令：
 
 ```
 [root@node-22 mnt]# df -h
@@ -163,8 +165,6 @@ devtmpfs 16G 0 16G 0% /dev
 tmpfs 16G 0 16G 0% /dev/shm
 tmpfs 16G 1.4G 14G 9% /run
 tmpfs 16G 0 16G 0% /sys/fs/cgroup
-/dev/mapper/centos-root 112G 8.6G 104G 8% /
-/dev/vda1 477M 189M 259M 43% /boot
 tmpfs 3.1G 0 3.1G 0% /run/user/0
 node-24:/glusterfs 112G 33M 112G 1% /mnt/glusterfs
 ```
@@ -174,6 +174,8 @@ node-24:/glusterfs 112G 33M 112G 1% /mnt/glusterfs
 ```
 /usr/sbin/mount.glusterfs node-24:/glusterfs /mnt/glusterfs
 ```
+
+现在就可以在使用`/mnt/glusterfs`了。
 
 ### GlusterFS性能调优
 
