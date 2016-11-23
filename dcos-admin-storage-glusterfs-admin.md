@@ -1,4 +1,4 @@
-## GlusterFS日常维护
+## GlusterFS维护
 
 查看GlusterFS中所有的Volume
 
@@ -37,6 +37,4 @@
 均衡Volume
 
 ### 参考
-
-
 
