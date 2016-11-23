@@ -79,6 +79,7 @@
 * [DCOS 管理UI](dcos-admin-ui.md)
 * [存储管理](dcos-admin-storage.md)
     * [GlusterFS存储](dcos-admin-storage-glusterfs.md)
+        * [dcos-admin-storage-glusterfs-admin](dcos-admin-storage-glusterfs-admin.md)
 
 ## DC\/OS之应用
 * [容器与镜像](dcos-usage-dockers.md)

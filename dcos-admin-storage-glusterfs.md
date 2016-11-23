@@ -177,6 +177,23 @@ node-24:/glusterfs 112G 33M 112G 1% /mnt/glusterfs
 
 现在就可以在使用`/mnt/glusterfs`了。
 
+#### 测试
+
+在node-22的`/mnt/glusterfs`下创建一个文件：
+
+```
+[root@node-22 glusterfs]# vim test
+```
+
+在node-26上`/srv/data`下查看：
+
+```
+[root@node-26 ~]# cd /srv/data/
+[root@node-26 data]# ll
+总用量 4
+-rw-r--r-- 2 root root 4 11月 23 14:58 test
+```
+
 ### GlusterFS性能调优
 
 开启指定Volume的配额：\(`glusterfs`为Volume的名称\)
