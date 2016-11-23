@@ -1,14 +1,14 @@
 ## GlusterFS存储
 
-### 规划
+### 存储规划
 
 三个节点（node-24，node-25和node-26），每个节点一个独立的SSD硬盘\(\/srv\)，作为GlusterFS存储磁盘。
 
 操作系统：CentOS 7.2.1511，内核：4.8.6。
 
-**注意，在实际进行资源实施前，推荐充分阅读并理解****[GlusterFS的架构](http://gluster.readthedocs.io/en/latest/Quick-Start-Guide/Architecture/)****及相关文档，并结合业务需求及发展做出具体规划。**
+**注意，在实际进行资源实施前，推荐充分阅读并理解\*\***[GlusterFS的架构](http://gluster.readthedocs.io/en/latest/Quick-Start-Guide/Architecture/)**\*\*及相关文档，并结合业务需求及发展做出具体规划。**
 
-### 安装
+### 服务安装
 
 #### 安装软件并启动服务
 
@@ -129,17 +129,61 @@ nfs.disable: on
 volume start: glusterfs: success
 ```
 
+### 使用创建的glusterfs卷
+
+#### 设置GlusterFS客户端
+
+客户端为node-22。安装GlusterFS客户端:
+
+```
+[root@node-22 ~]# yum install -y glusterfs-client
+```
+
+创建挂载目录：
+
+```
+[root@node-22 mnt]# mkdir /mnt/glusterfs
+```
+
+挂载glusterfs卷（注意，此处可以是`node-25`或`node-26`）
+
+```
+[root@node-22 mnt]# mount.glusterfs node-24:/glusterfs /mnt/glusterfs
+[root@node-22 mnt]# mount
+......
+node-24:/glusterfs on /mnt/glusterfs type fuse.glusterfs (rw,relatime,user_id=0,group_id=0,default_permissions,allow_other,max_read=131072)
+```
+
+运行df -h命令：
+
+```
+[root@node-22 mnt]# df -h
+文件系统 容量 已用 可用 已用% 挂载点
+devtmpfs 16G 0 16G 0% /dev
+tmpfs 16G 0 16G 0% /dev/shm
+tmpfs 16G 1.4G 14G 9% /run
+tmpfs 16G 0 16G 0% /sys/fs/cgroup
+/dev/mapper/centos-root 112G 8.6G 104G 8% /
+/dev/vda1 477M 189M 259M 43% /boot
+tmpfs 3.1G 0 3.1G 0% /run/user/0
+node-24:/glusterfs 112G 33M 112G 1% /mnt/glusterfs
+```
+
+添加挂载指令到`/etc/rc.local`
+
+```
+/usr/sbin/mount.glusterfs node-24:/glusterfs /mnt/glusterfs
+```
+
 ### GlusterFS性能调优
 
 开启指定Volume的配额：\(`glusterfs`为Volume的名称\)
-
 
 ```
 gluster volume quota glusterfs enable
 ```
 
 限制`glusterfs`中“`/`”\(既根目录\)的最大使用 80GB 空间
-
 
 ```
 gluster volume quota glusterfs limit-usage / 80GB
