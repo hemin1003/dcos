@@ -83,6 +83,7 @@
     * [GlusterFS存储](dcos-admin-storage-glusterfs.md)
         * [日常维护指令](dcos-admin-storage-glusterfs-admin.md)
         * [GlusterFS架构](dcos-admin-storage-glusterfs-architecture.md)
+        * [dcos-admin-storage-glusterfs-overview](dcos-admin-storage-glusterfs-overview.md)
 
 ## DC\/OS之应用
 * [容器与镜像](dcos-usage-dockers.md)

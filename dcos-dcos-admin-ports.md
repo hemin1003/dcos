@@ -4,7 +4,7 @@
 
 ### 所有节点
 
-TCP
+#### TCP
 
 * 61003: dcos-rexray \(default\)
 
@@ -24,7 +24,8 @@ TCP
 
 * 62503: dcos-minuteman
 
-  UDP
+
+#### UDP
 
 * 62053: dcos-spartan
 
@@ -33,7 +34,7 @@ TCP
 
 ### Master
 
-TCP
+#### TCP
 
 * 53: dcos-spartan
 
@@ -62,13 +63,13 @@ TCP
 * 15055: dcos-history-service
 
 
-UDP
+#### UDP
 
 * 53: dcos-spartan
 
 ### Agent, Public Agent
 
-TCP
+#### TCP
 
 * 5051: dcos-mesos-slave
 * 61001: dcos-adminrouter-agent
