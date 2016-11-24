@@ -2,8 +2,10 @@
 
 ## DC\/OS之导论
 * [导论](README.md)
-    * [DCOS概览](dcos概览.md)
+    * [DC\/OS概览](dcos概览.md)
     * [系统基础](dcos-basic-theory.md)
+        * [名词术语](dcos-basic-theory-terminologies.md)
+    * [资源调度策略](dcos-theory-schedule-strategy.md)
 * [环境搭建](环境搭建.md)
     * [安装环境准备](dcos-install-default.md)
         * [在Centos上安装Docker](dcos-install-docker-on-centos.md)
@@ -17,9 +19,7 @@
 * [FAQ](dcos-install-faq.md)
 
 ## DC\/OS之原理
-* [理解DCOS](dcos-theory-overview.md)
-    * [资源调度策略](dcos-theory-schedule-strategy.md)
-    * [Docker Swarm vs Mesos vs Kubernetties](dcos-theory-solutions-martrix.md)
+* [理解DC\/OS](dcos-theory-overview.md)
     * [DC\/OS内部端口](dcos-dcos-admin-ports.md)
 * [Mesos](dcos-mesos.md)
     * [资源与属性](dcos-mesos-attributes-and-resources.md)
@@ -84,6 +84,7 @@
         * [GlusterFS概览](dcos-admin-storage-glusterfs-overview.md)
         * [GlusterFS维护](dcos-admin-storage-glusterfs-admin.md)
         * [GlusterFS架构](dcos-admin-storage-glusterfs-architecture.md)
+    * [Ceph集群存储](dcos-admin-storage-ceph.md)
 
 ## DC\/OS之应用
 * [容器与镜像](dcos-usage-dockers.md)
@@ -96,4 +97,5 @@
     * [持续部署](dcos-usage-cicd-deploy.md)
 
 ## DCOS之开发
+* [Docker Swarm vs Mesos vs Kubernetties](dcos-theory-solutions-martrix.md)
 
