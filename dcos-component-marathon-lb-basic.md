@@ -86,28 +86,26 @@ dcos package describe --config marathon-lb
 
 创建自定义的配置文件，使用自定义文件安装：
 
+```
 dcos package install --options=config.json  marathon-lb
-
-#### 自定义配置
+```
 
 **提供SSL证书**
 
-为Docker容器指定SSL证书的方式有多种：
+在部署Marathon-LB时，可以为Docker容器指定SSL证书的方式有多种：
 
-1. 可以通过设置HAPROXY\_SSL\_CERT环境变量来传递自己的SSL前端证书。如果需要多个证书，可以通过设置HAPROXY\_SSL\_CERT0 - HAPROXY\_SSL\_CERT100来指定其他证书。变量内容将被写入\/etc\/ssl\/cert.pem。
+1. 可以通过设置`HAPROXY_SSL_CERT`环境变量来传递自己的SSL前端证书。如果需要多个证书，可以通过设置`HAPROXY_SSL_CERT0` - `HAPROXY_SSL_CERT100`来指定其他证书。变量内容将被写入`/etc/ssl/cert.pem`。
 
-2. 可以使用--ssl-certs命令行参数提供SSL证书路径。MLB将使用这些证书路径指定的证书。
+2. 可以使用`--ssl-certs`命令行参数提供SSL证书路径。MLB将使用这些证书路径指定的证书。
 
-3. 如果不提供任何配置，MLB将在\/etc\/ssl\/cert.pem上创建自签名证书，并且配置使用它。
+3. 如果不提供任何配置，MLB将在`/etc/ssl/cert.pem`上创建自签名证书，并且配置使用它。
 
-
-**跳过配置验证**
-
-如果没有安装HAProxy，可以通过配置`--skip-validation`参数跳过配置文件验证（通过调用HAProxy服务）进程。
 
 **使用HAProxy Maps进行后端查找**
 
 可以使用HAProxy映射加快Web应用程序（vhosts）到后端的查找速度。这对于大型部署非常有用，因为传统的vhost到后端的规则匹配比较需要相当长的时间，它需要顺序地比较每个规则。HAProxy映射会创建一个基于散列的查找表，因此它与其他方法相比速度较快，在Marathon-LB中可以用`--haproxy-map`配置参数来启用此功能。
+
+### 管理接口
 
 
 
