@@ -1,8 +1,37 @@
 ## Marathon-LB
 
-Marathon-LB集成了HAProxy，HAProxy提供了服务代理功能，并为TCP、HTTP应用的负载均衡，它支持SSL，HTTP压缩健康检查，Lua脚本等特性。因此，Marathon-LB既可以用作服务代理，也可以用作负载均衡和服务发现工具。
+Marathon-LB是一个根据Marathon应用状态自动调整和配置HAProxy的工具。HAProxy是一个为TCP、HTTP应用提供快速，高效，高可用性的负载均衡器，它还具有很多其他高级特性如支持SSL，HTTP压缩，健康检查，Lua脚本等。因此，Marathon-LB既可以用作服务代理，也可以用作负载均衡和服务发现工具。
 
 Marathon-LB是一个容器应用，它订阅了Marathon的事件总线，自动获取各个APP的信息，为每一组APP生成HAProxy配置，能够根据变更实时调整更新HAProxy的配置信息。
+
+### 主要特性
+
+* 无状态设计：除了通过Marathon获取应用状态信息，没有直接依赖任何第三方状态存储像ZooKeeper或etcd。
+
+* 幂等和确定性：可水平伸缩
+
+* 高度可扩展：可以为单个实例提供端口限速，为多个实例提供容错和更高的吞吐量
+
+* 通过Marathon的事件总线实现实时LB更新
+
+* 支持Marathon的[健康检查](/dcos-marathon-health-checks.md)
+
+* 多证书TLS \/ SSL支持
+
+* 零停机部署
+
+* 支持为每个服务提供HAProxy模板
+
+* 与DC\/OS集成
+
+* 可在启动时提供全局HAProxy模板
+
+* 支持与每容器固定IP方案进行集成，如通过[Calico](https://github.com/projectcalico/calico-containers)项目
+
+
+### Marathon-LB的应用
+
+
 
 ![](/assets/dcos_marathon_lb_topology.png)
 
@@ -16,7 +45,8 @@ Marathon-LB是一个容器应用，它订阅了Marathon的事件总线，自动�
 
 * 可以将内部LB和外部LB同时使用Marathon-LB，不同的服务根据需求开放给不同的Marathon-LB。
 
-### Marathon-LB的使用
+
+#### 应用示例
 
 **注意：**默认配置下，Marathon-LB部署在Public节点上。如果需要用作内部负载均衡，可参考如下配置：
 
