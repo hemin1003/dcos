@@ -66,6 +66,7 @@
         * [基本概念](dcos-component-marathon-lb-basic.md)
         * [高级特性](dcos-component-marathon-lb-advanced.md)
         * [为Marathon-LB启用SSL](dcos-service-marathon-lb-ssl.md)
+        * [HAProxy配置模板](dcos-component-marathon-lb-template.md)
         * [应用示例](dcos-component-marathon-lb-tutorials.md)
 * [容器网络方案](dcos-network.md)
     * [服务端口配置](dcos-network-marathon-ports.md)
