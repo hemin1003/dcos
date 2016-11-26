@@ -107,5 +107,7 @@ dcos package install --options=config.json  marathon-lb
 
 ### 管理接口
 
+当Marathon-LB处于轮询模式时，这些接口将不起作用，因为在该模式中Marathon-LB进程在每次轮询之后退出，所以无法接收信号通知。
 
+HAProxy配置
 
