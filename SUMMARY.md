@@ -50,9 +50,9 @@
     * [容器运行管理](dcos-marathon-container.md)
 * [容器网络方案](dcos-network.md)
     * [服务端口配置](dcos-network-marathon-ports.md)
-    * [基于VIPs的负载调度](dcos-network-vips-lb.md)
 * [服务发现与负载](dcos-service-discovery.md)
     * [VIPs](dcos-network-vips.md)
+        * [基于VIPs的负载调度](dcos-network-vips-lb.md)
     * [Marathon-LB](dcos-component-marathon-lb.md)
         * [基本概念](dcos-component-marathon-lb-basic.md)
         * [高级特性](dcos-component-marathon-lb-advanced.md)
@@ -94,8 +94,6 @@
         * [GlusterFS架构](dcos-admin-storage-glusterfs-architecture.md)
     * [Ceph集群存储](dcos-admin-storage-ceph.md)
 * [日志管理](dcos-admin-logging.md)
-
------
 
 ## DC\/OS之应用
 * [容器与镜像](dcos-usage-dockers.md)
