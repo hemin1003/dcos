@@ -12,13 +12,15 @@ https:\/\/github.com\/mesosphere\/letsencrypt-dcos
 
 Marathon-lb is able to perform canary style blue\/green deployment with zero downtime. To execute such deployments, you must follow certain patterns when using Marathon.
 
-The deployment method is described [in this Marathon document](https://mesosphere.github.io/marathon/docs/blue-green-deploy.html). Marathon-lb provides an implementation of the aforementioned deployment method with the script [`zdd.py`](https://github.com/mesosphere/marathon-lb/blob/master/zdd.py). To perform a zero downtime deploy using `zdd.py`, you must:
+The deployment method is described [in this Marathon document](https://mesosphere.github.io/marathon/docs/blue-green-deploy.html). Marathon-lb provides an implementation of the aforementioned deployment method with the script `zdd.py`. To perform a zero downtime deploy using `zdd.py`, you must:
 
 * Specify the `HAPROXY_DEPLOYMENT_GROUP` and `HAPROXY_DEPLOYMENT_ALT_PORT` labels in your app template
+
   * `HAPROXY_DEPLOYMENT_GROUP`: This label uniquely identifies a pair of apps belonging to a blue\/green deployment, and will be used as the app name in the HAProxy configuration
   * `HAPROXY_DEPLOYMENT_ALT_PORT`: An alternate service port is required because Marathon requires service ports to be unique across all apps
 
 * Only use 1 service port: multiple ports are not yet implemented
+
 * Use the provided `zdd.py` script to orchestrate the deploy: the script will make API calls to Marathon, and use the HAProxy stats endpoint to gracefully terminate instances
 * The marathon-lb container must be run in privileged mode \(to execute `iptables` commands\) due to the issues outlined in the excellent blog post by the [Yelp engineering team found here](http://engineeringblog.yelp.com/2015/04/true-zero-downtime-haproxy-reloads.html)
 * If you have long-lived TCP connections using the same HAProxy instances, it may cause the deploy to take longer than necessary. The script will wait up to 5 minutes \(by default\) for connections to drain from HAProxy between steps, but any long-lived TCP connections will cause old instances of HAProxy to stick around.
@@ -61,6 +63,12 @@ $ ./zdd.py -j 1-nginx.json -m http://master.mesos:8080 -f -l http://marathon-lb.
 Similarly you can use `--complete-prev` flag to convert all instances to old version \(and this is essentially a rollback\) so that traffic split ratio becomes 100:0 \(old:new\) and it deletes the new app.
 
 Currently only one hop of traffic split is supported, so you can specify the number of new instances \(directly proportional to traffic split ratio\) only when app is having all instances of same version \(completely blue or completely green\). This implies `--new-instances` flag cannot be specified in hybrid mode to change traffic split ratio \(instance ratio\) as updating Marathon label \(`HAPROXY_DEPLOYMENT_NEW_INSTANCES`\) currently triggers new deployment in marathon which will not be graceful. Currently for the example mentioned, the traffic split ratio is 100:0 -&gt; 80:20 -&gt; 0:100, where there is only one hop when both versions get traffic simultaneously.
+
+### **Mesos with IP-per-task Support**
+
+Marathon-lb supports load balancing for applications that use the Mesos IP-per-task feature, whereby each task is assigned unique, accessible, IP addresses. For these tasks services are directly accessible via the configured discovery ports and there is no host port mapping. Note, that due to limitations with Marathon \(see[mesosphere\/marathon\#3636](https://github.com/mesosphere/marathon/issues/3636)\) configured service ports are not exposed to marathon-lb for IP-per-task apps.
+
+For these apps, if the service ports are missing from the Marathon app data, marathon-lb will automatically assign port values from a configurable range if you specify it. The range is configured using the `--min-serv-port-ip-per-task` and `--max-serv-port-ip-per-task` options. While port assignment is deterministic, the assignment is not guaranteed if you change the current set of deployed apps. In other words, when you deploy a new app, the port assignments may change.
 
 ### 参考
 
