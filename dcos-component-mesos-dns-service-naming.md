@@ -38,9 +38,7 @@ SRV记录指定服务的主机名和端口。
 
 对于由名为`myservice`的服务启动的名为`mytask`的任务，Mesos-DNS将生成SRV记录`_mytask._protocol.myservice.mesos`，其中协议为`udp`或`tcp`。如果是tcp服务，则为：`_mytask._tcp.myservice.mesos`。
 
-Mesos-DNS支持使用任务的DiscoveryInfo生成SRV记录。
-
-The following table shows the rules that govern SRV generation:
+Mesos-DNS支持使用任务的DiscoveryInfo生成SRV记录。下表展示了生成SRV记录的规则：
 
 | **ServiceContainer IP KnownDiscoveryInfo ProvidedTarget HostTarget PortA Record Target IP** |  |  |  |  |  |
 | --- | --- | --- | --- | --- | --- |
@@ -49,6 +47,4 @@ The following table shows the rules that govern SRV generation:
 | \_mytask.\_protocol.myservice.mesos | No | Yes | mytask.myservice.mesos | DiscoveryInfo Port | Agent IP |
 | \_mytask.\_protocol.myservice.mesos | Yes | Yes | mytask.myservice.mesos | DiscoveryInfo Port | Container IP |
 | mytask.protocol.myservice.slave.mesos | N\/A | N\/A | mytask.myservice.slave.mesos | Host Port | Agent IP |
-
-
 
