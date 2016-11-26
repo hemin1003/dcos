@@ -1,4 +1,4 @@
-## Marathon-LB基本概念
+## MLB基本概念
 
 Marathon-LB通过脚本`marathon_lb.py`连接到Marathon的API检索所有正在运行的应用程序，然后生成HAProxy配置并重新加载HAProxy。默认情况下，Marathon-LB绑定到每个应用程序的服务端口，并将传入请求发送给对应的应用程序实例。
 
