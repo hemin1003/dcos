@@ -3,33 +3,43 @@
 ## DC\/OS之导论
 
 * [导论](README.md)
+
   * [DC\/OS概览](dcos概览.md)
   * [系统基础](dcos-basic-theory.md)
+
     * [名词术语](dcos-basic-theory-terminologies.md)
 
   * [资源调度策略](dcos-theory-schedule-strategy.md)
 
+
 * [环境搭建](环境搭建.md)
+
   * [安装环境准备](dcos-install-default.md)
+
     * [在Centos上安装Docker](dcos-install-docker-on-centos.md)
 
   * [GUI安装](dcos-install-by-gui.md)
+
   * [通过CLI安装](dcos-install-by-cli.md)
   * [高级安装](dcos-install-by-advanced-mode.md)
 
 * [集群维护](dcos-install-maintainance.md)
+
   * [备份集群安装文件](dcos-install-backup-installer-file.md)
   * [集群节点管理](dcos-install-nodes-management.md)
   * [集群卸载](dcos-install-m-uninstall-all.md)
 
 * [FAQ](dcos-install-faq.md)
 
+
 ## DC\/OS之原理
 
 * [理解DC\/OS](dcos-theory-overview.md)
+
   * [DC\/OS内部端口](dcos-dcos-admin-ports.md)
 
 * [Mesos](dcos-mesos.md)
+
   * [资源与属性](dcos-mesos-attributes-and-resources.md)
   * [角色（Roles）](dcos-mesos-roles.md)
   * [资源预留（Reservation）](dcos-mesos-reservation.md)
@@ -39,21 +49,26 @@
   * [Authorization](dcos-mesos-authorization.md)
 
 * [Marathon](dcos-marathon.md)
+
   * [应用健康检查](dcos-marathon-health-checks.md)
   * [容器运行管理](dcos-marathon-container.md)
   * [应用服务部署](dcos-marathon-app-deployments.md)
   * [事件总线](dcos-marathon-event-bus.md)
 
 * [容器化](dcos-mesos-containerizer.md)
+
   * [容器化实现细节](dcos-mesos-containerizer-internals.md)
   * [Mesos容器化](dcos-mesos-mesos-containerizer.md)
+
     * [Docker卷支持](dcos-mesos-mesos-containerizer-docker-volume.md)
     * [容器网络接口](dcos-mesos-containerizer-cni.md)
 
   * [Docker容器化](dcos-mesos-docker-containerizer.md)
+
   * [容器运行管理](dcos-marathon-container.md)
 
 * [系统服务](dcos-system-components.md)
+
   * [Exhibitor](dcos-component-exhibitor.md)
   * [3DT](dcos-component-3dt.md)
   * [Adminrouter](dcos-component-adminrouter.md)
@@ -62,40 +77,52 @@
   * [Spartan](dcos-component-spartan.md)
 
 * [存储策略与方案](dcos-storage.md)
+
   * [磁盘资源](dcos-storage-multi-disks.md)
+
     * [增加磁盘资源](dcos-storage-mount-disk-resources.md)
     * [增加NFS存储](dcos-storage-nfs-server.md)
 
   * [持久化卷](dcos-storage-persistent-volume.md)
+
     * [本地持久化卷](dcos-storage-persistent-volume-local.md)
     * [外部持久化卷](外部持久化卷.md)
 
   * [SAN\/SDS](dcos-storage-sansds.md)
+
     * [Rex-Ray](dcos-storage-sansds-rexray.md)
     * [Flocker](dcos-storage-sansds-flocker.md)
     * [Convoy](dcos-storage-sansds-convoy.md)
 
 
+
 * [服务发现与负载均衡](服务发现与负载均衡.md)
+
   * [Mesos-DNS](mesos-dns.md)
 
 * [VIPs](vips.md)
+
 * [容器网络方案](dcos-network.md)
+
   * [服务端口配置](dcos-network-marathon-ports.md)
   * [基于VIPs的负载调度](dcos-network-vips-lb.md)
 
 * [Universe](dcos-component-universe.md)
+
   * [应用的管理](dcos-component-universe-usage.md)
 
 * [服务发现与负载](dcos-service-discovery.md)
-  * [VIPs](vips.md)
+
+  * [VIPs](/dcos-network-vips.md)
   * [Marathon-LB](dcos-component-marathon-lb.md)
+
     * [基本概念](dcos-component-marathon-lb-basic.md)
     * [高级特性](dcos-component-marathon-lb-advanced.md)
     * [配置参考](dcos-component-marathon-lb-template.md)
     * [应用示例](dcos-component-marathon-lb-tutorials.md)
 
   * [Mesos-DNS](dcos-component-mesos-dns.md)
+
     * [服务命名](dcos-component-mesos-dns-service-naming.md)
     * [HTTP接口](dcos-component-mesos-dns-http-api.md)
 
@@ -105,10 +132,12 @@
 
 * [有状态应用服务](dcos-service-stateful.md)
 * [Jenkins on DCOS](jenkins-on-dcos.md)
+
   * [自定义Jenkins Slave容器镜像](dcos-service-jenkins-custom-dind.md)
   * [示例：在Jenkins on DCOS上编译部署Tomcat应用](deploy.md)
 
 * [HDFS on DCOS](dcos-service-hdfs.md)
+
 * [Cassandra on DCOS](dcos-service-cassandra.md)
 * [服务的管理](dcos-service-management.md)
 
@@ -117,23 +146,29 @@
 * [DCOS CLI](dcos-admin-cli.md)
 * [DCOS 管理UI](dcos-admin-ui.md)
 * [存储管理](dcos-admin-storage.md)
+
   * [GlusterFS存储](dcos-admin-storage-glusterfs.md)
+
     * [GlusterFS概览](dcos-admin-storage-glusterfs-overview.md)
     * [GlusterFS维护](dcos-admin-storage-glusterfs-admin.md)
     * [GlusterFS架构](dcos-admin-storage-glusterfs-architecture.md)
 
   * [Ceph集群存储](dcos-admin-storage-ceph.md)
 
+
 * [日志管理](dcos-admin-logging.md)
+
 
 ## DC\/OS之应用
 
 * [容器与镜像](dcos-usage-dockers.md)
+
   * [Dockerfile](dcos-usage-docker-dockerfile.md)
   * [同一容器中部署多个APP](dcos-usage-docker-multi-app-in-one.md)
   * [存储驱动](dcos-usage-docker-storage-driver.md)
 
 * [私有容器仓库](dcos-service-pre-private-docker-registry.md)
+
 * [持续集成与持续部署](dcos-usage-cicd.md)
   * [应用打包与镜像构建](dcos-usage-cicd-build-by-maven.md)
   * [持续集成与构建](dcos-usage-cicd-integration.md)
