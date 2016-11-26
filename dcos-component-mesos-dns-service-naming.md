@@ -40,7 +40,7 @@ SRV记录指定服务的主机名和端口。
 
 Mesos-DNS支持使用任务的DiscoveryInfo生成SRV记录。下表展示了生成SRV记录的规则：
 
-| **ServiceContainer IP KnownDiscoveryInfo ProvidedTarget HostTarget PortA Record Target IP** |  |  |  |  |  |
+| **Service** | ** Container IP Known** | **DiscoveryInfo Provided** | ** Target Host** | **Target Port** | **A Record Target IP** |
 | --- | --- | --- | --- | --- | --- |
 | \_mytask.\_protocol.myservice.mesos | No | No | mytask.myservice.slave.mesos | Host Port | Agent IP |
 | \_mytask.\_protocol.myservice.mesos | Yes | No | mytask.myservice.slave.mesos | Host Port | Agent IP |
