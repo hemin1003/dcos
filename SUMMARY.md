@@ -67,6 +67,8 @@
         * [高级特性](dcos-component-marathon-lb-advanced.md)
         * [配置参考](dcos-component-marathon-lb-template.md)
         * [应用示例](dcos-component-marathon-lb-tutorials.md)
+    * [Mesos-DNS](dcos-component-mesos-dns.md)
+        * [服务命名](dcos-component-mesos-dns-service-naming.md)
 * [容器网络方案](dcos-network.md)
     * [服务端口配置](dcos-network-marathon-ports.md)
     * [使用VIPs](dcos-network-vips.md)
