@@ -125,17 +125,17 @@ S2:
 
 ### 最佳实践
 
-尽量使用保留范围内的服务端口（默认值为10000到10100），可以避免端口冲突，确保重新加载后不会导致连接错误。
+* 尽量使用保留范围内的服务端口（默认值为10000到10100），可以避免端口冲突，确保重新加载后不会导致连接错误。
 
-避免使用`HAPROXY_ {n} _PORT`标签；尽量定义服务端口。
+* 避免使用`HAPROXY_ {n} _PORT`标签；尽量定义服务端口。
 
-考虑运行多个MLB实例。在实践中，应该使用3个或更多个来为生产工作负载提供高可用性。不推荐运行1实例，另外，除非有重大的负载运行，否则也没必要超过5个实例。运行的MLB实例的数量将根据工作负载和所需的故障容差量而变化。注意：不要在群集中的每个节点上运行MLB。
+* 考虑运行多个MLB实例。在实践中，应该使用3个或更多个来为生产工作负载提供高可用性。不推荐运行1实例，另外，除非有重大的负载运行，否则也没必要超过5个实例。运行的MLB实例的数量将根据工作负载和所需的故障容差量而变化。注意：不要在群集中的每个节点上运行MLB。
 
-考虑在MLB前面使用专用的负载平衡器以便于升级\/更改。常见的选择包括用于本地安装的ELB（在AWS上）或F5等硬件负载平衡器。
+* 考虑在MLB前面使用专用的负载平衡器以便于升级\/更改。常见的选择包括用于本地安装的ELB（在AWS上）或F5等硬件负载平衡器。
 
-使用单独的MLB分组（使用`--group`指定）区分内部和外部负载平衡。在DC\/OS上，默认分组是`external`。用于内部负载均衡的配置示例参考[上文](#mlb-sample-config)。
+* 使用单独的MLB分组（使用`--group`指定）区分内部和外部负载平衡。在DC\/OS上，默认分组是`external`。用于内部负载均衡的配置示例参考[上文](#mlb-sample-config)。
 
-对于HTTP服务，请考虑设置VHost（或可选的路径）以访问端口80和443上的服务。或者，可以使用HTTP头`X-Marathon-App-Id`在端口9091上访问服务。例如，访问ID为`tweeter`的应用：
+* 对于HTTP服务，请考虑设置VHost（或可选的路径）以访问端口80和443上的服务。或者，可以使用HTTP头`X-Marathon-App-Id`在端口9091上访问服务。例如，访问ID为`tweeter`的应用：
 
 ```
 $ curl -vH "X-Marathon-App-Id: /tweeter" marathon-lb.marathon.mesos:9091/ 
@@ -149,7 +149,7 @@ $ curl -vH "X-Marathon-App-Id: /tweeter" marathon-lb.marathon.mesos:9091/
 < HTTP/1.1 200 OK
 ```
 
-Marathon-LB的一些特性假定它是在自己的PID命名空间中运行的唯一实例。例如，MLB假定它在容器中运行。如果多个MLB实例在同一个PID命名空间中，或者在其他HAProxy进程的相同的PID命名空间中运行，某些功能（如`/_mlb_signa`l接口和`/_haproxy_getpids`接口）（以及扩展和零停机部署）可能会产生不可预期的行为。
+* Marathon-LB的一些特性假定它是在自己的PID命名空间中运行的唯一实例。例如，MLB假定它在容器中运行。如果多个MLB实例在同一个PID命名空间中，或者在其他HAProxy进程的相同的PID命名空间中运行，某些功能（如`/_mlb_signa`l接口和`/_haproxy_getpids`接口）（以及扩展和零停机部署）可能会产生不可预期的行为。
 
-可以考虑为环境变量`HAPROXY_RELOAD_SIGTERM_DELAY`设置为一个值，例如5m。这个值会直接传递给每次HAProxy重新加载之后执行的sleep命令，待达到延迟时间设定后再向旧的HAProxy的PID发送SIGTERM（参见[service\/haproxy\/run](https://github.com/mesosphere/marathon-lb/blob/master/service/haproxy/run)）。特别是对于需要TCP长连接的情况，更希望在所有连接完成之后再终止HAProxy。如果过于频繁地重新加载HAProxy，因PID会在指定的延迟内被重复使用，则可能导致SIGTERM发送给错误的PID。有关HAProxy重新加载的更多信息，以及更多相关问题[＃5](https://github.com/mesosphere/marathon-lb/issues/5)，[＃71](https://github.com/mesosphere/marathon-lb/issues/71)，[＃267](https://github.com/mesosphere/marathon-lb/issues/267)，[＃276](https://github.com/mesosphere/marathon-lb/issues/276)和[＃318](https://github.com/mesosphere/marathon-lb/issues/318)的更多信息，请参阅[此讨论](http://www.serverphorums.com/read.php?10,862139)。
+* 可以考虑为环境变量`HAPROXY_RELOAD_SIGTERM_DELAY`设置为一个值，例如5m。这个值会直接传递给每次HAProxy重新加载之后执行的sleep命令，待达到延迟时间设定后再向旧的HAProxy的PID发送SIGTERM（参见[service\/haproxy\/run](https://github.com/mesosphere/marathon-lb/blob/master/service/haproxy/run)）。特别是对于需要TCP长连接的情况，更希望在所有连接完成之后再终止HAProxy。如果过于频繁地重新加载HAProxy，因PID会在指定的延迟内被重复使用，则可能导致SIGTERM发送给错误的PID。有关HAProxy重新加载的更多信息，以及更多相关问题[＃5](https://github.com/mesosphere/marathon-lb/issues/5)，[＃71](https://github.com/mesosphere/marathon-lb/issues/71)，[＃267](https://github.com/mesosphere/marathon-lb/issues/267)，[＃276](https://github.com/mesosphere/marathon-lb/issues/276)和[＃318](https://github.com/mesosphere/marathon-lb/issues/318)的更多信息，请参阅[此讨论](http://www.serverphorums.com/read.php?10,862139)。
 
