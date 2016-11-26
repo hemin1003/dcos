@@ -6,7 +6,7 @@ Marathon-LB通过脚本`marathon_lb.py`连接到Marathon的API检索所有正在
 
 要创建一个或多个虚拟主机，需要在应用程序的Marathon程序定义中设置HAPROXY\_{n}\_VHOST标签。配置了虚拟主机的应用除了在服务端口（`servicePort`）提供服务外，也通过80和443端口公开服务。可以在HAPROXY\_{n}\_VHOST中使用逗号作为主机域名之间的分隔符来指定多个虚拟主机。
 
-所有应用程序也使用HTTP头`X-Marathon-App-Id`在端口9091上公开。参考[HAProxy配置模板](/dcos-component-marathon-lb-template.md)中的HAPROXY\_HTTP\_FRONTEND\_APPID\_HEAD配置。
+所有应用程序也使用HTTP头`X-Marathon-App-Id`在端口9091上公开。参考[HAProxy配置参考](/dcos-component-marathon-lb-template.md)中的HAPROXY\_HTTP\_FRONTEND\_APPID\_HEAD配置。
 
 可以通过`http://<public-node-ip>:9090/haproxy?stats`获取HAProxy的统计信息。可以通过`http://<public-node-ip>:9090/_haproxy_getconfig`获取当前HAProxy的配置。
 
@@ -125,7 +125,7 @@ dcos package install --options=config.json  marathon-lb
 
 可以通过两种途径在MLB中对HAProxy进行配置，一种是通过应用的标签（labels），另一种是通过模板（template）。
 
-应用标签
+#### 应用标签
 
 应用标签在Marathon的应用程序JSON定义中指定。这些标签可以用来覆盖HAProxy的默认行为。例如，可以将应用设置为`external`分组并为其配置一个名为`service.mesosphere.com`的虚拟主机：
 
@@ -139,7 +139,35 @@ dcos package install --options=config.json  marathon-lb
 }
 ```
 
+可以为每个服务端口指定一些特定的标签，这些端口在标签中用{n}参数表示，其中{n}对应于从0开始的服务端口索引。可通过[HAProxy配置参考](/dcos-component-marathon-lb-template.md)查看可用的配置标签。
 
+#### 模板
 
-模板
+MLB在templates\/目录中搜索HAProxy的配置文件，该目录相对于启动MLB的运行脚本的路径位置。一些模板参数可以根据特定的服务端口进行配置。可以将自定义的模板参数添加到Docker镜像，或在镜像启动时（Marathon的应用JSON定义中）提供。
+
+**覆盖模板配置**
+
+某些模板参数可以使用应用程序标签覆盖。字符串在HAProxy的配置模板中被解释为文字配置参数，并遵守替换规则。HAProxy的配置将在更改后重新加载之前验证其正确性。注意：由于HAProxy在重新加载之前会检查配置，如果应用程序的标签的语法不正确，那么HAProxy将不会重新加载，因此可能导致过时的配置。
+
+下面的示例是一个名为`http-service`的服务，它要求禁用`http-keep-alive`：
+
+```
+{
+  "id": "http-service",
+  "labels":{
+    "HAPROXY_GROUP":"external",
+    "HAPROXY_0_BACKEND_HTTP_OPTIONS":"  option forwardfor\n  no option http-keep-alive\n  http-request set-header X-Forwarded-Port %[dst_port]\n  http-request add-header X-Forwarded-Proto https if { ssl_fc }\n"
+  }
+}
+```
+
+**全局默认选项**
+
+一种在不覆盖全局模板而添加HAProxy全局默认选项的快捷方式是可以通过环境变量`HAPROXY_GLOBAL_DEFAULT_OPTIONS`来指定用逗号分隔的选项列表。环境变量`HAPROXY_GLOBAL_DEFAULT_OPTIONS`的默认值为`redispatch,http-server-close,dontlognull`；作为示例，要添加`httplog`选项（并保留现有的默认值），应该指定：
+
+```
+HAPROXY_GLOBAL_DEFAULT_OPTIONS=redispatch,http-server-close,dontlognull,httplog
+```
+
+注意，当`HAPROXY_HEAD`模板参数已覆盖指定时，上述设置不起作用。
 

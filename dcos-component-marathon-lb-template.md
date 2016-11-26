@@ -1,2 +1,2 @@
-## HAProxy配置模板
+## HAProxy配置参考
 
