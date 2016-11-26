@@ -109,18 +109,37 @@ dcos package install --options=config.json  marathon-lb
 
 当Marathon-LB处于轮询模式时，这些接口将不起作用，因为在该模式中Marathon-LB进程在每次轮询之后退出，所以无法接收信号通知。
 
-| Endpoint | Description | 
-|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
-| `:9090/haproxy?stats` | HAProxy stats endpoint. This produces an HTML page which can be viewed in your browser, providing various statistics about the current HAProxy instance. | 
-| `:9090/haproxy?stats;csv` | This is a CSV version of the stats above, which can be consumed by other tools. For example, it's used in the [`zdd.py`](zdd.py) script. | 
-| `:9090/_haproxy_health_check` | HAProxy health check endpoint. Returns `200 OK` if HAProxy is healthy. | 
-| `:9090/_haproxy_getconfig` | Returns the HAProxy config file as it was when HAProxy was started. Implemented in [`getconfig.lua`](getconfig.lua). | 
-| `:9090/_haproxy_getvhostmap` | Returns the HAProxy vhost to backend map. This endpoint returns HAProxy map file only when the `--haproxy-map` flag is enabled, it returns an empty string otherwise. Implemented in [`getmaps.lua`](getmaps.lua). | 
-| `:9090/_haproxy_getappmap` | Returns the HAProxy app ID to backend map. Like `_haproxy_getvhostmap`, this requires the `--haproxy-map` flag to be enabled and returns an empty string otherwise. Also implemented in `getmaps.lua`. | 
-| `:9090/_haproxy_getpids` | Returns the PIDs for all HAProxy instances within the current process namespace. This literally returns `$(pidof haproxy)`. Implemented in [`getpids.lua`](getpids.lua). This is also used by the [`zdd.py`](zdd.py) script to determine if connections have finished draining during a deploy. | 
-| `:9090/_mlb_signal/hup`* | Sends a `SIGHUP` signal to the marathon-lb process, causing it to fetch the running apps from Marathon and reload the HAProxy config as though an event was received from Marathon. | 
-| `:9090/_mlb_signal/usr1`* | Sends a `SIGUSR1` signal to the marathon-lb process, causing it to restart HAProxy with the existing config, without checking Marathon for changes. |
-
+| Endpoint | Description |
+| --- | --- |
+| `:9090/haproxy?stats` | HAProxy stats endpoint. This produces an HTML page which can be viewed in your browser, providing various statistics about the current HAProxy instance. |
+| `:9090/haproxy?stats;csv` | This is a CSV version of the stats above, which can be consumed by other tools. For example, it's used in the `zdd.py` script. |
+| `:9090/_haproxy_health_check` | HAProxy health check endpoint. Returns `200 OK` if HAProxy is healthy. |
+| `:9090/_haproxy_getconfig` | Returns the HAProxy config file as it was when HAProxy was started. Implemented in `getconfig.lua`. |
+| `:9090/_haproxy_getvhostmap` | Returns the HAProxy vhost to backend map. This endpoint returns HAProxy map file only when the `--haproxy-map` flag is enabled, it returns an empty string otherwise. Implemented in `getmaps.lua`. |
+| `:9090/_haproxy_getappmap` | Returns the HAProxy app ID to backend map. Like `_haproxy_getvhostmap`, this requires the `--haproxy-map` flag to be enabled and returns an empty string otherwise. Also implemented in `getmaps.lua`. |
+| `:9090/_haproxy_getpids` | Returns the PIDs for all HAProxy instances within the current process namespace. This literally returns `$(pidof haproxy)`. Implemented in `getpids.lua`. This is also used by the `zdd.py` script to determine if connections have finished draining during a deploy. |
+| `:9090/_mlb_signal/hup`\* | Sends a `SIGHUP` signal to the marathon-lb process, causing it to fetch the running apps from Marathon and reload the HAProxy config as though an event was received from Marathon. |
+| `:9090/_mlb_signal/usr1`\* | Sends a `SIGUSR1` signal to the marathon-lb process, causing it to restart HAProxy with the existing config, without checking Marathon for changes. |
 
 ### HAProxy配置
+
+可以通过两种途径在MLB中对HAProxy进行配置，一种是通过应用的标签（labels），另一种是通过模板（template）。
+
+应用标签
+
+应用标签在Marathon的应用程序JSON定义中指定。这些标签可以用来覆盖HAProxy的默认行为。例如，可以将应用设置为`external`分组并为其配置一个名为`service.mesosphere.com`的虚拟主机：
+
+```
+{
+  "id": "http-service",
+  "labels": {
+    "HAPROXY_GROUP":"external",
+    "HAPROXY_0_VHOST":"service.mesosphere.com"
+  }
+}
+```
+
+
+
+模板
 
