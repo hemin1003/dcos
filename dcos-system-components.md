@@ -1,6 +1,6 @@
-## DCOS之系统组件服务
+## DC\/OS之系统组件服务
 
-DCOS由一组（超过30个）系统服务组成，包括大家所熟知的Mesos、Marathon、Zookeeper及Rexray等。根据组成DCOS集群节点职能的不同，位于这些节点上的系统服务稍有差别。
+DC\/OS由一组（超过30个）系统服务组成，包括大家所熟知的Mesos、Marathon、Zookeeper及Rexray等。根据组成DC\/OS集群节点职能的不同，位于这些节点上的系统服务稍有差别。
 
 ### Master节点系统服务\(V1.8.4\)
 
@@ -10,11 +10,11 @@ DCOS由一组（超过30个）系统服务组成，包括大家所熟知的Mesos
 
 ![](/assets/dcos_system_components_agent.png)
 
-如上述两图所示，通过DCOS集群节点“`/etc/systemd/system/dcos.target.wants/`”目录下可以看到所有系统组件服务，Master节点和Agent节点上的服务稍有不同。
+如上述两图所示，通过DC\/OS集群节点“`/etc/systemd/system/dcos.target.wants/`”目录下可以看到所有系统组件服务，Master节点和Agent节点上的服务稍有不同。
 
-## DCOS系统服务列表
+## DC\/OS系统服务列表
 
-DCOS详细的主要系统服务说明列表如下：
+DC\/OS详细的主要系统服务说明列表如下：
 
 | 系统组件 | 服务名称 | 描述 |
 | --- | --- | --- |
@@ -53,9 +53,9 @@ DCOS详细的主要系统服务说明列表如下：
 | System Package Manager API | dcos-pkgpanda-api.service | 创建链接，安装systemd服务单元，为每个主机建立指定角色（Master，Private Agent， Public Agent） |
 | System Package Manager API socket | dcos-pkgpanda-api.socket | System Package Manager API socket |
 
-我们会在DC\/OS之原理篇详细分析这些系统服务。
+后续章节会详细分析这些系统服务。
 
-### DCOS系统服务版本
+### DC\/OS系统服务版本
 
-DCOS有自己的版本发布路线图，那么，在决定部署或升级某一版本的DCOS系统时，如何确定当前版本中各系统服务的版本呢？当前，获取DCOS内部各个系统服务版本的方式是首先确定DCOS的版本，访问[https:\/\/github.com\/dcos\/dcos\/tree\/master\/packages](https://github.com/dcos/dcos/tree/master/packages)，切换到DCOS版本（如V1.8.5）对应的分支，找到对应的系统服务目录，如marathon，通过该目录下的`buildinfo.json`文件确定该版本DCOS中打包的Marathon的代码版本。
+DC\/OS有自己的版本发布路线图，那么，在决定部署或升级某一版本的DC\/OS系统时，如何确定当前版本中各系统服务的版本呢？当前，获取DC\/OS内部各个系统服务版本的方式是首先确定DC\/OS的版本，访问[https:\/\/github.com\/dcos\/dcos\/tree\/master\/packages](https://github.com/dcos/dcos/tree/master/packages)，切换到DC\/OS版本（如V1.8.5）对应的分支，找到对应的系统服务目录，如marathon，通过该目录下的`buildinfo.json`文件确定该版本DC\/OS中打包的Marathon的代码版本。
 
