@@ -48,7 +48,7 @@
         * [容器网络接口](dcos-mesos-containerizer-cni.md)
     * [Docker容器化](dcos-mesos-docker-containerizer.md)
     * [容器运行管理](dcos-marathon-container.md)
-* [容器网络方案](dcos-network.md)
+* [容器网络](dcos-network.md)
     * [服务端口配置](dcos-network-marathon-ports.md)
 * [服务发现与负载](dcos-service-discovery.md)
     * [VIPs](dcos-network-vips.md)
