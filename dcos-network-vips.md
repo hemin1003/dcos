@@ -1,6 +1,6 @@
 ## VIPs
 
-DCOS提供了一个名为Minuteman的服务器端内部微服务之间的东-西向（区分于Client-Server的南-北向）4层负载均衡。为了易于服务的配置和发现，DCOS采用**命名（name-based）VIPs**来定位服务。因此，客户端访问服务时连接的是一个服务地址而不是具体的IP地址，同时DCOS可以很容易的将指向一个命名VIP的调用请求映射到多个具体的IP地址和端口，从而实现负载调度。采用命名VIPs的另一个好处是可以避免与基于IP的VIP产生冲突，在服务安装时可以自动创建。
+DCOS提供了一个名为**Minuteman**的服务器端内部微服务之间的东-西向（区分于Client-Server的南-北向）4层负载均衡。为了易于服务的配置和发现，DCOS采用**命名（name-based）VIPs**来定位服务。因此，客户端访问服务时连接的是一个服务地址而不是具体的IP地址，同时DCOS可以很容易的将指向一个命名VIP的调用请求映射到多个具体的IP地址和端口，从而实现负载调度。采用命名VIPs的另一个好处是可以避免与基于IP的VIP产生冲突，在服务安装时可以自动创建。
 
 一个命名VIP包含3个组成部分：
 
@@ -54,7 +54,7 @@ VIPs的命名遵循如下规则：
 curl myservice.marathon.l4lb.thisdcos.directory:6666 -vv
 ```
 
-注意，
+**注意，**
 
 * VIPs不支持ping命令。VIPs在DC\/OS中并不是标准意义上的IP地址，仅仅是IP:端口的组合，如果向`myservice.marathon.l4lb.thisdcos.directory`发送**ping**指令，实际上是向`myservice.marathon.l4lb.thisdcos.directory`发送了ICMP请求，而LB被配置为截获和负载指向`myservice.marathon.l4lb.thisdcos.directory:6666`组合的地址的流量。
 
