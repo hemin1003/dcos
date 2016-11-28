@@ -34,6 +34,7 @@
     * [容器运行管理](dcos-marathon-container.md)
     * [应用服务部署](dcos-marathon-app-deployments.md)
     * [事件总线](dcos-marathon-event-bus.md)
+    * [约束](dcos-marathon-constraints.md)
 * [系统服务](dcos-system-components.md)
     * [Exhibitor](dcos-component-exhibitor.md)
     * [3DT](dcos-component-3dt.md)
