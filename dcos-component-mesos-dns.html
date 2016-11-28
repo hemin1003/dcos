@@ -1,0 +1,1670 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>Mesos-DNS · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="dcos-component-mesos-dns-service-naming.html" />
+    
+    
+    <link rel="prev" href="dcos-component-marathon-lb-tutorials.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">DC/OS之导论</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    导论
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="dcos概览.html">
+            
+                <a href="dcos概览.html">
+            
+                    
+                    DC/OS概览
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="dcos-basic-theory.html">
+            
+                <a href="dcos-basic-theory.html">
+            
+                    
+                    系统基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="dcos-basic-theory-terminologies.html">
+            
+                <a href="dcos-basic-theory-terminologies.html">
+            
+                    
+                    名词术语
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="dcos-theory-schedule-strategy.html">
+            
+                <a href="dcos-theory-schedule-strategy.html">
+            
+                    
+                    资源调度策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="环境搭建.html">
+            
+                <a href="环境搭建.html">
+            
+                    
+                    环境搭建
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="dcos-install-default.html">
+            
+                <a href="dcos-install-default.html">
+            
+                    
+                    安装环境准备
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="dcos-install-docker-on-centos.html">
+            
+                <a href="dcos-install-docker-on-centos.html">
+            
+                    
+                    在Centos上安装Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="dcos-install-by-gui.html">
+            
+                <a href="dcos-install-by-gui.html">
+            
+                    
+                    GUI安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="dcos-install-by-cli.html">
+            
+                <a href="dcos-install-by-cli.html">
+            
+                    
+                    通过CLI安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="dcos-install-by-advanced-mode.html">
+            
+                <a href="dcos-install-by-advanced-mode.html">
+            
+                    
+                    高级安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="dcos-install-maintainance.html">
+            
+                <a href="dcos-install-maintainance.html">
+            
+                    
+                    集群维护
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="dcos-install-backup-installer-file.html">
+            
+                <a href="dcos-install-backup-installer-file.html">
+            
+                    
+                    备份集群安装文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="dcos-install-nodes-management.html">
+            
+                <a href="dcos-install-nodes-management.html">
+            
+                    
+                    集群节点管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="dcos-install-m-uninstall-all.html">
+            
+                <a href="dcos-install-m-uninstall-all.html">
+            
+                    
+                    集群卸载
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="dcos-install-faq.html">
+            
+                <a href="dcos-install-faq.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">DC/OS之原理</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="dcos-theory-overview.html">
+            
+                <a href="dcos-theory-overview.html">
+            
+                    
+                    理解DC/OS
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="dcos-dcos-admin-ports.html">
+            
+                <a href="dcos-dcos-admin-ports.html">
+            
+                    
+                    DC/OS内部端口
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="dcos-mesos.html">
+            
+                <a href="dcos-mesos.html">
+            
+                    
+                    Mesos
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="dcos-mesos-attributes-and-resources.html">
+            
+                <a href="dcos-mesos-attributes-and-resources.html">
+            
+                    
+                    资源与属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="dcos-mesos-roles.html">
+            
+                <a href="dcos-mesos-roles.html">
+            
+                    
+                    角色（Roles）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="dcos-mesos-reservation.html">
+            
+                <a href="dcos-mesos-reservation.html">
+            
+                    
+                    资源预留（Reservation）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.4" data-path="dcos-mesos-weights.html">
+            
+                <a href="dcos-mesos-weights.html">
+            
+                    
+                    权重（Weights）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.5" data-path="dcos-mesos-quota.html">
+            
+                <a href="dcos-mesos-quota.html">
+            
+                    
+                    配额（Quota）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.6" data-path="dcos-mesos-agent-recovery.html">
+            
+                <a href="dcos-mesos-agent-recovery.html">
+            
+                    
+                    Agent节点恢复
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.7" data-path="dcos-mesos-authorization.html">
+            
+                <a href="dcos-mesos-authorization.html">
+            
+                    
+                    Authorization
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="dcos-marathon.html">
+            
+                <a href="dcos-marathon.html">
+            
+                    
+                    Marathon
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="dcos-marathon-health-checks.html">
+            
+                <a href="dcos-marathon-health-checks.html">
+            
+                    
+                    应用健康检查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="dcos-marathon-container.html">
+            
+                <a href="dcos-marathon-container.html">
+            
+                    
+                    容器运行管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="dcos-marathon-app-deployments.html">
+            
+                <a href="dcos-marathon-app-deployments.html">
+            
+                    
+                    应用服务部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="dcos-marathon-event-bus.html">
+            
+                <a href="dcos-marathon-event-bus.html">
+            
+                    
+                    事件总线
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="dcos-system-components.html">
+            
+                <a href="dcos-system-components.html">
+            
+                    
+                    系统服务
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="dcos-component-exhibitor.html">
+            
+                <a href="dcos-component-exhibitor.html">
+            
+                    
+                    Exhibitor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.2" data-path="dcos-component-3dt.html">
+            
+                <a href="dcos-component-3dt.html">
+            
+                    
+                    3DT
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.3" data-path="dcos-component-adminrouter.html">
+            
+                <a href="dcos-component-adminrouter.html">
+            
+                    
+                    Adminrouter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.4" data-path="dcos-component-cosmos.html">
+            
+                <a href="dcos-component-cosmos.html">
+            
+                    
+                    Cosmos
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.5" data-path="dcos-component-minuteman.html">
+            
+                <a href="dcos-component-minuteman.html">
+            
+                    
+                    Minuteman
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.6" data-path="dcos-component-spartan.html">
+            
+                <a href="dcos-component-spartan.html">
+            
+                    
+                    Spartan
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="dcos-mesos-containerizer.html">
+            
+                <a href="dcos-mesos-containerizer.html">
+            
+                    
+                    容器化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.1" data-path="dcos-mesos-containerizer-internals.html">
+            
+                <a href="dcos-mesos-containerizer-internals.html">
+            
+                    
+                    容器化实现细节
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.2" data-path="dcos-mesos-mesos-containerizer.html">
+            
+                <a href="dcos-mesos-mesos-containerizer.html">
+            
+                    
+                    Mesos容器化
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.2.1" data-path="dcos-mesos-mesos-containerizer-docker-volume.html">
+            
+                <a href="dcos-mesos-mesos-containerizer-docker-volume.html">
+            
+                    
+                    Docker卷支持
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.2.2" data-path="dcos-mesos-containerizer-cni.html">
+            
+                <a href="dcos-mesos-containerizer-cni.html">
+            
+                    
+                    容器网络接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.3" data-path="dcos-mesos-docker-containerizer.html">
+            
+                <a href="dcos-mesos-docker-containerizer.html">
+            
+                    
+                    Docker容器化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.4" data-path="dcos-marathon-container.html">
+            
+                <a href="dcos-marathon-container.html">
+            
+                    
+                    容器运行管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="dcos-network.html">
+            
+                <a href="dcos-network.html">
+            
+                    
+                    容器网络方案
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.6.1" data-path="dcos-network-marathon-ports.html">
+            
+                <a href="dcos-network-marathon-ports.html">
+            
+                    
+                    服务端口配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="dcos-service-discovery.html">
+            
+                <a href="dcos-service-discovery.html">
+            
+                    
+                    服务发现与负载
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.7.1" data-path="dcos-network-vips.html">
+            
+                <a href="dcos-network-vips.html">
+            
+                    
+                    VIPs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.7.1.1" data-path="dcos-network-vips-lb.html">
+            
+                <a href="dcos-network-vips-lb.html">
+            
+                    
+                    基于VIPs的负载调度
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.2" data-path="dcos-component-marathon-lb.html">
+            
+                <a href="dcos-component-marathon-lb.html">
+            
+                    
+                    Marathon-LB
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.7.2.1" data-path="dcos-component-marathon-lb-basic.html">
+            
+                <a href="dcos-component-marathon-lb-basic.html">
+            
+                    
+                    基本概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.2.2" data-path="dcos-component-marathon-lb-advanced.html">
+            
+                <a href="dcos-component-marathon-lb-advanced.html">
+            
+                    
+                    高级特性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.2.3" data-path="dcos-component-marathon-lb-template.html">
+            
+                <a href="dcos-component-marathon-lb-template.html">
+            
+                    
+                    配置参考
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.2.4" data-path="dcos-component-marathon-lb-tutorials.html">
+            
+                <a href="dcos-component-marathon-lb-tutorials.html">
+            
+                    
+                    应用示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.7.3" data-path="dcos-component-mesos-dns.html">
+            
+                <a href="dcos-component-mesos-dns.html">
+            
+                    
+                    Mesos-DNS
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.7.3.1" data-path="dcos-component-mesos-dns-service-naming.html">
+            
+                <a href="dcos-component-mesos-dns-service-naming.html">
+            
+                    
+                    服务命名
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7.3.2" data-path="dcos-component-mesos-dns-http-api.html">
+            
+                <a href="dcos-component-mesos-dns-http-api.html">
+            
+                    
+                    HTTP接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="dcos-storage.html">
+            
+                <a href="dcos-storage.html">
+            
+                    
+                    存储策略与方案
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.8.1" data-path="dcos-storage-multi-disks.html">
+            
+                <a href="dcos-storage-multi-disks.html">
+            
+                    
+                    磁盘资源
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.8.1.1" data-path="dcos-storage-mount-disk-resources.html">
+            
+                <a href="dcos-storage-mount-disk-resources.html">
+            
+                    
+                    增加磁盘资源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.1.2" data-path="dcos-storage-nfs-server.html">
+            
+                <a href="dcos-storage-nfs-server.html">
+            
+                    
+                    增加NFS存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.2" data-path="dcos-storage-persistent-volume.html">
+            
+                <a href="dcos-storage-persistent-volume.html">
+            
+                    
+                    持久化卷
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.8.2.1" data-path="dcos-storage-persistent-volume-local.html">
+            
+                <a href="dcos-storage-persistent-volume-local.html">
+            
+                    
+                    本地持久化卷
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.2.2" data-path="外部持久化卷.html">
+            
+                <a href="外部持久化卷.html">
+            
+                    
+                    外部持久化卷
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.3" data-path="dcos-storage-sansds.html">
+            
+                <a href="dcos-storage-sansds.html">
+            
+                    
+                    SAN/SDS
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.8.3.1" data-path="dcos-storage-sansds-rexray.html">
+            
+                <a href="dcos-storage-sansds-rexray.html">
+            
+                    
+                    Rex-Ray
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.3.2" data-path="dcos-storage-sansds-flocker.html">
+            
+                <a href="dcos-storage-sansds-flocker.html">
+            
+                    
+                    Flocker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8.3.3" data-path="dcos-storage-sansds-convoy.html">
+            
+                <a href="dcos-storage-sansds-convoy.html">
+            
+                    
+                    Convoy
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="dcos-component-universe.html">
+            
+                <a href="dcos-component-universe.html">
+            
+                    
+                    Universe
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.9.1" data-path="dcos-component-universe-usage.html">
+            
+                <a href="dcos-component-universe-usage.html">
+            
+                    
+                    应用的管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">DC/OS之服务</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="dcos-service-stateful.html">
+            
+                <a href="dcos-service-stateful.html">
+            
+                    
+                    有状态应用服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="jenkins-on-dcos.html">
+            
+                <a href="jenkins-on-dcos.html">
+            
+                    
+                    Jenkins on DCOS
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="dcos-service-jenkins-custom-dind.html">
+            
+                <a href="dcos-service-jenkins-custom-dind.html">
+            
+                    
+                    自定义Jenkins Slave容器镜像
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="deploy.html">
+            
+                <a href="deploy.html">
+            
+                    
+                    示例：在Jenkins on DCOS上编译部署Tomcat应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="dcos-service-hdfs.html">
+            
+                <a href="dcos-service-hdfs.html">
+            
+                    
+                    HDFS on DCOS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="dcos-service-cassandra.html">
+            
+                <a href="dcos-service-cassandra.html">
+            
+                    
+                    Cassandra on DCOS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="dcos-service-management.html">
+            
+                <a href="dcos-service-management.html">
+            
+                    
+                    服务的管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">DCOS之管理</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="dcos-admin-cli.html">
+            
+                <a href="dcos-admin-cli.html">
+            
+                    
+                    DCOS CLI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="dcos-admin-ui.html">
+            
+                <a href="dcos-admin-ui.html">
+            
+                    
+                    DCOS 管理UI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="dcos-admin-storage.html">
+            
+                <a href="dcos-admin-storage.html">
+            
+                    
+                    存储管理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.1" data-path="dcos-admin-storage-glusterfs.html">
+            
+                <a href="dcos-admin-storage-glusterfs.html">
+            
+                    
+                    GlusterFS存储
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.1.1" data-path="dcos-admin-storage-glusterfs-overview.html">
+            
+                <a href="dcos-admin-storage-glusterfs-overview.html">
+            
+                    
+                    GlusterFS概览
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.1.2" data-path="dcos-admin-storage-glusterfs-admin.html">
+            
+                <a href="dcos-admin-storage-glusterfs-admin.html">
+            
+                    
+                    GlusterFS维护
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.1.3" data-path="dcos-admin-storage-glusterfs-architecture.html">
+            
+                <a href="dcos-admin-storage-glusterfs-architecture.html">
+            
+                    
+                    GlusterFS架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.2" data-path="dcos-admin-storage-ceph.html">
+            
+                <a href="dcos-admin-storage-ceph.html">
+            
+                    
+                    Ceph集群存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="dcos-admin-logging.html">
+            
+                <a href="dcos-admin-logging.html">
+            
+                    
+                    日志管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">DC/OS之应用</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="dcos-usage-dockers.html">
+            
+                <a href="dcos-usage-dockers.html">
+            
+                    
+                    容器与镜像
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="dcos-usage-docker-dockerfile.html">
+            
+                <a href="dcos-usage-docker-dockerfile.html">
+            
+                    
+                    Dockerfile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="dcos-usage-docker-multi-app-in-one.html">
+            
+                <a href="dcos-usage-docker-multi-app-in-one.html">
+            
+                    
+                    同一容器中部署多个APP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3" data-path="dcos-usage-docker-storage-driver.html">
+            
+                <a href="dcos-usage-docker-storage-driver.html">
+            
+                    
+                    存储驱动
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="dcos-service-pre-private-docker-registry.html">
+            
+                <a href="dcos-service-pre-private-docker-registry.html">
+            
+                    
+                    私有容器仓库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="dcos-usage-cicd.html">
+            
+                <a href="dcos-usage-cicd.html">
+            
+                    
+                    持续集成与持续部署
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.3.1" data-path="dcos-usage-cicd-build-by-maven.html">
+            
+                <a href="dcos-usage-cicd-build-by-maven.html">
+            
+                    
+                    应用打包与镜像构建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.2" data-path="dcos-usage-cicd-integration.html">
+            
+                <a href="dcos-usage-cicd-integration.html">
+            
+                    
+                    持续集成与构建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.3" data-path="dcos-usage-cicd-deploy.html">
+            
+                <a href="dcos-usage-cicd-deploy.html">
+            
+                    
+                    持续部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">DCOS之开发</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="dcos-theory-solutions-martrix.html">
+            
+                <a href="dcos-theory-solutions-martrix.html">
+            
+                    
+                    Docker Swarm vs Mesos vs Kubernetties
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Mesos-DNS</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="mesos-dns">Mesos-DNS</h2><p>Mesos-DNS&#x4E3A;DC/OS&#x96C6;&#x7FA4;&#x4E2D;&#x7684;&#x5E94;&#x7528;&#x63D0;&#x4F9B;&#x4E86;&#x670D;&#x52A1;&#x53D1;&#x73B0;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA9;DC/OS&#x4E0A;&#x8FD0;&#x884C;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x548C;&#x670D;&#x52A1;&#x901A;&#x8FC7;&#x57DF;&#x540D;&#x7CFB;&#x7EDF;&#xFF08;DNS&#xFF09;&#x627E;&#x5230;&#x5F7C;&#x6B64;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x7531;Marathon&#x6216;Aurora&#x542F;&#x52A8;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x53EF;&#x4EE5;&#x5206;&#x914D;&#x540D;&#x79F0;&#xFF1A;search.marathon.mesos&#x6216;log-aggregator.aurora.mesos&#xFF0C;Mesos-DNS&#x5C06;&#x8FD9;&#x4E9B;&#x540D;&#x79F0;&#x8F6C;&#x6362;&#x4E3A;&#x5F53;&#x524D;&#x8FD0;&#x884C;&#x5404;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x4E3B;&#x673A;&#x4E0A;&#x7684;IP&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;&#x3002;&#x8981;&#x8FDE;&#x63A5;&#x5230;DC/OS&#x4E2D;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x5FC5;&#x987B;&#x8981;&#x77E5;&#x9053;&#x7684;&#x5E94;&#x7528;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x6BCF;&#x6B21;&#x542F;&#x52A8;&#x8FDE;&#x63A5;&#x65F6;&#xFF0C;DNS&#x8F6C;&#x6362;&#x90FD;&#x4F1A;&#x5C06;&#x8FD9;&#x4E9B;&#x8FDE;&#x63A5;&#x6307;&#x5411;&#x6570;&#x636E;&#x4E2D;&#x5FC3;&#x4E2D;&#x6B63;&#x786E;&#x7684;&#x4E3B;&#x673A;&#x3002;</p><p>Mesos-DNS&#x88AB;&#x8BBE;&#x8BA1;&#x4E3A;&#x4E00;&#x4E2A;&#x7CBE;&#x7B80;&#x7684;&#xFF0C;&#x65E0;&#x72B6;&#x6001;&#x7684;&#xFF0C;&#x6613;&#x4E8E;&#x90E8;&#x7F72;&#x548C;&#x7EF4;&#x62A4;&#x7684;&#x670D;&#x52A1;&#x3002;&#x4E0B;&#x56FE;&#x63CF;&#x8FF0;&#x4E86;&#x5B83;&#x7684;&#x5DE5;&#x4F5C;&#x673A;&#x7406;&#xFF1A;</p><p><img src="assets/mesos-dns-architecture-dcos.png"></p><p>Mesos-DNS&#x5B9A;&#x671F;&#xFF08;&#x9ED8;&#x8BA4;30&#x79D2;&#xFF09;&#x67E5;&#x8BE2;Master&#x8282;&#x70B9;&#xFF0C;&#x4ECE;&#x6240;&#x6709;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x6846;&#x67B6;&#x4E2D;&#x68C0;&#x7D22;&#x6240;&#x6709;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x4EFB;&#x52A1;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x5E76;&#x4E3A;&#x8FD9;&#x4E9B;&#x4EFB;&#x52A1;&#x751F;&#x6210;DNS&#x8BB0;&#x5F55;&#xFF08;A&#x548C;SRV&#x8BB0;&#x5F55;&#xFF09;&#x3002;&#x968F;&#x7740;&#x4EFB;&#x52A1;&#x5728;DC/OS&#x96C6;&#x7FA4;&#x4E0A;&#x542F;&#x52A8;&#xFF0C;&#x5B8C;&#x6210;&#xFF0C;&#x5931;&#x8D25;&#x6216;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x65F6;&#xFF0C;Mesos-DNS&#x4F1A;&#x540C;&#x65F6;&#x66F4;&#x65B0;DNS&#x8BB0;&#x5F55;&#x4EE5;&#x53CD;&#x6620;&#x5E94;&#x7528;&#x7684;&#x6700;&#x65B0;&#x72B6;&#x6001;&#x3002;</p><p>&#x6846;&#x67B6;&#x4E0D;&#x9700;&#x8981;&#x76F4;&#x63A5;&#x4E0E;Mesos-DNS&#x8FDB;&#x884C;&#x901A;&#x4FE1;&#x3002;&#x5728;Agent&#x8282;&#x70B9;&#x4E0A;&#x8FD0;&#x884C;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x548C;&#x670D;&#x52A1;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x53D1;&#x51FA;DNS&#x67E5;&#x627E;&#x8BF7;&#x6C42;&#x6216;&#x901A;&#x8FC7;REST API&#x53D1;&#x51FA;HTTP&#x8BF7;&#x6C42;&#x6765;&#x53D1;&#x73B0;&#x5176;&#x6240;&#x4F9D;&#x8D56;&#x7684;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;IP&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;&#xFF0C;Mesos-DNS&#x4F1A;&#x76F4;&#x63A5;&#x56DE;&#x590D;&#x8FD9;&#x4E9B;&#x8BF7;&#x6C42;&#x3002;&#x5982;&#x679C;Agent&#x8282;&#x70B9;&#x9700;&#x8981;&#x5BF9;DC/OS&#x7FA4;&#x96C6;&#x5916;&#x90E8;&#x7684;&#x4E3B;&#x673A;&#x540D;&#x53D1;&#x51FA;DNS&#x8BF7;&#x6C42;&#xFF0C;Mesos-DNS&#x4F1A;&#x76F4;&#x63A5;&#x67E5;&#x8BE2;&#x5916;&#x90E8;DNS&#x670D;&#x52A1;&#x5668;&#x3002;&#x4EC5;&#x5F53;DC/OS&#x7FA4;&#x96C6;&#x4E0A;&#x7684;&#x8282;&#x70B9;&#x5FC5;&#x987B;&#x89E3;&#x6790;&#x96C6;&#x7FA4;&#x7F51;&#x7EDC;&#x4E4B;&#x5916;&#x6216;Internet&#x4E0A;&#x5176;&#x4ED6;&#x4F4D;&#x7F6E;&#x7684;&#x7CFB;&#x7EDF;&#x7684;&#x4E3B;&#x673A;&#x540D;&#x65F6;&#xFF0C;&#x624D;&#x9700;&#x8981;&#x5916;&#x90E8;DNS&#x670D;&#x52A1;&#x5668;&#x3002;</p><p>Mesos-DNS&#x662F;&#x7B80;&#x5355;&#x548C;&#x65E0;&#x72B6;&#x6001;&#x7684;&#xFF0C;&#x5B83;&#x4E0D;&#x9700;&#x8981;&#x4E00;&#x81F4;&#x6027;&#x673A;&#x5236;&#xFF0C;&#x6301;&#x4E45;&#x5B58;&#x50A8;&#x6216;&#x65E5;&#x5FD7;&#x590D;&#x5236;&#xFF0C;&#x56E0;&#x4E3A;&#x5E94;&#x7528;&#x6240;&#x9700;&#x7684;&#x5FC3;&#x8DF3;&#xFF0C;&#x5065;&#x5EB7;&#x76D1;&#x63A7;&#x6216;&#x751F;&#x547D;&#x5468;&#x671F;&#x7BA1;&#x7406;&#x7B49;&#x529F;&#x80FD;&#x90FD;&#x5DF2;&#x7ECF;&#x7531;Master&#x3001;Agent&#x548C;&#x6846;&#x67B6;&#x6240;&#x63D0;&#x4F9B;&#x3002;Mesos-DNS&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x50CF;Marathon&#x8FD9;&#x6837;&#x7684;&#x6846;&#x67B6;&#x6765;&#x5B9E;&#x73B0;&#x5BB9;&#x9519;&#xFF0C;&#x53EF;&#x4EE5;&#x76D1;&#x63A7;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x72B6;&#x51B5;&#x5E76;&#x5728;&#x5E94;&#x7528;&#x51FA;&#x73B0;&#x6545;&#x969C;&#x65F6;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x5B83;&#x3002;Mesos-DNS&#x56E0;&#x6545;&#x969C;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x65F6;&#xFF0C;&#x65E0;&#x9700;&#x8FDB;&#x4E00;&#x6B65;&#x534F;&#x8C03;&#x5B83;&#x4F1A;&#x4ECE;Master&#x8282;&#x70B9;&#x68C0;&#x7D22;&#x6700;&#x65B0;&#x7684;&#x5E94;&#x7528;&#x72B6;&#x6001;&#xFF0C;&#x7136;&#x540E;&#x5904;&#x7406;DNS&#x8BF7;&#x6C42;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x589E;&#x52A0;Master&#x8282;&#x70B9;&#xFF0C;&#x5373;&#x53EF;&#x63D0;&#x9AD8;&#x53EF;&#x7528;&#x6027;&#x5E76;&#x4E3A;&#x5927;&#x89C4;&#x6A21;&#x96C6;&#x7FA4;&#x4E2D;&#x7684;DNS&#x8BF7;&#x6C42;&#x63D0;&#x4F9B;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x3002;</p><p>&#x5F53;&#x5E94;&#x7528;&#x901A;&#x8FC7;&#x591A;&#x4E2A;&#x6846;&#x67B6;&#x52A0;&#x8F7D;&#xFF0C;&#x800C;&#x4E0D;&#x4EC5;&#x4EC5;&#x662F;Marathon&#xFF0C;Mesos-DNS&#x662F;&#x975E;&#x5E38;&#x6709;&#x7528;&#x7684;&#x3002;&#x6BCF;&#x4E2A;&#x5BB9;&#x5668;&#x90FD;&#x6709;&#x4E00;&#x4E2A;IP&#xFF0C;&#x7C7B;&#x4F3C;<a href="https://www.projectcalico.org/" target="_blank">Project Calico</a>&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="dcos-component-marathon-lb-tutorials.html" class="navigation navigation-prev " aria-label="Previous page: 应用示例">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="dcos-component-mesos-dns-service-naming.html" class="navigation navigation-next " aria-label="Next page: 服务命名">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Mesos-DNS","level":"2.7.3","depth":2,"next":{"title":"服务命名","level":"2.7.3.1","depth":3,"path":"dcos-component-mesos-dns-service-naming.md","ref":"dcos-component-mesos-dns-service-naming.md","articles":[]},"previous":{"title":"应用示例","level":"2.7.2.4","depth":3,"path":"dcos-component-marathon-lb-tutorials.md","ref":"dcos-component-marathon-lb-tutorials.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dcos-component-mesos-dns.md","mtime":"2016-11-28T05:17:30.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-11-28T05:17:45.049Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
