@@ -61,6 +61,7 @@
     * [Mesos-DNS](dcos-component-mesos-dns.md)
         * [服务命名](dcos-component-mesos-dns-service-naming.md)
         * [HTTP接口](dcos-component-mesos-dns-http-api.md)
+        * [配置与优化](dcos-component-mesos-dns-config.md)
 * [存储策略与方案](dcos-storage.md)
     * [磁盘资源](dcos-storage-multi-disks.md)
         * [增加磁盘资源](dcos-storage-mount-disk-resources.md)
