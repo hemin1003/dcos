@@ -57,6 +57,34 @@ KillMode=control-cgroup
 
 Marathon默认为运行的任务启用了检查点，但这要求Agent节点服务本身启用了检查点功能。Marathon的检查点功能可以通过命令行参数`--[disable_]checkpoint`来控制，该参数是可选的，且默认值是：`enabled`。
 
+### 实践
+
+#### 节点正常重启
+
+因维护需要重启Agent节点前，需要将节点上正在运行的应用服务停止。
+
+可以通过DC\/OS WEB UI或CLI停止应用服务，例如存在ID为`/graphite`的应用，实例数为1，部署在`192.168.1.80`节点上。
+
+通过WEB UI，进入到该服务的管理页签，选择“Suspend”该服务，或者“Scale”该服务实例数到0，该服务都将进入“`suspended`”状态。
+
+通过CLI方式时，可以执行以下命令：
+
+```
+dcos marathon app stop /graphite
+```
+
+当Agent节点（如192.168.1.80）上所有的服务都进入到停止状态，则可以重启该节点进行维护。
+
+#### 节点崩溃
+
+经过测试，如果单个节点系统崩溃，节点上通过Marathon启动的应用会在节点崩溃后自动转移到其它节点。
+
+#### 全节点崩溃
+
+全节点崩溃（不含Master节点）情况下，待测试。
+
+全节点崩溃（含Master节点）情况下，待测试。
+
 ### 参考
 
 https:\/\/github.com\/apache\/mesos\/blob\/master\/docs\/agent-recovery.md
