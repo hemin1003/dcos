@@ -49,6 +49,7 @@
 
 * net.ipv4.tcp\_tw\_reuse = 1 - 此sysctl可能是危险的，它会打破防火墙以及NAT。尽管，如果防火墙正确实现了对TCP时间戳的跟踪，这个问题将不会存在，但是不要设置net.ipv4.tcp\_tw\_recycle这个sysctl，因为它不兼容RFC，将打破防火墙对连接的跟踪。
 
+
 更多信息可参考：[https:\/\/www.kernel.org\/doc\/Documentation\/networking\/ip-sysctl.txt](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt)。
 
 ### 调试
@@ -61,13 +62,9 @@
 
 #### 数据层面
 
+iptables -n -L -v
+
 #### 负载算法
 
 #### 故障检测
-
-
-
-
-
-
 
