@@ -24,11 +24,111 @@ LIKE和UNLIKE运算符允许正则表达式;要匹配任何值，请使用字符
 
 ### 运算符
 
-UNIQUE
+#### UNIQUE
 
+UNIQUE告诉Marathon在所有应用程序任务中强制属性的唯一性。例如，以下约束确保每个主机上只运行一个应用程序任务：
 
+```
+curl -X POST -H "Content-type: application/json" localhost:8080/v2/apps -d '{ 
+    "id": "sleep-unique", 
+    "cmd": "sleep 60", 
+    "instances": 3, 
+    "constraints": [["hostname", "UNIQUE"]] 
+}'
+```
 
-参考
+#### CLUSTER
+
+CLUSTER允许所有应用程序任务运行在具有某个属性的一个或多个Agent节点上。例如，如果应用程序具有特殊的硬件需求，或者希望在同一机架上运行它们以实现低延迟：
+
+```
+curl -X POST -H "Content-type: application/json" localhost:8080/v2/apps -d '{ 
+    "id": "sleep-cluster", 
+    "cmd": "sleep 60", 
+    "instances": 3, 
+    "constraints": [["rack_id", "CLUSTER", "rack-1"]] 
+}'
+```
+
+可以使用此运算符和hostname属性将应用程序绑定到特定节点：
+
+```
+curl -X POST -H "Content-type: application/json" localhost:8080/v2/apps -d '{ 
+    "id": "sleep-cluster", 
+    "cmd": "sleep 60", 
+    "instances": 3, 
+    "constraints": [["hostname", "CLUSTER", "a.specific.node.com"]] 
+}'
+```
+
+#### GROUP\_BY
+
+GROUP\_BY可以让应用在机架或数据中心之间均匀分配，以实现高可用性：
+
+```
+curl -X POST -H "Content-type: application/json" localhost:8080/v2/apps -d '{ 
+    "id": "sleep-group-by", 
+    "cmd": "sleep 60", 
+    "instances": 3, 
+    "constraints": [["rack_id", "GROUP_BY"]] 
+}'
+```
+
+Marathon仅区分属性值的不同，而不区分属性值本身。因此，GROUP\_BY接受的参数值代表了在不同属性值的数量。如果不指定该数量，那么所有的任务会分配到节点属性的值均为其中的同一个的这些节点上。例如，如果想将应用部署到3个不同的机架上，则按如下配置：
+
+```
+curl -X POST -H "Content-type: application/json" localhost:8080/v2/apps -d '{ 
+    "id": "sleep-group-by", 
+    "cmd": "sleep 60", 
+    "instances": 3, 
+    "constraints": [["rack_id", "GROUP_BY", "3"]] 
+}'
+```
+
+#### LIKE
+
+LIKE接受正则表达式作为参数，可以让应用仅在字段值与正则表达式匹配的Agent节点上运行：
+
+```
+curl -X POST -H "Content-type: application/json" localhost:8080/v2/apps -d '{ 
+    "id": "sleep-group-by", 
+    "cmd": "sleep 60", 
+    "instances": 3, 
+    "constraints": [["rack_id", "LIKE", "rack-[1-3]"]] 
+}'
+```
+
+注意，第三个参数值是必须的。
+
+#### UNLIKE
+
+与LIKE运算符类似，但仅让任务在字段值与正则表达式不匹配的Agent节点上运行：
+
+```
+curl -X POST -H "Content-type: application/json" localhost:8080/v2/apps -d '{ 
+    "id": "sleep-group-by", 
+    "cmd": "sleep 60", 
+    "instances": 3, 
+    "constraints": [["rack_id", "UNLIKE", "rack-[7-9]"]] 
+}'
+```
+
+#### MAX\_PER
+
+MAX\_PER接受一个数字作为参数，指定每个group的最大值。可用于限制跨机架或数据中心的应用数：
+
+```
+curl -X POST -H "Content-type: application/json" localhost:8080/v2/apps -d '{ 
+    "id": "sleep-group-by", 
+    "cmd": "sleep 60", 
+    "instances": 3, 
+    "constraints": [["rack_id", "MAX_PER", "2"]] 
+}'
+```
+
+注意，第三个参数值是必须的。
+
+### 参考
 
 https:\/\/mesosphere.github.io\/marathon\/docs\/constraints.html
 
