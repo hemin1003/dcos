@@ -43,6 +43,8 @@ Agent节点恢复通过将Agent的任务和执行器的检查点信息（例如�
 
 重新启动的Agent节点应在超时间隔（默认情况下为75秒）内向Master重新注册：请参阅`--max_agent_ping_timeouts`和`--agent_ping_timeout`配置参数。如果Agent节点重新注册花费的时间超过此超时设置，Master将关闭Agent节点，随后，Agent节点会关闭任何活动的执行程序\/任务。因此，强烈建议将重新启动Agent节点的过程自动化（例如，使用诸如`monit`或`systemd`的进程监视器）。
 
+参考：[Mesos Slave Recovery浅析](http://www.10tiao.com/html/497/201507/207202014/1.html)
+
 ### 存在的问题
 
 对systemd进程使用默认的**KillMode**，这是`control-group`，当Agent节点停止时会杀死所有子进程。这确保了“辅助”过程（例如，提取程序和perf）与Agent节点进程一起终止。这确保执行程序在Agent节点重新启动后继续存在。

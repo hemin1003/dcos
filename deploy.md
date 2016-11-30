@@ -212,7 +212,15 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
 }'
 ```
 
-提示：1）Tomcat启动时如果设置了最低和最高JVM内存，上述配置的内存配置应该高于JVM最高内存配置。2）如果WEB应用的启动需要耗费一定的时间，注意设置健康检查的`gracePeriodSeconds`参数值。
+提示：
+
+1）Tomcat启动时如果设置了最低和最高JVM内存，上述配置的内存配置应该高于JVM最高内存配置。
+
+2）如果WEB应用的启动需要耗费一定的时间，注意设置健康检查的`gracePeriodSeconds`参数值。
+
+3）此处部署调用了Marathon的[POST指令](https://mesosphere.github.io/marathon/docs/generated/api.html#v2_apps_post)的REST API，如果要重复部署，则需要调用[PUT指令](https://mesosphere.github.io/marathon/docs/generated/api.html#v2_apps__app_id__put)的API
+
+
 
 保存任务配置，退出。Jenkins任务列表中可以看到根据上述配置创建的任务：
 

@@ -8,13 +8,15 @@ DCOS系统自带了CURL，而且DCOS系统内部大量使用了CURL。因此理�
 /opt/mesosphere/active/python-requests/lib/python3.5/site-packages/requests/cacert.pem
 ```
 
-分布式一致性
+参考：[CURL常用命令](https://gist.github.com/303182519/132568fd0e58cae57202)
 
-paxos，raft，
+### 分布式一致性
 
-cap理论
+### paxos，raft，
 
-gossip protocol
+### cap理论
 
-7层网络
+### gossip protocol
+
+### 7层网络
 
