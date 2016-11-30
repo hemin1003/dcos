@@ -212,15 +212,17 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
 }'
 ```
 
+如果部署的是Docker镜像，上述配置需要相应做一些改变。
+
 提示：
 
 1）Tomcat启动时如果设置了最低和最高JVM内存，上述配置的内存配置应该高于JVM最高内存配置。
 
 2）如果WEB应用的启动需要耗费一定的时间，注意设置健康检查的`gracePeriodSeconds`参数值。
 
-3）此处部署调用了Marathon的[POST指令](https://mesosphere.github.io/marathon/docs/generated/api.html#v2_apps_post)的REST API，如果要重复部署，则需要调用[PUT指令](https://mesosphere.github.io/marathon/docs/generated/api.html#v2_apps__app_id__put)的API
+3）此处部署调用了Marathon的[POST指令](https://mesosphere.github.io/marathon/docs/generated/api.html#v2_apps_post)的REST API，如果要重复部署，则需要调用[PUT指令](https://mesosphere.github.io/marathon/docs/generated/api.html#v2_apps__app_id__put)的API。注意，PUT指令要求APP的JSON定义存在变动，否则不会重新部署，因此可以通过添加Label并在每次编译时动态变更标签的值的方式，如：`PROJ_BUILD_ID:"'"$BUILD_NUMBER"'"`。
 
-
+4）在Shell脚本中使用字符串环境变量替换时的写法： `"'"$TR_TORRENT_NAME"'"`
 
 保存任务配置，退出。Jenkins任务列表中可以看到根据上述配置创建的任务：
 
@@ -263,7 +265,8 @@ curl -i -H "Content-type: application/json" -X POST http://192.168.1.69:8080/v2/
   }
  ],
  "labels": {
-  "HAPROXY_GROUP": "external"
+  "HAPROXY_GROUP": "external",
+  "EXAMPLE_BUILD_NUMBER": "'"$BUILD_NUMBER"'"
  },
  "healthChecks": [
  { "protocol": "HTTP", "portIndex": 0, "path": "/service/healthcheck", "gracePeriodSeconds": 120, "intervalSeconds": 60, "maxConsecutiveFailures": 3 }
