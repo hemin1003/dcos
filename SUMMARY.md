@@ -29,6 +29,7 @@
     * [配额（Quota）](dcos-mesos-quota.md)
     * [Agent节点恢复](dcos-mesos-agent-recovery.md)
     * [Authorization](dcos-mesos-authorization.md)
+    * [资源分配](dcos-mesos-resources-drf.md)
 * [Marathon](dcos-marathon.md)
     * [应用健康检查](dcos-marathon-health-checks.md)
     * [容器运行管理](dcos-marathon-container.md)
