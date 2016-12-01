@@ -47,6 +47,62 @@
 
 如果minimumHealthCapacity大于0.5。集群需要有更多的容量用于更新过程。在这种情况下，同一应用程序的一半以上的新旧实例将并行运行。如果存在依赖性，则这些容量约束将加和计算。如上例中，假定minimumHealthCapacity的值分别按db定义0.6，app定义0.8计算，这意味着在更新的情况下，db要有12个（6旧和6新）实例，app要有32个实例（16旧和16新）在并行运行。
 
+强制部署
+应用程序一次只能进行一次部署更改。对应用程序的其他更改必须等待，直到第一次部署完成。可以在运行部署时通过force参数来绕过此规则。REST接口允许force参数应用于所有状态更改操作。
+
+注意：force参数应该仅在部署失败的情况下使用！
+
+如果部署时设置了force参数，则受此部署影响的所有部署都将被取消，这可能使系统处于不一致的状态。特别是，当应用程序处于滚动升级的中间过程然后部署被取消时，它可能会处于一些旧的和某些新的实例并行运行的状态。
+
+如果新部署未更新该应用，它将保持这种状态，直到为该应用程序执行新的部署。
+
+相比之下，唯一能够安全的强制更新的是那些仅影响单个应用程序的部署。
+
+因此，强制执行影响多个应用程序的部署的唯一理由是纠正失败的部署。
+
+部署失败
+
+部署包括若干步骤。这些步骤一个接一个地执行。只有上一步成功完成后，才能执行下一步。
+在某些情况下，部署的步骤永远不会成功完成。例如：
+
+新的应用程序不能正确启动
+
+新的应用程序未通过健康检查
+
+新应用程序的依赖项未声明，并且不可用
+
+集群的容量被用尽
+
+该应用程序使用Docker容器，并且未遵循“[在Marathon上运行Docker Containers](https://mesosphere.github.io/marathon/docs/native-docker.html)”中列出的更改
+
+......
+
+在这种情况下的部署将永远不能完成。要修复这种情况，必须应用新的部署来纠正当前部署的问题。
+
+/v2/deployments
+
+可以通过/v2/deployments接口访问正在运行的部署列表。每个部署都有几个可用信息：
+
+affectedApps：哪些应用程序受此部署影响
+
+steps：为此部署执行的步骤
+
+currentStep：当前实际执行的步骤
+
+每一步骤都可以有几个操作。步骤内的操作同时执行。可能的操作有：
+
+ResolveArtifacts 解析应用程序的所有工件，并将其保留在工件仓库中
+
+StartApplication 启动指定的应用程序
+
+StopApplication 停止指定的应用程序
+
+ScaleApplication 缩放指定的应用程序
+
+RestartApplication 将指定的应用程序重新启动到minimumHealthStrategy设置的容量
+
+KillAllOldTasksOf 删除指定应用程序之外的其余任务
+
 ### 参考
 
 [https://mesosphere.github.io/marathon/docs/deployments.html](https://mesosphere.github.io/marathon/docs/deployments.html)
