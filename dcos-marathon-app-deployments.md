@@ -4,16 +4,50 @@
 
 * 启动/停止一个或多个应用
 
-
 * 升级一个或多个应用
-
 
 * 伸缩一个或多个应用
 
 
 部署并不是立即完成，它需要时间。在部署过程中，Marathon会显示该部署为活动状态。可以同时执行多个部署，前提是每个应用一次仅被一个部署操作。如果一个部署请求被提交，如果该部署操作的应用正在被另一个处于活动状态的部署所操纵，该部署将被拒绝。
 
+### 依赖
+
+如果应用程序没有任何依赖，则可以以任何顺序部署而不受限制。如果应用程序之间存在依赖关系，那么必须按特定顺序执行部署操作。
+
+![](/assets/dcos-marathon-app-dependency.png)
+如上图示例，app应用依赖db应用。
+
+* 启动：如果app和db部署到DC/OS中，首先启动db，然后启动app
+
+* 停止：如果app和db需要从DC/OS中移除，首先移除app，然后移除db
+
+* 升级：参见后续“滚动重启”小节
+
+* 伸缩：如果db和app需要伸缩，db首先伸缩，然后才是app
+
+
+### 滚动重启
+
+开发和运维人员面临的最常见问题之一是如何发布新版本的应用程序。追根溯源，这个过程包括两个阶段：使用新版本启动一组进程，并停止一组旧版本进程。如何处理这一过程有很多种模型。
+
+在Marathon中有一个具有最小健康容量(minimumHealthCapacity)的升级策略，它在应用程序级别上定义。`minimumHealthCapacity`针对应用实例，要求应用程序的某个版本在更新期间始终必须具有的健康实例的数量的百分比。
+
+**minimumHealthCapacity == 0**：在部署新版本之前，可以杀死所有旧实例。
+
+**minimumHealthCapacity == 1**：在旧版本停止之前，并行部署新版本的所有实例。
+
+**minimumHealthCapacity介于0和1之间**：将旧版本实例数缩放到minimumHealthCapacity设定的百分比，同时将新版本实例数启动到minimumHealthCapacity设定的百分比。如果这一步能成功完成，再将新版本扩张到100％，并停止所有旧版本。
+
+如果存在依赖关系，处理过程就有点复杂。当上述示例的应用程序更新时，将执行以下操作：
+
+升级db应用，直到所有db实例都被替换，就绪和健康（将upgradeStartegy考虑在内）
+
+升级app应用，直到所有app实例都被替换，就绪和健康（将upgradeStrategy纳入考虑）
+
+如果minimumHealthCapacity大于0.5。集群需要有更多的容量用于更新过程。在这种情况下，同一应用程序的一半以上的新旧实例将并行运行。如果存在依赖性，则这些容量约束将加和计算。如上例中，假定minimumHealthCapacity的值分别按db定义0.6，app定义0.8计算，这意味着在更新的情况下，db要有12个（6旧和6新）实例，app要有32个实例（16旧和16新）在并行运行。
+
 ### 参考
 
-https://mesosphere.github.io/marathon/docs/deployments.html
+[https://mesosphere.github.io/marathon/docs/deployments.html](https://mesosphere.github.io/marathon/docs/deployments.html)
 
