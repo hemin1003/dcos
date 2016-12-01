@@ -48,6 +48,12 @@ def buildExecutorInfo(d: SchedulerDriver, prefix: String): ExecutorInfo = {
 }
 ```
 
+源代码可参考[Github Repo](https://github.com/datastrophic/mesos-workshop/tree/master/src/main/scala/io/datastrophic/mesos)。
+
+资源提供（Resource Offers）
+
+
+
 ### 参考
 
 http:\/\/datastrophic.io\/resource-allocation-in-mesos-dominant-resource-fairness-explained
