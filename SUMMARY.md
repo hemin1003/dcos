@@ -27,7 +27,7 @@
     * [资源预留（Reservation）](dcos-mesos-reservation.md)
     * [权重（Weights）](dcos-mesos-weights.md)
     * [配额（Quota）](dcos-mesos-quota.md)
-    * [Agent节点恢复](dcos-mesos-agent-recovery.md)
+    * [节点恢复](dcos-mesos-agent-recovery.md)
     * [Authorization](dcos-mesos-authorization.md)
     * [资源分配](dcos-mesos-resources-drf.md)
 * [Marathon](dcos-marathon.md)
