@@ -6,17 +6,19 @@
 | --- | --- | --- | --- | --- |
 | Bootstrap node | 2核，16G内存，60G硬盘 | CentOS 7.2 | 1 | 该节点不在集群内（安装完成后，保留安装环境的同时，也可以加入到集群） |
 | Master nodes | 2核，16G内存，128G硬盘 | CentOS 7.2 | 1 |  |
-| Agent nodes | 2核，16G内存，128G硬盘 | CentOS 7.2 | 3 |  |
-
-### 2.系统环境准备
+| Agent nodes | 2核，16G内存，128G硬盘 | CentOS 7.2 | 3 |  |### 2.系统环境准备
 
 更新系统到最新版本
 
-`$ sudo yum update -y`
+```
+$ sudo yum update -y
+```
 
 禁用系统防火墙
 
-`$ sudo systemctl stop firewalld && sudo systemctl disable firewalld`
+```
+$ sudo systemctl stop firewalld && sudo systemctl disable firewalld
+```
 
 DC\/OS安装在\/opt\/mesosphere下，确保该目录在一个非 LVM逻辑磁盘或共享存储磁盘下。（注：实际测试时，在LVM盘下仍安装成功）。
 
@@ -45,9 +47,9 @@ DC\/OS安装在\/opt\/mesosphere下，确保该目录在一个非 LVM逻辑磁�
 
 * 以稳定性考虑，推荐1.9.x~1.11.x
 
-* 不要使用Docker的`loop-lvm`模式下的`devicemapper`存储引擎，原因参考：[Docker and the Device Mapper storage driver](https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/)
+* 不要使用Docker的`loop-lvm模式下的devicemapper存储引擎，原因参考：`[`Docker and the Device Mapper storage driver`](https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/)
 
-* 推荐`OverlayFs`或者`direct-lvm`模式下的`devicemapper`存储引擎
+* 推荐`OverlayFs或者direct-lvm模式下的devicemapper存储引擎`
 
 * 通过Systemd管理Docker服务，确保Docker服务崩溃时自动重启
 
@@ -77,13 +79,15 @@ $ sudo systemctl start ntpd && sudo systemctl enable ntpd
 
 通过以下命令检查服务是否存在
 
-`$ ntptime`
+```
+$ ntptime
+```
 
 #### 4.4 Bootstrap node
 
 **范围：**Bootstrap node
 
-在安装时，如果启用`exhibitor_storage_backend: zookeeper`配置，bootstrap节点将成为集群的永久组成部分。通过设置该参数，Mesos的master节点中的leader状态和leader选举都通过安装在Bootstrap节点上得Exhibitor Zookeeper来维护。当前该参数支持：**static**，**zookeeper**，**aws\_s3**和**azure**，详细信息请参考[参数配置文档](https://dcos.io/docs/1.8/administration/installing/custom/configuration-parameters/)
+在安装时，如果启用`exhibitor_storage_backend`: zookeeper配置，bootstrap节点将成为集群的永久组成部分。通过设置该参数，Mesos的master节点中的leader状态和leader选举都通过安装在Bootstrap节点上得Exhibitor Zookeeper来维护。当前该参数支持：`static`，`zookeeper`，`aws_s3`和`azure`，详细信息请参考
 
 Booststrap节点必须独立于集群之外。
 
@@ -97,7 +101,7 @@ Booststrap节点必须独立于集群之外。
 
 **范围：**集群节点
 
-$ sudo yum install -y tar xz unzip curl ipset\`
+    $ sudo yum install -y tar xz unzip curl ipset`
 
 #### 4.7 安全设置
 
@@ -105,7 +109,9 @@ $ sudo yum install -y tar xz unzip curl ipset\`
 
 检查是否禁用SELinux
 
-`$ getenforce`
+```
+$ getenforce
+```
 
 禁用SELinux或设置为permissive模式
 
@@ -113,23 +119,27 @@ $ sudo yum install -y tar xz unzip curl ipset\`
 
 重启所有节点，启用配置
 
-`$ sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config && sudo groupadd nogroup && sudo reboot`
+```
+$ sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config && sudo groupadd nogroup && sudo reboot
+```
 
 #### 4.8 SSH通道配置
 
-在Bootstrap节点上通过**ssh-keygen**生成公私钥对，将公钥内容添加到所有集群节点的`/root/.ssh/authorized_keys`文件（以root用户安装）中。
+在Bootstrap节点上通过ssh-keygen生成公私钥对，将公钥内容添加到所有集群节点的`/root/.ssh/authorized_keys`文件（以root用户安装）中。
 
-### 5.安装DC\/OS
+### 5.安装DC/OS
 
-#### DC\/OS安装文件
+#### DC/OS安装文件
 
 **范围：**Bootstrap node
 
-下载[DC\/OS安装文件](https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh) 到Bootstrap节点。该文件也可以用来创建自定义的DC\/OS编译文件。
+下载[DC/OS安装文件](https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh) 到Bootstrap节点。该文件也可以用来创建自定义的DC/OS编译文件。
 
-`curl -O https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh`
+```
+curl -O https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh
+```
 
 #### 安装模式
 
-当前DC\/OS支持**GUI**、**CLI**和**高级安装**三种模式。
+当前DC/OS支持**GUI**、**CLI**和**高级安装**三种模式。
 
