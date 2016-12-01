@@ -1,6 +1,6 @@
-## DC\/OS内部端口
+## DC/OS内部端口
 
-以下是DC\/OS内部服务使用的端口及其相应的systemd unit列表。
+以下是DC/OS内部服务使用的端口及其相应的systemd unit列表。
 
 ### 所有节点
 
@@ -73,4 +73,6 @@
 
 * 5051: dcos-mesos-slave
 * 61001: dcos-adminrouter-agent
+
+
 
