@@ -60,6 +60,28 @@ def buildExecutorInfo(d: SchedulerDriver, prefix: String): ExecutorInfo = {
 
 4. Master向Agent节点上的执行器发送一组任务（如果执行器没有运行，则启动执行器）。
 
+### Dominant Resource Fairness (DRF)
 
+DRF解决的主要问题是之前没有解决的多种类型（不仅仅是CPU）的资源的共享，并且在具有异构资源需求的应用之间的资源分配。为了解决这个问题，引入了**主导份额**和**主导资源**的概念。
+
+主导资源： 特定类型的资源（cpu，内存，磁盘，端口），它是给定框架在其资源需求队列中最靠前的。此资源被标识为相同类型的所有集群资源的一个份额。
+
+
+
+```
+1. (10cpu, 20gb) to A: A(3cpu, 2gb, 33%), B (0cpu, 0gb, 0%)
+2. ( 7cpu, 18gb) to B: A(4cpu, 5gb, 40%), B (1cpu, 5gb, 25%)
+3. ( 6cpu, 13gb) to B: A(4cpu, 5gb, 40%), B (2cpu, 10gb, 50%)
+4. ( 5cpu,  8gb) to A: A(6cpu, 4gb, 66%), B (2cpu, 10gb, 50%)
+5. ( 2cpu,  6gb) to B: A(6cpu, 4gb, 66%), B (3cpu, 15gb, 75%)
+6. ( 1cpu,  1gb) to A: A(6cpu, 4gb, 66%), B (3cpu, 15gb, 75%)
+7. ( 1cpu,  1gb) to B: A(6cpu, 4gb, 66%), B (3cpu, 15gb, 75%) 
+......
+```
+直到其中一个框架的任务完成并释放资源。
+
+遍历一下上述过程，首先A得到资源供给（假定A先启动，先到先得），A得到资源供给，它的主导份额变成33%；下一次供给主导份额最低的B优先获得供给（步骤2），B接受资源后，它的主导份额变成25%；B的主导份额低于A，因此，在下一次供给（步骤3），它继续获得供给，其主导份额变为50%；再下一轮（步骤4），A的主导份额开始低于B，A获得资源供给，以此类推。
+
+最后，集群仅剩余1cpu和1gbn内存，整个集群的资源配给分别为CPU90%，内存95%，被充分优化，资源被最大化利用。
 
 可以参考"[Dominant Resource Fairness: Fair Allocation of Multiple Resource Types](https://www.cs.berkeley.edu/~alig/papers/drf.pdf)"获取更详细的算法描述。
