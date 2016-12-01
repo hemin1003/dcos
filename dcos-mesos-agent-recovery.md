@@ -1,8 +1,8 @@
 ## Agent节点恢复
 
-如果主机上的**mesos-agent**进程退出（可能是由于Mesos错误或者由于运维人员在升级Mesos时杀死了进程），那么由mesos-agent进程管理的任何执行器（executors）\/任务（tasks）将继续运行。当重新启动mesos-agent时，运维员可以控制如何处理那些旧的执行器\/任务：
+如果主机上的**mesos-agent**进程退出（可能是由于Mesos错误或者由于运维人员在升级Mesos时杀死了进程），那么由mesos-agent进程管理的任何执行器（executors）/任务（tasks）将继续运行。当重新启动mesos-agent时，运维员可以控制如何处理那些旧的执行器/任务：
 
-* 默认情况下，所有由旧的mesos-agent进程管理的执行器\/任务将被终止。
+* 默认情况下，所有由旧的mesos-agent进程管理的执行器/任务将被终止。
 
 * 如果框架在向Master注册时启用了检查点（checkpointing）操作，则属于该框架的任何执行程序都可以重新连接到新的mesos-agent进程，并继续不间断运行。
 
@@ -15,7 +15,7 @@ Agent节点恢复通过将Agent的任务和执行器的检查点信息（例如�
 
 ### 框架配置
 
-框架可以在向Master注册时通过在其`FrameworkInfo`中设置`checkpoint`标志来控制是否恢复其执行程序。启用此功能会导致运行框架启动的任务的每个Agent节点上的I \/ O开销增加。默认情况下，框架不检查它们的状态。
+框架可以在向Master注册时通过在其`FrameworkInfo`中设置`checkpoint`参数来控制是否恢复其执行程序。启用此功能会导致运行框架启动的任务的每个Agent节点上的I / O开销增加。默认情况下，框架不检查它们的状态。
 
 * Agent节点配置
 
@@ -41,13 +41,13 @@ Agent节点恢复通过将Agent的任务和执行器的检查点信息（例如�
 
 注意：如果没有一个框架启用了检查点设置，则Agent节点上运行的执行程序和任务随着Agent节点死亡而死亡，并且不会再恢复。
 
-重新启动的Agent节点应在超时间隔（默认情况下为75秒）内向Master重新注册：请参阅`--max_agent_ping_timeouts`和`--agent_ping_timeout`配置参数。如果Agent节点重新注册花费的时间超过此超时设置，Master将关闭Agent节点，随后，Agent节点会关闭任何活动的执行程序\/任务。因此，强烈建议将重新启动Agent节点的过程自动化（例如，使用诸如`monit`或`systemd`的进程监视器）。
+重新启动的Agent节点应在超时间隔（默认情况下为75秒）内向Master重新注册：请参阅`--max_agent_ping_timeouts`和`--agent_ping_timeout`配置参数。如果Agent节点重新注册花费的时间超过此超时设置，Master将关闭Agent节点，随后，Agent节点会关闭任何活动的执行程序\/任务。因此，强烈建议将重新启动Agent节点的过程自动化（例如，使用诸如monit或systemd的进程监视器）。
 
 参考：[Mesos Slave Recovery浅析](http://www.10tiao.com/html/497/201507/207202014/1.html)
 
 ### 存在的问题
 
-对systemd进程使用默认的**KillMode**，这是`control-group`，当Agent节点停止时会杀死所有子进程。这确保了“辅助”过程（例如，提取程序和perf）与Agent节点进程一起终止。这确保执行程序在Agent节点重新启动后继续存在。
+对systemd进程使用默认的KillMode，这是`control-group`，当Agent节点停止时会杀死所有子进程。这确保了“辅助”过程（例如，提取程序和perf）与Agent节点进程一起终止。这确保执行程序在Agent节点重新启动后继续存在。
 
 ```
 [Service] 
@@ -65,7 +65,7 @@ Marathon默认为运行的任务启用了检查点，但这要求Agent节点服�
 
 因维护需要重启Agent节点前，需要将节点上正在运行的应用服务停止。
 
-可以通过DC\/OS WEB UI或CLI停止应用服务，例如存在ID为`/graphite`的应用，实例数为1，部署在`192.168.1.80`节点上。
+可以通过DC/OS WEB UI或CLI停止应用服务，例如存在ID为`/graphite`的应用，实例数为1，部署在192.168.1.80节点上。
 
 通过WEB UI，进入到该服务的管理页签，选择“Suspend”该服务，或者“Scale”该服务实例数到0，该服务都将进入“`suspended`”状态。
 
@@ -89,5 +89,5 @@ dcos marathon app stop /graphite
 
 ### 参考
 
-https:\/\/github.com\/apache\/mesos\/blob\/master\/docs\/agent-recovery.md
+https://github.com/apache/mesos/blob/master/docs/agent-recovery.md
 
