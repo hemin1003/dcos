@@ -35,7 +35,7 @@ attribute : text ":" ( scalar | range | text )
 ### 资源
 
 Mesos负责管理三种不同的资源类型：scalars，ranges和sets。这三种资源类型用于描述Agent节点所能提供的各种资源，如scalar资源类型可以用来描述Agent节点上的内存数量。Scalar资源类型的值支持小数（如1.5CPUs），小数位的精度精确到小数点后3位，如1.512CPUs。对于GPU资源，Mesos仅支持整数值。
-资源可以通过一个JSON数组或者一个由分号分隔的键值对字符串来定义。对于JSON的格式，可参考**protobuf**消息定义（位于`include/mesos/mesos.proto`）中`Resource`部分的描述。
+资源可以通过一个JSON数组或者一个由分号分隔的键值对字符串来定义。对于JSON的格式，可参考protobuf消息定义（位于`include/mesos/mesos.proto`）中Resource部分的描述。
 
 ```json
 [ 
@@ -77,11 +77,11 @@ resourceRole : text | "*"
 
 注意，`disk`和`mem`资源通过兆字节（M）进行计量，Mesos的用户界面会将这些资源值转换为用户友好的格式，如15000将显示为14.65GB。
 
-如果一个Agent节点没有cpus和mem资源，那么这个Agent节点不会向框架公布任何资源。
+如果一个Agent节点没有`cpus`和`mem`资源，那么这个Agent节点不会向框架公布任何资源。
 
 ### 资源示例
 
-默认情况下，Mesos会在Agent节点上的mesos-agent进程（DCOS中为dcos-mesos-agent.service\/dcos-mesos-agent-public.service服务）启动时自动侦测节点上可用的资源。或者，你可以明确指明Agent节点提供了哪些资源。
+默认情况下，Mesos会在Agent节点上的mesos-agent进程（DCOS中为`dcos-mesos-agent.service`/`dcos-mesos-agent-public.service`服务）启动时自动侦测节点上可用的资源。或者，你可以明确指明Agent节点提供了哪些资源。
 
 下述示例明确指明了Agent节点的资源：
 
@@ -119,7 +119,7 @@ $ path/to/mesos-agent --resources=file:///path/to/resources.txt ...
 * range类似的ports，值在21000~24000和30000~34000两个区间
 * set类型的bugs，值为a，b和c，并且分配给debug\_role角色
 
-可以通过mesos-agent的命令行参数--attributes设置Agent节点的属性：
+可以通过mesos-agent的命令行参数`--attributes`设置Agent节点的属性：
 
 ```
 --attributes='rack:abc;zone:west;os:centos5;level:10;keys:[1000-1500]'
@@ -132,4 +132,6 @@ $ path/to/mesos-agent --resources=file:///path/to/resources.txt ...
 * os，    具有text类型的值centos5
 * level， 具有scalar类型的值10
 * keys，  具有range类型的值1000~1500区间
+
+
 
