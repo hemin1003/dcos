@@ -1,6 +1,19 @@
 ## 应用服务部署
 
+在Marathon中，每次应用程序或组的定义的改变都被视作是执行一次部署。部署是一组操作，可以执行：
+
+* 启动/停止一个或多个应用
+
+
+* 升级一个或多个应用
+
+
+* 伸缩一个或多个应用
+
+
+部署并不是立即完成，它需要时间。在部署过程中，Marathon会显示该部署为活动状态。可以同时执行多个部署，前提是每个应用一次仅被一个部署操作。如果一个部署请求被提交，如果该部署操作的应用正在被另一个处于活动状态的部署所操纵，该部署将被拒绝。
+
 ### 参考
 
-https:\/\/mesosphere.github.io\/marathon\/docs\/deployments.html
+https://mesosphere.github.io/marathon/docs/deployments.html
 
