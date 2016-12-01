@@ -22,9 +22,9 @@ $ mesos-slave  --master=<ip>:<port>  --resources="cpus:4;mem:2048;cpus(ads):8;me
 
 默认情况下，框架和运维人员可以为任何角色保留资源，并且可以取消保留任何动态保留的资源。可以通过授权机制对预留和撤销动作进行控制。要使用此功能，Mesos的Master节点必须进行必要的ACLs配置。详细信息请参考授权章节。
 
-* Mesos的Master向框架公布资源时，框架可以通过`acceptOffers`接口向Master响应`Offer::Operation::Reserve` 和 `Offer::Operation::Unreserve`消息进行资源预留和撤销。
+* Mesos的Master向框架公布资源时，框架可以通过`acceptOffers接口向Master响应Offer::Operation::Reserve 和 Offer::Operation::Unreserve消息进行资源预留和撤销。`
 
-* 运维人员可以通过Mesos的Master节点调用`/reserve` 和 /unreserve两个HTTP管理接口进行资源预留和撤销。
+* 运维人员可以通过Mesos的Master节点调用`/reserve 和 /unreserve两个HTTP管理接口进行资源预留和撤销。`
 
 
 如果在同一Agent节点上为同一个角色做了两个资源动态预留，则两次预留会合并为一个资源预留操作。类似的，Mesos允许部分撤销预留操作：一个撤销操作可以仅撤销某角色在指定Agent节点上预留的所有资源的一部分，剩余部分仍被保持预留。
@@ -179,10 +179,10 @@ $ curl -i \
 
 集群中每个Agent节点上的资源预留信息可以通过Master查询`http://<Master-IP>:5050/slaves`返回的信息（位于`reserved_resources_all`节点下）查看。这些信息也可以在Agent节点上的`http://<Master-IP>:5050/state`管理接口下查看。可以通过这些接口确认在Agent节点上的资源动态预留是否成功。
 
-**提示：**在DCOS中，除了上述接口外，也可以通过访问：`http://<Master-IP>/mesos`查看所有的Agents列表，并查看特定Agent上的资源预留:
-![](/assets/dcos-mesos-agents.png)
+**提示：**在DCOS中，除了上述接口外，也可以通过访问：`http://<Master-IP>/mesos查看所有的Agents列表，并查看特定Agent上的资源预留:
+`![](/assets/dcos-mesos-agents.png)
 
 ### 参考
 
-https://github.com/apache/mesos/blob/master/docs/reservation.md
+[https://github.com/apache/mesos/blob/master/docs/reservation.md](https://github.com/apache/mesos/blob/master/docs/reservation.md)
 
