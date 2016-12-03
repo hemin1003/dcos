@@ -6,19 +6,19 @@
 
 #### Hostname字段
 
-`hostname`字段与Agent节点的主机名相匹配，参考下述UNIQUE运算符查看使用示例。
+hostname字段与Agent节点的主机名相匹配，参考下述UNIQUE运算符查看使用示例。
 
-`hostname`字段支持Marathon所有的运算符。
+hostname字段支持Marathon所有的运算符。
 
 #### Attribute字段
 
-如果字段名称不是Agent节点的主机名，它将被视为Agent节点的属性。节点属性可以用来给Agent节点做标记。如果在Age节点上未定义指定的属性，大多数运算符将拒绝在该节点上运行任务。事实上，现在只有`UNLIKE`运算符符总是会接受这个资源配给来运行任务，而其他运算符将总是拒绝它。
+如果字段名称不是Agent节点的主机名，它将被视为Agent节点的属性。节点属性可以用来给Agent节点做标记。如果在Age节点上未定义指定的属性，大多数运算符将拒绝在该节点上运行任务。事实上，现在只有UNLIKE运算符符总是会接受这个资源配给来运行任务，而其他运算符将总是拒绝它。
 
 属性字段支持Marathon所有的运算符。
 
 Marathon支持文本，标量，范围和集合属性值。对于标量，范围和集合，Marathon将对格式化的值执行按字符串比较。
 
-对于范围和集合，格式分别为`[begin-end，...]`和`{item，...}`。例如，可以定义一个格式为\[100-200\]的范围和格式为{a，b，c}的集合。
+对于范围和集合，格式分别为\[begin-end，...\]和{item，...}。例如，可以定义一个格式为\[100-200\]的范围和格式为{a，b，c}的集合。
 
 LIKE和UNLIKE运算符允许正则表达式;要匹配任何值，请使用字符串。
 
@@ -130,5 +130,5 @@ curl -X POST -H "Content-type: application/json" localhost:8080/v2/apps -d '{
 
 ### 参考
 
-https://mesosphere.github.io/marathon/docs/constraints.html
+[https://mesosphere.github.io/marathon/docs/constraints.html](https://mesosphere.github.io/marathon/docs/constraints.html)
 
