@@ -97,7 +97,7 @@ $ echo '10mins' > /etc/mesos-slave/executor_registration_timeout
 
 --resources="ports\(\*\):\[8000-9000, 31000-32000\]"
 
-DCOS默认设置的端口资源范围\(`/opt/mesosphere/etc/mesos-slave` \)为：
+DCOS默认设置的端口资源范围\(/opt/mesosphere/etc/mesos-slave \)为：
 
 ```json
 {
