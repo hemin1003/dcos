@@ -80,12 +80,14 @@
 
 ## DC\/OS之服务
 * [有状态应用服务](dcos-service-stateful.md)
-* [Jenkins on DCOS](jenkins-on-dcos.md)
+* [Jenkins on DC\/OS](jenkins-on-dcos.md)
     * [自定义Jenkins Slave容器镜像](dcos-service-jenkins-custom-dind.md)
     * [示例：在Jenkins on DCOS上编译部署Tomcat应用](deploy.md)
-* [HDFS on DCOS](dcos-service-hdfs.md)
-* [Cassandra on DCOS](dcos-service-cassandra.md)
+* [HDFS on DC\/OS](dcos-service-hdfs.md)
+* [Cassandra on DC\/OS](dcos-service-cassandra.md)
 * [服务的管理](dcos-service-management.md)
+* [Kafka on DC\/OS](dcos-service-kafka.md)
+* [Storm on DC\/OS](dcos-service-storm.md)
 
 ## DCOS之管理
 * [DCOS CLI](dcos-admin-cli.md)
