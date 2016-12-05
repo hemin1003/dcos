@@ -84,10 +84,10 @@
 * [Jenkins on DC\/OS](jenkins-on-dcos.md)
     * [自定义Jenkins Slave容器镜像](dcos-service-jenkins-custom-dind.md)
     * [示例：在Jenkins on DCOS上编译部署Tomcat应用](deploy.md)
+* [Storm on DC\/OS](dcos-service-storm.md)
 * [HDFS on DC\/OS](dcos-service-hdfs.md)
 * [Cassandra on DC\/OS](dcos-service-cassandra.md)
 * [Kafka on DC\/OS](dcos-service-kafka.md)
-* [Storm on DC\/OS](dcos-service-storm.md)
 
 ## DCOS之管理
 * [DCOS CLI](dcos-admin-cli.md)
@@ -99,6 +99,7 @@
         * [GlusterFS架构](dcos-admin-storage-glusterfs-architecture.md)
     * [Ceph集群存储](dcos-admin-storage-ceph.md)
 * [日志管理](dcos-admin-logging.md)
+* [dcos-admin-faq](dcos-admin-faq.md)
 
 ## DC\/OS之应用
 * [容器与镜像](dcos-usage-dockers.md)
