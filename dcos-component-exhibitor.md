@@ -1,6 +1,6 @@
 ## Exhibitor服务（Zookeeper监控）
 
-Exhibitor是一个用于ZooKeeper配置监控和管理的系统。
+Exhibitor是是Netflix开源的一个用于ZooKeeper配置监控和管理的系统。
 
 ### 特性
 
