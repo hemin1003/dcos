@@ -6,7 +6,7 @@
 
 当通过Exhibitor的Web管理界面对配置进行更改时，其他实例将监控到这些更改并据此采取行动。如果需要，每个ZooKeeper实例将被停止，zoo.cfg文件被重建，ZooKeeper服务被重新启动。
 
-S3
+#### S3
 
 --configtype参数的值为“s3”。以下是允许Exhibitor与S3存储桶通信的IAM策略示例：
 
@@ -37,3 +37,19 @@ S3
   ]
 }
 ```
+
+![](/assets/dcos-exhibitor-s3-config.png)
+
+#### File
+
+--configtype参数的值为“file”。
+
+![](/assets/dcos-exhibitor-file-config.png)
+
+#### ZooKeeper
+
+--configtype参数的值为“`zookeeper`”。Exhibitor支持使用专用的ZooKeeper集群来存储共享配置。 ZooKeeper集群甚至可以直接运行Exhibitor（在“独立模式” - 配置类型“none”）
+
+![](/assets/dcos-exhibitor-zk-config.png)
+
+在DC/OS中部署独立的Exhibitor服务来构建Zookeeper集群时，默认就是使用Zookeeper集群存储共享配置，这里的Zookeeper集群是组成DC/OS集群的Exhibitor(ZK)服务。
