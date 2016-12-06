@@ -77,5 +77,6 @@ Exhibitor的部署构件可以从Maven仓库获取。构件分为两种：
 
 ### 参考
 
-https://github.com/dcos/exhibitor
+* https://github.com/dcos/exhibitor
+* https://github.com/soabase/exhibitor/wiki
 
