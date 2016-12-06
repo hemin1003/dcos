@@ -39,6 +39,7 @@
 * [系统服务](dcos-system-components.md)
     * [Exhibitor](dcos-component-exhibitor.md)
         * [Exhibitor on DC\/OS](dcos-component-exhibitor-as-service.md)
+        * [理解Exhibitor](dcos-component-exhibitor-notes.md)
     * [3DT](dcos-component-3dt.md)
     * [Adminrouter](dcos-component-adminrouter.md)
     * [Cosmos](dcos-component-cosmos.md)
