@@ -2,7 +2,7 @@
 
 ### 准备工作
 
-在DC/OS集群中部署独立的**Exhibitor**服务时，需要提前确认集群中Agent节点的`hostname`是否为节点的IP地址或可解析的域名，而不是**`localhost.localdomain`**。
+在DC/OS集群中部署独立的**[Exhibitor](https://github.com/mesosphere/exhibitor-dcos)**服务时，需要提前确认集群中Agent节点的`hostname`是否为节点的IP地址或可解析的域名，而不是**`localhost.localdomain`**。
 
 ### 部署
 
