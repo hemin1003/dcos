@@ -53,3 +53,11 @@
 ![](/assets/dcos-exhibitor-zk-config.png)
 
 在DC/OS中部署独立的Exhibitor服务来构建Zookeeper集群时，默认就是使用Zookeeper集群存储共享配置，这里的Zookeeper集群是组成DC/OS集群的Exhibitor(ZK)服务。
+
+### DC/OS中的Exhibitor
+
+部署DC/OS时，如果Exhibitor的存储后端的采用“static”模式，则Exhibitor会部署在各个Master节点上。
+
+Exhibitor在DC/OS中扮演重要角色。Master节点通过Exhibitor实现Quorum，Marathon通过Exhibitor存储应用的状态信息。
+
+Exhibitor在Master节点上的服务名称为：dcos-exhibitor.service。
