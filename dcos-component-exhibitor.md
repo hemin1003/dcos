@@ -66,6 +66,15 @@ Exhibitor主要包括以下特性/功能：
 
 2. 除了标准的ZooKeeper端口，防火墙必须打开Exhibitor使用的HTTP端口，因为每个Exhibitor实例需要与其他参与者通信传递状态。
 
+### 使用
+
+Exhibitor的部署构件可以从Maven仓库获取。构件分为两种：
+
+|GroupID/Org|	ArtifactID/Name	|Description|
+|--|--|--|
+|com.netflix.exhibitor	|exhibitor-standalone	|自包含的，可执行的Exhibitor版本（可以是独立应用，也可以是War）|
+|com.netflix.exhibitor	|exhibitor-core|	类库的形式，可以嵌入到应用中|
+
 ### 参考
 
 https://github.com/dcos/exhibitor
