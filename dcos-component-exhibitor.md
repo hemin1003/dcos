@@ -31,6 +31,35 @@ Exhibitor为整个Zookeeper集群提供了一个独立的控制台，通过它�
 |Servers	|List of servers/server-ids in the ensemble|
 |Additional Config	|Additional fields/values to store in zoo.cfg|
 
+* 集群滚动升级
+
+Exhibitor可以以滚动方式更新集群中的服务器，以便在进行更改时让ZooKeeper集群确保Quorum设定的最低服务能力。
+
+* 自动实例管理
+
+Exhibitor可以配置为自动向集群中添加新实例，并删除陈旧的实例。这使得ZooKeeper集群可以实现“无接触交钥匙管理”。
+
+* 可视化
+
+Exhibitor为ZooKeeper提供了ZNode层次结构的图形树视图。
+
+* ZK数据维护
+
+启用后，维护人员可以在ZooKeeper的存储层次结构中创建/更新/删除节点。
+
+* 死锁检测
+
+当使用Curator的锁方案（或类似）时，Exhibitor可以分析一组表示锁的ZNode，并确定是否存在潜在的死锁。
+
+* Curator集成
+
+Exhibitor和Curator可以集成工作，当集群中的信息变更时，Curator实例可以同步更新。
+
+* REST API
+
+Exhibitor提供了一组用于程序集成的REST API。
+
+
 ### 参考
 
 https://github.com/dcos/exhibitor
