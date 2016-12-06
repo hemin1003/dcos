@@ -10,5 +10,5 @@ Adminrouter开放路由列表如下：
 
 ### 参考
 
-https:\/\/github.com\/dcos\/adminrouter
+* https://github.com/dcos/adminrouter
 

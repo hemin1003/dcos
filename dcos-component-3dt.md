@@ -1,6 +1,8 @@
 ## **3DT**
 
-DC\/OS Distributed Diagnostics Tool & Aggregation Service
+DC/OS Distributed Diagnostics Tool & Aggregation Service
 
-https:\/\/github.com\/dcos\/3dt.git
+### 参考
+
+* https://github.com/dcos/3dt.git
 
