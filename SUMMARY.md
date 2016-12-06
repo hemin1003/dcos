@@ -114,4 +114,5 @@
 
 ## DCOS之开发
 * [Docker Swarm vs Mesos vs Kubernetties](dcos-theory-solutions-martrix.md)
+* [Universe Package 开发](dcos-dev-universe-package.md)
 
