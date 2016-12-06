@@ -19,6 +19,17 @@ ZooKeeper集群中的备份比传统数据存储（例如RDBMS）更复杂。一
 
 Exhibitor会定期备份ZooKeeper的事务文件，备份后，就可以对这些事务文件建立索引。
 
+* 集群配置
+
+Exhibitor为整个Zookeeper集群提供了一个独立的控制台，通过它所做的配置更改会对整个集群有效。以下是一些共享配置值：
+
+|Name|	Description|
+|--|--|
+|ZooKeeper Install Dir|	Path to the ZooKeeper server installation|
+|ZooKeeper Data Dir|	Path where ZooKeeper should store its data|
+|Log Index Dir|	Path where indexed transaction logs should be kept|
+|Servers	|List of servers/server-ids in the ensemble|
+|Additional Config	|Additional fields/values to store in zoo.cfg|
 
 ### 参考
 
