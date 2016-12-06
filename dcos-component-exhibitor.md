@@ -1,5 +1,6 @@
 ## Exhibitor服务（Zookeeper监控）
 
+Exhibitor是一个用于ZooKeeper配置监控和管理的系统。
 
 ### 特性
 
@@ -59,6 +60,11 @@ Exhibitor主要包括以下特性/功能：
 
   Exhibitor提供了一组用于程序集成的REST API。
 
+### 重要事项
+
+1. 使用Exhibitor时，不要手动编辑Zookeeper的zoo.cfg和myid文件，因为Exhibitor会覆盖它们。
+
+2. 除了标准的ZooKeeper端口，防火墙必须打开Exhibitor使用的HTTP端口，因为每个Exhibitor实例需要与其他参与者通信传递状态。
 
 ### 参考
 
