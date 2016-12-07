@@ -139,4 +139,6 @@ docker run -it chrisrc/storm:0.2.1-SNAPSHOT-1.0.2-1.1.0-jdk8 bin/storm-mesos nim
 docker run -it chrisrc/storm:0.2.1-SNAPSHOT-1.0.2-1.1.0-jdk8 bin/storm ui
 ```
 
+向Storm/Mesos集群部署拓扑与向传统的Storm集群部署拓扑的方式完全相同，请参考后续示例。
+
 Storm/Mesos支持在Vagrant中运行，详细信息请参考[文档](https://github.com/christtrc/storm/blob/master/docs/vagrant.md)。
