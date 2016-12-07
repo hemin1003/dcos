@@ -1,6 +1,6 @@
 ## Storm on DC/OS
 
-[Apache Storm](http://storm.apache.org)是Twitter开源的分布式实时计算平台。[Mesos Storm](https://github.com/mesos/storm)让Storm框架能够在DCOS集群中部署并使用Mesos为计算拓扑调度资源。
+[Apache Storm](http://storm.apache.org)是Twitter开源的分布式实时计算平台。[Mesos Storm](https://github.com/mesos/storm)（以下用“**SM**”特指Mesos Storm）让Storm框架能够在DCOS集群中部署并使用Mesos为计算拓扑调度资源。
 
 ### Storm框架回顾
 
