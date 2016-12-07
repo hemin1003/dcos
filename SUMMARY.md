@@ -87,6 +87,7 @@
     * [自定义Jenkins Slave容器镜像](dcos-service-jenkins-custom-dind.md)
     * [示例：在Jenkins on DCOS上编译部署Tomcat应用](deploy.md)
 * [Storm on DC\/OS](dcos-service-storm.md)
+    * [Storm集群配置](dcos-service-storm-config.md)
     * [部署Storm集群](dcos-service-storm-deploy.md)
 * [HDFS on DC\/OS](dcos-service-hdfs.md)
 * [Cassandra on DC\/OS](dcos-service-cassandra.md)
