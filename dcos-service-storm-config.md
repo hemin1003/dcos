@@ -36,9 +36,6 @@ Storm/Mesos集群的Supervisor，Worker服务实例在启动时，会从Nimbus�
 
 `mesos.master.failover.timeout.secs`：框架故障切换的超时时间（单位：秒），默认值：2473600。
 
-
-
-
 `mesos.allowed.hosts`：允许运行拓扑的Agent节点的白名单列表。
 
 `mesos.disallowed.hosts`：不允许运行拓扑的Agent节点的黑名单列表。
@@ -51,10 +48,19 @@ Storm/Mesos集群的Supervisor，Worker服务实例在启动时，会从Nimbus�
 
 `mesos.offer.filter.seconds`：过滤不用的Mesos资源供给（offers）的时间（单位：秒）。这些资源供给可以在需要时由框架重新接受。默认值：120。
 
-mesos.offer.expiry.multiplier: Offer expiry multiplier for nimbus.monitor.freq.secs. Defaults to "2.5".
-mesos.local.file.server.port: Port for the local file server to bind to. Defaults to a random port.
-mesos.framework.name: Framework name. Defaults to "Storm!!!".
-mesos.framework.principal: Framework principal to use to register with Mesos
-mesos.framework.secret.file: Location of file that contains the principal's secret. Secret cannot end with a NL.
-mesos.prefer.reserved.resources: Prefer reserved resources over unreserved (i.e., "*" role). Defaults to "true".
-supervisor.autostart.logviewer: Default is true. If you disable the logviewer, you may want to subtract 128*1.2 from topology.mesos.executor.mem.mb (depending on your settings).
+`mesos.offer.expiry.multiplier`：资源供给过期时间的乘数因子（配置值 x `nimbus.monitor.freq.secs`）。默认值：2.5。
+
+`mesos.local.file.server.port`：本地文件服务器（为Supervisor/Worker提供storm.yaml的下载）绑定的端口，默认为随机端口。
+
+`mesos.framework.name`：框架名称。默认值：“Storm!!!”。
+
+`mesos.framework.principal`：框架用于向Mesos注册的凭据。
+
+`mesos.framework.secret.file`：用于保存用户凭据密钥的文件地址。密钥不能以NL结束。
+
+`mesos.prefer.reserved.resources`：优先使用预留资源（如，“*”角色）。默认值： true。
+
+`supervisor.autostart.logviewer`：默认值为true。如果禁用logviewer，在配置时可以将`topology.mesos.executor.mem.mb`参数的值缩减128*1.2来释放多余内存。
+
+#### 资源配置
+
