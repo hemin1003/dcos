@@ -26,7 +26,9 @@ Storm集群默认配置数据目录存放在“`storm-local`”下，相对于`/
 
 当前在DC/OS中，Nimbus服务部署的网络采用**HOST**模式。
 
-**注意，**当前实现无法读取`nimbus.seeds`中的配置，只支持`nimbus.host`。因此，必须在`storm.yaml`（可以通过挂载）中指定Nimbus服务的节点IP地址或主机名。这与DC/OS中服务的动态性相冲突，目前的解决方案是通过Marathon部署时[限定](/dcos-marathon-constraints.md)Nimbus的部署节点，并预先在`storm.yaml`中指定所部署的目标Agent节点的IP或主机名。
+**注意**，当前实现无法读取`nimbus.seeds`中的配置，只支持`nimbus.host`。因此，必须在`storm.yaml`（可以通过挂载）中指定Nimbus服务的节点IP地址或主机名。这与DC/OS中服务的动态性相冲突，目前的解决方案是通过Marathon部署时[限定](/dcos-marathon-constraints.md)Nimbus的部署节点，并预先在`storm.yaml`中指定所部署的目标Agent节点的IP或主机名。
+
+**注意**，脚本run-with-marathon.sh默认同时启动UI服务，可以通过**STORM_UI_OPTS**环境变量进行特定设置。
 
 此种方式的Marathon应用JSON定义如下：
 
@@ -173,4 +175,13 @@ Storm集群默认配置数据目录存放在“`storm-local`”下，相对于`/
 }
 ```
 
+将上述JSON定义保存为`storm-dcos-nimbus.json`，通过CLI部署服务：
+
+```
+dcos marathon app add storm-dcos-nimbus.json
+```
+也可以将JSON定义粘贴到WEB UI部署服务的弹出框里，进行必要的修改后直接部署。
+
 ### DRPC部署
+
+DRPC服务节点在storm.yaml
