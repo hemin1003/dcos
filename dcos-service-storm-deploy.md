@@ -32,11 +32,10 @@ Storm集群默认配置数据目录存放在“`storm-local`”下，相对于`/
 
 ```json
 {
-  "id": "/storm-nimbus-dev",
+  "id": "/storm-nimbus",
   "cmd": "./bin/run-with-marathon.sh",
   "env": {
-    "HOSTNAME": "192.168.1.89",
-    "STORM_NIMBUS_OPTS": "-c storm.zookeeper.servers=[\"192.168.1.70\",\"192.168.1.73\",\"192.168.1.88\"]"
+    "HOSTNAME": "192.168.1.80",
   },
   "instances": 1,
   "cpus": 1,
@@ -45,7 +44,7 @@ Storm集群默认配置数据目录存放在“`storm-local`”下，相对于`/
     [
       "hostname",
       "LIKE",
-      "192.168.1.89"
+      "192.168.1.80"
     ]
   ],
   "container": {
@@ -59,17 +58,17 @@ Storm集群默认配置数据目录存放在“`storm-local`”下，相对于`/
     "volumes": [
       {
         "containerPath": "/opt/storm/conf",
-        "hostPath": "/data/storm-dev/conf",
+        "hostPath": "/data/storm/conf",
         "mode": "RW"
       },
       {
         "containerPath": "/opt/storm/log4j2",
-        "hostPath": "/data/storm-dev/log4j2",
+        "hostPath": "/data/storm/log4j2",
         "mode": "RW"
       },
       {
         "containerPath": "/opt/storm/storm-local",
-        "hostPath": "/data/storm-dev/data",
+        "hostPath": "/data/storm/data",
         "mode": "RW"
       }
     ]
@@ -88,11 +87,11 @@ Storm集群默认配置数据目录存放在“`storm-local`”下，相对于`/
   "portDefinitions": [
     {
       "protocol": "tcp",
-      "port": 16626
+      "port": 6626
     },
     {
       "protocol": "tcp",
-      "port": 16627
+      "port": 6627
     }
   ],
   "requirePorts": true
