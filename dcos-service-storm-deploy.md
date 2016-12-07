@@ -1,8 +1,6 @@
 ## 编译与部署
 
-### 编译
 
-从[Github仓库](http://github.com/christtrc/storm)下载源代码。
 
 ### 部署
 

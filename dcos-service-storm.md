@@ -91,4 +91,38 @@ public interface IMesosStormScheduler {
 
 ```
 
-IMesosStormScheduler接口的实现同时实现了IScheduler接口，它负责根据拓扑的请求信息以及Mesos提供的资源，生成特定于拓扑的MesosWorkerSlot。
+IMesosStormScheduler接口的实现DefaultScheduler同时实现了IScheduler接口，它负责根据拓扑的请求信息以及Mesos提供的资源，生成特定于拓扑的MesosWorkerSlot。
+
+Storm框架仅对WorkerSlot有认知，因此MesosWorkerSlot继承自WorkerSlot又稍有差别：
+
+* 不同的拓扑对CPU和内存的资源需求不同，MesosWorkerSlot根据拓扑信息创建，只属于该特定拓扑，不能用于为其它拓扑启动Worker。
+
+* MesosNimbus为拓扑调度资源时，DefaultScheduler可以提前获知拓扑的信息，为其分配MesosWorkerSlot并将分配信息保存到mesosWorkerSlotMap，在Storm后续调用schedule时，可以直接从mesosWorkerSlotMap中获取可用的slot。
+
+* 当前Storm在调用schedule方法时，每次都会传入新创建的WorkerSlot实例，因此需要mesosWorkerSlotMap暂存基于Mesos的Slot调度实例信息。
+
+### 编译
+
+从[Github仓库](http://github.com/christtrc/storm)下载源代码。
+
+Mesos Storm支持独立打包和镜像打包两种方式。本文重点关注镜像打包（以及后续在DC/OS中部署）方式。在编写本文时，官方仓库中默认的配置为：
+
+* JDK 7
+* Storm 1.0.2
+* Mesos 0.27.0
+
+为适应DC/OS的部署，本仓库对上述配置及部分Dockerfile的内容进行了调整(JDK替换为Oracle JDK，时区及locale等），目前配置为：
+
+* JDK 8
+* Storm 1.0.2
+* Mesos 1.1.0
+
+也可以在编译镜像时指定版本信息：
+
+```
+make images STORM_RELEASE=1.0.2 MESOS_RELEASE=1.1.0 JAVA_PRODUCT_VERSION=8 DOCKER_REPO=chrisrc/storm
+```
+
+### 运行
+
+如果成功编译了容器镜像，且存在Mesos集群并正确配置（关于配置可参考后面章节），则可以通过下述命令启动Nimbus及UI：
