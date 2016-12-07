@@ -1,6 +1,6 @@
 ## DC/OS内部端口
 
-以下是DC/OS内部服务使用的端口及其相应的systemd unit列表。
+以下是DC/OS内部服务使用的端口及其相应的systemd unit列表。了解这些端口占用，便于在集群出现异常时进行故障排除。如，碰到53端口被占用（通常是被dnsmasq占用），DC/OS的Spartan服务可能无法正常启动；无法访问Master节点上的8080端口时，可能是Master节点上的Marathon服务出现异常。
 
 ### 所有节点
 
