@@ -6,5 +6,8 @@
 
 在本实现的镜像中，通过Marathon部署Nimbus时，Storm的UI服务在启动Nimbus时默认同时启动。
 
+#### 使用DC/OS的Exhibitor(ZK)服务
+
+#### 使用独立的Exhibitor(ZK)服务
 
 ### DRPC部署
