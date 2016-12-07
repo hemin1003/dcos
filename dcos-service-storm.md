@@ -125,6 +125,20 @@ Mesos Storm支持独立打包和镜像打包两种方式。本文重点关注镜
 make images STORM_RELEASE=1.0.2 MESOS_RELEASE=1.1.0 JAVA_PRODUCT_VERSION=8 DOCKER_REPO=chrisrc/storm
 ```
 
+编译构建镜像时有几个重要的文件需要引起注意：
+
+- storm.yaml 
+
+  这个文件中的配置会被打包到Docker镜像中，可以在运行时通过Docker的Volume挂载加载外部storm.yaml定义。
+
+- Dockerfile
+  
+  这个文件定义了镜像的打包脚本，可以根据需要调整。
+
+- bin/run-with-marathon.sh
+  
+  这个文件用于在DC/OS中通过Marathon启动Storm Nimbus及UI。
+
 ### 运行
 
 如果成功编译了容器镜像，且存在Mesos集群并正确配置（关于配置可参考后面章节），则可以通过下述命令启动Nimbus及UI：
