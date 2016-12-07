@@ -100,6 +100,8 @@ Storm集群默认配置数据目录存放在“`storm-local`”下，相对于`/
 
 #### 使用独立的Exhibitor(ZK)服务
 
+使用不同于DC/OS默认Exhibitor(ZK)集群时，可以通过**STORM_NIMBUS_OPTS**环境变量直接指定ZK集群的IP或主机名列表。其它需要注意的地方与上述配置相同。
+
 此种方式的Marathon应用JSON定义如下：
 
 ```json
