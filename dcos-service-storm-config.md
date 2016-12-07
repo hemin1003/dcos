@@ -32,20 +32,25 @@ Storm/Mesos集群的Supervisor，Worker服务实例在启动时，会从Nimbus�
 
 #### 可选配置
 
-`mesos.supervisor.suicide.inactive.timeout.secs`： 在Supervisor没有任务执行时，进程自杀前的等待时间（单位：秒），默认值为：120。
+`mesos.supervisor.suicide.inactive.timeout.secs`： 在Supervisor没有任务执行时，进程自杀前的等待时间（单位：秒），默认值：120。
 
-```
+`mesos.master.failover.timeout.secs`：框架故障切换的超时时间（单位：秒），默认值：2473600。
 
-mesos.master.failover.timeout.secs
-```
 
-: Framework failover timeout in second. Defaults to "2473600".
-mesos.allowed.hosts: Allowed hosts to run topology, which takes hostname list as a white list.
-mesos.disallowed.hosts: Disallowed hosts to run topology, which takes hostname list as a back list.
-mesos.framework.role: Framework role to use. Defaults to "*".
-mesos.framework.checkpoint: Enabled framework checkpoint or not. Defaults to false.
-mesos.offer.lru.cache.size: LRU cache size. Defaults to "1000".
-mesos.offer.filter.seconds: Number of seconds to filter unused Mesos offers. These offers may be revived by the framework when needed. Defaults to "120".
+
+
+`mesos.allowed.hosts`：允许运行拓扑的Agent节点的白名单列表。
+
+`mesos.disallowed.hosts`：不允许运行拓扑的Agent节点的黑名单列表。
+
+`mesos.framework.role`：框架使用的[角色](/dcos-mesos-roles.md)，默认为“*”。
+
+`mesos.framework.checkpoint`：是否启用框架的[检查点](/dcos-mesos-agent-recovery.md)，默认：false。
+
+`mesos.offer.lru.cache.size`：LRU缓存大小，默认：1000。
+
+`mesos.offer.filter.seconds`：过滤不用的Mesos资源供给（offers）的时间（单位：秒）。这些资源供给可以在需要时由框架重新接受。默认值：120。
+
 mesos.offer.expiry.multiplier: Offer expiry multiplier for nimbus.monitor.freq.secs. Defaults to "2.5".
 mesos.local.file.server.port: Port for the local file server to bind to. Defaults to a random port.
 mesos.framework.name: Framework name. Defaults to "Storm!!!".
