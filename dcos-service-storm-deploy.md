@@ -184,4 +184,86 @@ dcos marathon app add storm-dcos-nimbus.json
 
 ### DRPC部署
 
-DRPC服务节点在storm.yaml
+DRPC服务在DC/OS中部署时，网络采用HOST模式。
+
+DRPC服务节点在`storm.yaml`中是通过`drpc.servers`静态配置的，这也与服务在DC/OS中的动态特性相冲突。
+
+解决方案类似于Nimbus服务，根据需要的DRPC服务器节点数，预先选定一部分Agent节点IP地址，这些地址是一个Agent节点IP列表的子集。在部署DRPC服务时，通过约束将服务限定在隶属于这个子集的Agent节点上。
+
+例如，假定当前DC/OS集群中存在`1.80，1.81，1.82，1.83`四个私有Agent，在`storm.yaml`中按如下配置：
+
+```
+drpc.servers:
+ - "192.168.1.80"
+ - "192.168.1.81"
+ - "192.168.1.82"
+ - "192.168.1.83"
+```
+
+在DRPC服务的Marathon定义中使用约束`hostname:LIKE:192.168.1.8[0,1,2,3]`。
+
+DRPC服务的Marathon应用JSON定义如下：
+
+```json
+{
+  "id": "/storm-drpc-dev",
+  "cmd": "bin/storm drpc -c storm.log.dir=$MESOS_SANDBOX/logs",
+  "instances": 4,
+  "cpus": 0.5,
+  "mem": 2048,
+  "constraints": [
+    [
+      "hostname",
+      "LIKE",
+      "192.168.1.8[0-9]"
+    ]
+  ],
+  "container": {
+    "docker": {
+      "image": "192.168.0.1/daas/storm:0.2.1-SNAPSHOT-1.0.2-1.1.0-jdk8",
+      "forcePullImage": true,
+      "privileged": false,
+      "network": "HOST"
+    },
+    "type": "DOCKER",
+    "volumes": [
+      {
+        "containerPath": "/opt/storm/conf",
+        "hostPath": "/data/storm-dev/conf",
+        "mode": "RO"
+      }
+    ]
+  },
+  "healthChecks": [
+    {
+      "protocol": "TCP",
+      "gracePeriodSeconds": 30,
+      "intervalSeconds": 30,
+      "timeoutSeconds": 60,
+      "maxConsecutiveFailures": 3
+    }
+  ],
+  "portDefinitions": [
+    {
+      "protocol": "tcp",
+      "port": 3772,
+      "labels": {
+        "VIP_0": "/storm-drpc-dev:3772"
+      }
+    },
+    {
+      "protocol": "tcp",
+      "port": 3773
+    },
+    {
+      "protocol": "tcp",
+      "port": 3774
+    }
+  ],
+  "requirePorts": true
+}
+```
+
+**注意**，DRPC的应用定义中，为端口**3772**配置了VIPs，集群中部署的其他服务通过`storm-drpc-dev.marathon.l4lb.thisdcos.directory:3772`调用DRPC服务时，DC/OS自动为DRPC实现了负载均衡。
+
+DRPC服务的部署命令参考Nimbus服务的部署。
