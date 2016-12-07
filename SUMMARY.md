@@ -108,9 +108,10 @@
 ## DC\/OS之应用
 * [容器与镜像](dcos-usage-dockers.md)
     * [Dockerfile](dcos-usage-docker-dockerfile.md)
-    * [同一容器中部署多个APP](dcos-usage-docker-multi-app-in-one.md)
+    * [Docker GC](dcos-usage-docker-gc.md)
+    * [单一容器多APP部署](dcos-usage-docker-multi-app-in-one.md)
+    * [私有容器仓库](dcos-service-pre-private-docker-registry.md)
     * [存储驱动](dcos-usage-docker-storage-driver.md)
-* [私有容器仓库](dcos-service-pre-private-docker-registry.md)
 * [持续集成与部署](dcos-usage-cicd.md)
     * [应用打包与镜像构建](dcos-usage-cicd-build-by-maven.md)
     * [持续集成与构建](dcos-usage-cicd-integration.md)

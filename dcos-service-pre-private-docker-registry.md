@@ -229,5 +229,5 @@ FROM 192.168.1.50：5000/base/docker-tomcat-base
 
 ### 参考
 
-https:\/\/dcos.io\/docs\/1.9\/usage\/tutorials\/registry\/
+https://dcos.io/docs/1.9/usage/tutorials/registry
 
