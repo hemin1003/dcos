@@ -89,6 +89,7 @@
 * [Storm on DC\/OS](dcos-service-storm.md)
     * [Storm集群配置](dcos-service-storm-config.md)
     * [部署Storm集群](dcos-service-storm-deploy.md)
+    * [访问Storm集群](dcos-service-storm-clients.md)
 * [HDFS on DC\/OS](dcos-service-hdfs.md)
 * [Cassandra on DC\/OS](dcos-service-cassandra.md)
 * [Kafka on DC\/OS](dcos-service-kafka.md)
