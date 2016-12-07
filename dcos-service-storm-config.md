@@ -76,3 +76,15 @@ Storm/Mesos集群的Supervisor，Worker服务实例在启动时，会从Nimbus�
 
   * `supervisor.childopts`：用于配置Supervisor的JVM进程参数。应该为每个任务配置大约20-25％的**额外**内存开销。例如，如果该参数设置为`-Xmx500m`，那么应该设置：`topology.mesos.executor.mem.mb: 620`，具体配置根据实际业务设定。
 
+#### 附加配置
+
+* mesos.container.docker.volumes：为Mesos自动调度启动的Supervisor/Worker镜像提供外部卷挂载。配置示例如下：
+
+  ```
+mesos.container.docker.volumes:
+ - "/data/export"
+ - "/mnt/glusterfs/storm"
+ - "RW"
+ - ......
+```
+注意，编写本文档时，此功能未提交到官方仓库。
