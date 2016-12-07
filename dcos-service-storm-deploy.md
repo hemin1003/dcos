@@ -31,9 +31,145 @@ Storm集群默认配置数据目录存放在“`storm-local`”下，相对于`/
 此种方式的Marathon应用JSON定义如下：
 
 ```json
-
+{
+  "id": "/storm-nimbus-dev",
+  "cmd": "./bin/run-with-marathon.sh",
+  "env": {
+    "HOSTNAME": "192.168.1.89",
+    "STORM_NIMBUS_OPTS": "-c storm.zookeeper.servers=[\"192.168.1.70\",\"192.168.1.73\",\"192.168.1.88\"]"
+  },
+  "instances": 1,
+  "cpus": 1,
+  "mem": 1024,
+  "constraints": [
+    [
+      "hostname",
+      "LIKE",
+      "192.168.1.89"
+    ]
+  ],
+  "container": {
+    "docker": {
+      "image": "192.168.0.1/daas/storm:0.2.1-SNAPSHOT-1.0.2-1.1.0-jdk8",
+      "forcePullImage": true,
+      "privileged": false,
+      "network": "HOST"
+    },
+    "type": "DOCKER",
+    "volumes": [
+      {
+        "containerPath": "/opt/storm/conf",
+        "hostPath": "/data/storm-dev/conf",
+        "mode": "RW"
+      },
+      {
+        "containerPath": "/opt/storm/log4j2",
+        "hostPath": "/data/storm-dev/log4j2",
+        "mode": "RW"
+      },
+      {
+        "containerPath": "/opt/storm/storm-local",
+        "hostPath": "/data/storm-dev/data",
+        "mode": "RW"
+      }
+    ]
+  },
+  "healthChecks": [
+    {
+      "protocol": "HTTP",
+      "path": "/",
+      "gracePeriodSeconds": 120,
+      "intervalSeconds": 20,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3,
+      "ignoreHttp1xx": false
+    }
+  ],
+  "portDefinitions": [
+    {
+      "protocol": "tcp",
+      "port": 16626
+    },
+    {
+      "protocol": "tcp",
+      "port": 16627
+    }
+  ],
+  "requirePorts": true
+}
 ```
 
 #### 使用独立的Exhibitor(ZK)服务
+
+此种方式的Marathon应用JSON定义如下：
+
+```json
+{
+  "id": "/storm-nimbus-dev",
+  "cmd": "./bin/run-with-marathon.sh",
+  "env": {
+    "HOSTNAME": "192.168.1.89",
+    "STORM_NIMBUS_OPTS": "-c storm.zookeeper.servers=[\"192.168.1.70\",\"192.168.1.73\",\"192.168.1.88\"]"
+  },
+  "instances": 1,
+  "cpus": 1,
+  "mem": 1024,
+  "constraints": [
+    [
+      "hostname",
+      "LIKE",
+      "192.168.1.89"
+    ]
+  ],
+  "container": {
+    "docker": {
+      "image": "192.168.0.1/daas/storm:0.2.1-SNAPSHOT-1.0.2-1.1.0-jdk8",
+      "forcePullImage": true,
+      "privileged": false,
+      "network": "HOST"
+    },
+    "type": "DOCKER",
+    "volumes": [
+      {
+        "containerPath": "/opt/storm/conf",
+        "hostPath": "/data/storm-dev/conf",
+        "mode": "RW"
+      },
+      {
+        "containerPath": "/opt/storm/log4j2",
+        "hostPath": "/data/storm-dev/log4j2",
+        "mode": "RW"
+      },
+      {
+        "containerPath": "/opt/storm/storm-local",
+        "hostPath": "/data/storm-dev/data",
+        "mode": "RW"
+      }
+    ]
+  },
+  "healthChecks": [
+    {
+      "protocol": "HTTP",
+      "path": "/",
+      "gracePeriodSeconds": 120,
+      "intervalSeconds": 20,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3,
+      "ignoreHttp1xx": false
+    }
+  ],
+  "portDefinitions": [
+    {
+      "protocol": "tcp",
+      "port": 16626
+    },
+    {
+      "protocol": "tcp",
+      "port": 16627
+    }
+  ],
+  "requirePorts": true
+}
+```
 
 ### DRPC部署
