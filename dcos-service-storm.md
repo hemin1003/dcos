@@ -126,3 +126,17 @@ make images STORM_RELEASE=1.0.2 MESOS_RELEASE=1.1.0 JAVA_PRODUCT_VERSION=8 DOCKE
 ### 运行
 
 如果成功编译了容器镜像，且存在Mesos集群并正确配置（关于配置可参考后面章节），则可以通过下述命令启动Nimbus及UI：
+
+**Nimbus：**
+
+```
+docker run -it chrisrc/storm:0.2.1-SNAPSHOT-1.0.2-1.1.0-jdk8 bin/storm-mesos nimbus
+```
+
+**UI：**
+
+```
+docker run -it chrisrc/storm:0.2.1-SNAPSHOT-1.0.2-1.1.0-jdk8 bin/storm ui
+```
+
+Storm/Mesos支持在Vagrant中运行，详细信息请参考[文档](https://github.com/christtrc/storm/blob/master/docs/vagrant.md)。
