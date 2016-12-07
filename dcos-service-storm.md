@@ -111,11 +111,13 @@ Mesos Storm支持独立打包和镜像打包两种方式。本文重点关注镜
 * Storm 1.0.2
 * Mesos 0.27.0
 
-为适应DC/OS的部署，本仓库对上述配置及部分Dockerfile的内容进行了调整(JDK替换为Oracle JDK，时区及locale等），目前配置为：
+为适应DC/OS的部署，[本仓库](https://github.com/christtrc/storm)对上述配置及部分Dockerfile的内容进行了调整(JDK替换为Oracle JDK，时区及locale等），目前配置为：
 
 * JDK 8
 * Storm 1.0.2
 * Mesos 1.1.0
+
+同时，支持为Executor容器镜像提供Volume存储。
 
 也可以在编译镜像时指定版本信息：
 
