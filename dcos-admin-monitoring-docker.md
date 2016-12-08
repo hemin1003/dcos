@@ -31,3 +31,70 @@ sudo docker run \
 - 某些版本的CentOS/RHEL将cgroup层次结构挂载到了`/cgroup`下，cAdvisor需要通过`--volume=/cgroup:/cgroup:ro`获取容器信息。
 
 如果碰到`Invalid Bindmount /`错误，可能是由于Docker版本较低所致，可以在启动cAdvisor时不挂载`--volume=/:/rootfs:ro`。
+
+#### WEB UI
+
+cAdvisor提供了一个WEB界面可以直观的查看容器的状态信息：
+
+![](/assets/dcos-cadvisor-webui.png)
+
+如果需要添加安全验证，可以有两种方案：
+
+- **HTTP基本认证**
+
+  需要使用`http_auth_file`参数指定一个通过**`htpassword`**命令生成的身份认证秘钥的文件。默认情况下，auth域设置为`localhost`。
+
+  ```
+./cadvisor --http_auth_file test.htpasswd --http_auth_realm localhost
+```
+  test.htpasswd的内容示例：
+
+  ```
+admin:$apr1$WVO0Bsre$VrmWGDbcBV1fdAkvgQwdk0
+```
+
+- **HTTP摘要认证**
+
+  需要使用`http_digest_file`参数指定一个通过**`htdigest`**命令生成的身份摘要信息的文件。默认情况下，auth域设置为`localhost`。
+
+  ```
+./cadvisor --http_digest_file test.htdigest --http_digest_realm localhost
+```
+
+  test.htdigest的内容示例：
+
+  ```
+admin:localhost:70f2631dded4ce5ad0ebbea5faa6ad6e
+```
+
+如果同时设置了这两种认证，只有HTTP基本认证被启用。
+
+
+#### 配置参数
+
+#### [镜像定义](https://github.com/google/cadvisor/blob/master/deploy/Dockerfile)
+
+```
+FROM alpine:3.4
+MAINTAINER dengnan@google.com vmarmol@google.com vishnuk@google.com jimmidyson@gmail.com stclair@google.com
+
+ENV GLIBC_VERSION "2.23-r3"
+
+RUN apk --no-cache add ca-certificates wget device-mapper && \
+    apk --no-cache add zfs --repository http://dl-3.alpinelinux.org/alpine/edge/main/ && \
+    wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub && \
+    wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && \
+    wget https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk && \
+    apk add glibc-${GLIBC_VERSION}.apk glibc-bin-${GLIBC_VERSION}.apk && \
+    /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib && \
+    echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf && \
+    rm -rf /var/cache/apk/*
+
+# Grab cadvisor from the staging directory.
+ADD cadvisor /usr/bin/cadvisor
+
+EXPOSE 8080
+ENTRYPOINT ["/usr/bin/cadvisor", "-logtostderr"]
+```
+
+通过cAdvisor默认的镜像定义文件可以看出，无法在运行镜像时传递自定义的启动参数。
