@@ -139,6 +139,10 @@ admin:localhost:70f2631dded4ce5ad0ebbea5faa6ad6e
 
   通过`-storage_driver`可以指定不同的存储驱动，详细信息请参考后续章节。
 
+#### REST API
+
+参见：[cAdvisor Remote REST API](https://github.com/google/cadvisor/blob/master/docs/api.md)
+
 #### [镜像定义](https://github.com/google/cadvisor/blob/master/deploy/Dockerfile)
 
 ```
@@ -179,7 +183,7 @@ docker run -v /Users/chrisrc/Dcos/deployments:/cfg \
 
 在Marathon应用程序JSON定义中，可以使用**args**传递上述自定义参数，具体请参考[容器运行管理](/dcos-marathon-container.md)。
 
-### 存储驱动
+#### 存储驱动
 
 cAdvisor可以通过不同的存储驱动将采集的信息归集到多种存储系统。当前cAdvisor支持的存储驱动包括：
 
@@ -191,3 +195,11 @@ cAdvisor可以通过不同的存储驱动将采集的信息归集到多种存储
 - Redis
 - StatsD
 - stdout
+
+### 在DCOS中部署cAdvisor
+
+### 参考
+
+- [cadvisor](https://github.com/google/cadvisor)
+
+- [mesos_cadvisor_prometheus_grafana](https://gist.github.com/charlesmims/ca5c2fef1c215edbb80e3aaa0774a1d4)
