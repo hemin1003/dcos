@@ -72,15 +72,15 @@ admin:localhost:70f2631dded4ce5ad0ebbea5faa6ad6e
 
 #### 配置参数
 
-- 本地存储持续时间
+- **本地存储持续时间**
 
-cAdvisor将最新的历史数据存储在内存中。可以使用`--storage_duration`参数配置这些历史记录的存储时间长短。默认值：`2min`。
+  cAdvisor将最新的历史数据存储在内存中。可以使用`--storage_duration`参数配置这些历史记录的存储时间长短。默认值：`2min`。
 
-* 信息采集
+- **信息采集**
 
-cAdvisor会周期性的采集容器状态信息，下述参数控制cAdvisor如何和何时采集。
+  cAdvisor会周期性的采集容器状态信息，下述参数控制cAdvisor如何和何时采集。
   
-  * 动态采集
+  - **动态采集**
   
   动态管理采集间隔可以让cAdvisor根据容器的活动性调整它收集统计信息的频率。关闭此选项可提供可预测的采集周期间隔，但会增加cAdvisor的资源使用。默认值为：`true`。
 
@@ -88,13 +88,51 @@ cAdvisor会周期性的采集容器状态信息，下述参数控制cAdvisor如�
 --allow_dynamic_housekeeping=true
 ```
 
-  - 采集间隔
+  - **采集间隔**
 
   cAdvisor有两个采集间隔设定：全局的和每容器的。全局采集间隔是cAdvisor进行的一次单独的采集操作，通常在检测到新的容器时执行一次。当前，cAdvisor通过内核事件发现新的容器，因此这种全局采集间隔主要用于处理有任何事件遗漏的情况。
 
   ```
 --global_housekeeping_interval=1m0s
 --housekeeping_interval=1s
+```
+
+- **容器提示**
+
+  通过一个JSON文件向cAdvisor传递额外的容器配置信息，JSON文件的格式参考定义。当前该配置仅用于原生容器驱动。
+
+  ```
+--container_hints="/etc/cadvisor/container_hints.json"
+```
+
+- **HTTP**
+
+  指定cAdvisor监听的IP和端口，默认监听所有IP地址。
+
+  ```
+--listen_ip=""
+--port=8080
+```
+
+- **调试与日志**
+
+  - **调试**
+
+  ```
+--log_cadvisor_usage=false: Whether to log the usage of the cAdvisor container
+--version=false: print cAdvisor version and exit
+--profiling=false: Enable profiling via web interface host:port/debug/pprof/
+```
+
+  - **日志**
+
+  ```
+--log_dir="": If non-empty, write log files in this directory
+--logtostderr=false: log to standard error instead of files
+--alsologtostderr=false: log to standard error as well as files
+--stderrthreshold=0: logs at or above this threshold go to stderr
+--v=0: log level for V logs
+--vmodule=: comma-separated list of pattern=N settings for file-filtered logging
 ```
 
 #### [镜像定义](https://github.com/google/cadvisor/blob/master/deploy/Dockerfile)
