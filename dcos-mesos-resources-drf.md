@@ -52,6 +52,8 @@ def buildExecutorInfo(d: SchedulerDriver, prefix: String): ExecutorInfo = {
 
 #### 资源提供（Resource Offers）
 
+![](/assets/dcos-mesos-architecture.jpg)
+
 1. Agent节点定期向Master汇报它们所能提供的资源。
 
 2. 分配模块开始向框架提供资源，并使用主导资源公平算法来决定可以提供资源的候选框架的顺序。接收到资源供给的框架可以根据其需求接受或拒绝。在拒绝的情况下（例如，某些类型的资源不足），分配模块根据DRF将资源提供给下一个框架。
@@ -93,5 +95,5 @@ DRF计算分配给框架的主导资源的份额（主导份额），并试图�
 
 ### 参考
 
-http:\/\/datastrophic.io\/resource-allocation-in-mesos-dominant-resource-fairness-explained
+http://datastrophic.io/resource-allocation-in-mesos-dominant-resource-fairness-explained
 
