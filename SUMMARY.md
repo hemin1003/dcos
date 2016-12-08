@@ -97,17 +97,17 @@
 ## DCOS之管理
 * [DCOS CLI](dcos-admin-cli.md)
 * [DCOS 管理UI](dcos-admin-ui.md)
+* [监控管理](dcos-admin-monitoring.md)
+    * [DC\/OS及系统服务](dcos-admin-monitoring-dcos.md)
+    * [应用容器监控](dcos-admin-monitoring-docker.md)
+* [日志管理](dcos-admin-logging.md)
 * [存储管理](dcos-admin-storage.md)
     * [GlusterFS存储](dcos-admin-storage-glusterfs.md)
         * [GlusterFS概览](dcos-admin-storage-glusterfs-overview.md)
         * [GlusterFS维护](dcos-admin-storage-glusterfs-admin.md)
         * [GlusterFS架构](dcos-admin-storage-glusterfs-architecture.md)
     * [Ceph集群存储](dcos-admin-storage-ceph.md)
-* [日志管理](dcos-admin-logging.md)
 * [FAQ](dcos-admin-faq.md)
-* [监控管理](dcos-admin-monitoring.md)
-    * [DC\/OS及系统服务](dcos-admin-monitoring-dcos.md)
-    * [应用容器监控](dcos-admin-monitoring-docker.md)
 
 ## DC\/OS之应用
 * [容器与镜像](dcos-usage-dockers.md)
