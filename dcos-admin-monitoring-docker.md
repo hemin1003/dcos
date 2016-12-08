@@ -72,6 +72,31 @@ admin:localhost:70f2631dded4ce5ad0ebbea5faa6ad6e
 
 #### 配置参数
 
+- 本地存储持续时间
+
+cAdvisor将最新的历史数据存储在内存中。可以使用`--storage_duration`参数配置这些历史记录的存储时间长短。默认值：`2min`。
+
+* 信息采集
+
+cAdvisor会周期性的采集容器状态信息，下述参数控制cAdvisor如何和何时采集。
+  
+  * 动态采集
+  
+  动态管理采集间隔可以让cAdvisor根据容器的活动性调整它收集统计信息的频率。关闭此选项可提供可预测的采集周期间隔，但会增加cAdvisor的资源使用。默认值为：`true`。
+
+  ```
+--allow_dynamic_housekeeping=true
+```
+
+  - 采集间隔
+
+  cAdvisor有两个采集间隔设定：全局的和每容器的。全局采集间隔是cAdvisor进行的一次单独的采集操作，通常在检测到新的容器时执行一次。当前，cAdvisor通过内核事件发现新的容器，因此这种全局采集间隔主要用于处理有任何事件遗漏的情况。
+
+  ```
+--global_housekeeping_interval=1m0s
+--housekeeping_interval=1s
+```
+
 #### [镜像定义](https://github.com/google/cadvisor/blob/master/deploy/Dockerfile)
 
 ```
@@ -97,4 +122,17 @@ EXPOSE 8080
 ENTRYPOINT ["/usr/bin/cadvisor", "-logtostderr"]
 ```
 
-通过cAdvisor默认的镜像定义文件可以看出，无法在运行镜像时传递自定义的启动参数。
+通过cAdvisor默认的镜像定义文件可以看出，可以在镜像启动时直接向容器传递自定义的启动参数。如：
+
+```
+docker run -v /Users/chrisrc/Dcos/deployments:/cfg \
+  --volume=/:/rootfs:ro \
+  --volume=/var/run:/var/run:rw \
+  --volume=/sys:/sys:ro \
+  --volume=/var/lib/docker/:/var/lib/docker:ro \
+  --publish=8080:8080 \
+  --name=cadvisor \
+  google/cadvisor:latest  --http_auth_file /cfg/admin.htpasswd --http_auth_realm localhost
+```
+
+在Marathon应用程序JSON定义中，可以使用**args**传递上述自定义参数，具体请参考[容器运行管理](/dcos-marathon-container.md)。
