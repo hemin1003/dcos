@@ -1,12 +1,10 @@
-## 应用容器监控
-
-### [cAdvisor](https://github.com/google/cadvisor)
+## cAdvisor
 
 具体来说，对于每个容器，cAdvisor能够保存容器的资源隔离参数，历史资源使用，完整历史资源使用的直方图和网络统计，这些数据是从容器和宿主机导出的。
 
 cAdvisor原生支持Docker容器，并且对任何其他类型的容器能够开箱即用。cAdvisor是基于[lmctfy](https://github.com/google/lmctfy)的容器抽象，所以容器本身是分层嵌套的。
 
-#### 运行
+### 运行
 
 通过提供的容器镜像直接运行cAdvisor非常简单。在宿主机上运行一个cAdvisor实例就可以监控宿主机和其上的所有容器。运行命令如下：
 
@@ -32,7 +30,7 @@ sudo docker run \
 
 如果碰到`Invalid Bindmount /`错误，可能是由于Docker版本较低所致，可以在启动cAdvisor时不挂载`--volume=/:/rootfs:ro`。
 
-#### WEB UI
+### WEB UI
 
 cAdvisor提供了一个WEB界面可以直观的查看容器的状态信息：
 
@@ -70,7 +68,7 @@ admin:localhost:70f2631dded4ce5ad0ebbea5faa6ad6e
 如果同时设置了这两种认证，只有HTTP基本认证被启用。
 
 
-#### 配置参数
+### 配置参数
 
 - **本地存储持续时间**
 
@@ -139,11 +137,11 @@ admin:localhost:70f2631dded4ce5ad0ebbea5faa6ad6e
 
   通过`-storage_driver`可以指定不同的存储驱动，详细信息请参考后续章节。
 
-#### REST API
+### REST API
 
 参见：[cAdvisor Remote REST API](https://github.com/google/cadvisor/blob/master/docs/api.md)
 
-#### [镜像定义](https://github.com/google/cadvisor/blob/master/deploy/Dockerfile)
+### [镜像定义](https://github.com/google/cadvisor/blob/master/deploy/Dockerfile)
 
 ```
 FROM alpine:3.4
@@ -183,7 +181,7 @@ docker run -v /Users/chrisrc/Dcos/deployments:/cfg \
 
 在Marathon应用程序JSON定义中，可以使用**args**传递上述自定义参数，具体请参考[容器运行管理](/dcos-marathon-container.md)。
 
-#### 存储驱动
+### 存储驱动
 
 cAdvisor可以通过不同的存储驱动将采集的信息归集到多种存储系统。当前cAdvisor支持的存储驱动包括：
 
