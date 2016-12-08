@@ -135,6 +135,10 @@ admin:localhost:70f2631dded4ce5ad0ebbea5faa6ad6e
 --vmodule=: comma-separated list of pattern=N settings for file-filtered logging
 ```
 
+- **存储驱动**
+
+  通过`-storage_driver`可以指定不同的存储驱动，详细信息请参考后续章节。
+
 #### [镜像定义](https://github.com/google/cadvisor/blob/master/deploy/Dockerfile)
 
 ```
@@ -174,3 +178,7 @@ docker run -v /Users/chrisrc/Dcos/deployments:/cfg \
 ```
 
 在Marathon应用程序JSON定义中，可以使用**args**传递上述自定义参数，具体请参考[容器运行管理](/dcos-marathon-container.md)。
+
+### 存储插件
+
+cAdvisor可以通过不同的存储插件将采集的信息归集到多种存储系统。
