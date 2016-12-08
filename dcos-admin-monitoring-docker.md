@@ -179,6 +179,15 @@ docker run -v /Users/chrisrc/Dcos/deployments:/cfg \
 
 在Marathon应用程序JSON定义中，可以使用**args**传递上述自定义参数，具体请参考[容器运行管理](/dcos-marathon-container.md)。
 
-### 存储插件
+### 存储驱动
 
-cAdvisor可以通过不同的存储插件将采集的信息归集到多种存储系统。
+cAdvisor可以通过不同的存储驱动将采集的信息归集到多种存储系统。当前cAdvisor支持的存储驱动包括：
+
+- [BigQuery](https://github.com/google/cadvisor/blob/master/storage/bigquery/README.md)
+- [ElasticSearch](https://github.com/google/cadvisor/blob/master/docs/storage/elasticsearch.md)
+- [InfluxDB](https://github.com/google/cadvisor/blob/master/docs/storage/influxdb.md)
+- [Kafka](https://github.com/google/cadvisor/blob/master/docs/storage/kafka.md)
+- [Prometheus](https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md)
+- Redis
+- StatsD
+- stdout
