@@ -39,6 +39,9 @@ Custom values:
 docker run mesosphere/janitor /janitor.py -r <custom_role> -p <custom_principal> -z dcos-service-<custom_service_name>
 ```
 
+服务的自动更新
+
+可以将服务配置保存到Git仓库（Gitlab）中，当服务配置发生变更时，可以使用Gitlab CI 或 Jenkins的任务部署变更的配置并调用Marathon的API重新启动服务。
 
 
 
