@@ -98,7 +98,7 @@
 * [DCOS CLI](dcos-admin-cli.md)
 * [DCOS 管理UI](dcos-admin-ui.md)
 * [监控管理](dcos-admin-monitoring.md)
-    * [DC\/OS及系统服务](dcos-admin-monitoring-dcos.md)
+    * [DC\/OS的监控](dcos-admin-monitoring-dcos.md)
     * [信息采集](dcos-admin-monitoring-collect.md)
         * [cAdvisor](dcos-admin-monitoring-docker.md)
     * [数据存储分析](dcos-admin-monitoring-storage.md)
