@@ -68,3 +68,10 @@ Mesos自0.27.0版本开始，如果未指定`--roles`，则角色白名单允许
 
 另一方面，角色仅用于以各种方式将资源与框架相关联，如上所述。
 
+### DC/OS中的角色
+
+需要注意的是，DC/OS中用于标识**节点类型**的“角色”与Mesos中的角色是两个不同的概念。标识节点类型的角色在`/etc/mesosphere/roles/`目录下通过文件名为`master`， `slave` 和 `slave_public`的空文件识别。
+
+默认情况下，`slave_public`节点上的资源会分配给同名的Mesos角色：**`slave_public`**；`slave`节点上的资源会分配给Mesos角色：**“*”**。
+
+可以通过修改`/var/lib/dcos/mesos-resources`中的JSON定义，添加自定义的Mesos角色并预留静态资源。 如果需要动态预留资源，请参考[资源预留](/dcos-mesos-reservation.md)。
