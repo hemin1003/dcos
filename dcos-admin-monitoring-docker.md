@@ -1,6 +1,6 @@
 ## cAdvisor
 
-具体来说，对于每个容器，cAdvisor能够保存容器的资源隔离参数，历史资源使用，完整历史资源使用的直方图和网络统计，这些数据是从容器和宿主机导出的。
+cAdvisor（Container Advisor）让容器用户可以及时掌握正在运行的容器的资源使用情况和性能态势。它是一个运行的守护进程，能够收集，聚合，处理和导出运行容器相关的信息。具体来说，对于每个容器，cAdvisor能够保存容器的资源隔离参数，历史资源使用，完整历史资源使用的直方图和网络统计，这些数据是从容器和宿主机导出的。
 
 cAdvisor原生支持Docker容器，并且对任何其他类型的容器能够开箱即用。cAdvisor是基于[lmctfy](https://github.com/google/lmctfy)的容器抽象，所以容器本身是分层嵌套的。
 
@@ -193,6 +193,12 @@ cAdvisor可以通过不同的存储驱动将采集的信息归集到多种存储
 - Redis
 - StatsD
 - stdout
+
+#### Prometheus
+
+cAdvisor的容器统计信息可以直接作为Prometheus指标使用。默认情况下，这些指标在 `/metrics` 接口下提供。可以通过设置`-prometheus_endpoint`命令行参考来定制此接口。
+
+#### ElasticSearch
 
 ### 在DCOS中部署cAdvisor
 
