@@ -242,9 +242,61 @@ cAdvisor支持将容器统计信息传递给ElasticSearch，要启用此功能�
 
 完整示例请参考[监控方案](/dcos-admin-monitoring-solutions.md)。
 
-### 在DCOS中部署cAdvisor
+### 在DC/OS中部署cAdvisor
 
+在DC/OS上可以通过Marathon部署cAdvisor服务。由于DC/OS中Agent节点具有动态性，要让cAdvisor能够监控到所有Agent节点上的容器，需要借助Marathon的约束和DCOS服务动态伸缩的特性。
 
+通过`["hostname", "UNIQUE"]`约束配置，每个Agent节点只部署一个cAdvisor服务实例。通过`instances`配置，其值设置为当前DC/OS集群中Agent节点的数量，并在节点增减时，相应的对cAdvisor服务做scale操作即可做到维护同步。
+
+cAdvisor服务的Marathon应用程序JSON定义如下：
+
+```json
+{
+  "id": "cadvisor",
+  "cpus": 0.1,
+  "mem": 100,
+  "disk": 0,
+  "instances": 8,    // 当前集群内Agent节点数
+  "constraints": [["hostname", "UNIQUE"]],
+  "container": {
+    "type": "DOCKER",
+    "volumes": [
+      {
+        "containerPath": "/rootfs",
+        "hostPath": "/",
+        "mode": "RO"
+      },
+      {
+        "containerPath": "/var/run/",
+        "hostPath": "/var/run",
+        "mode": "RW"
+      },
+      {
+        "containerPath": "/sys",
+        "hostPath": "/sys",
+        "mode": "RO"
+      },
+      {
+        "containerPath": "/var/lib/docker",
+        "hostPath": "/var/lib/docker",
+        "mode": "RO"
+      }
+    ],
+    "docker": {
+      "image": "google/cadvisor:latest",
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 3002,
+          "protocol": "tcp"
+        }
+      ],
+      "forcePullImage": true
+    }
+  }
+}
+```
 
 ### 参考
 
