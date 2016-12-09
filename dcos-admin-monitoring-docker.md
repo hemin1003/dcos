@@ -196,11 +196,55 @@ cAdvisor可以通过不同的存储驱动将采集的信息归集到多种存储
 
 #### Prometheus
 
-cAdvisor的容器统计信息可以直接作为Prometheus指标使用。默认情况下，这些指标在 `/metrics` 接口下提供。可以通过设置`-prometheus_endpoint`命令行参考来定制此接口。
+cAdvisor的容器统计信息可以直接作为Prometheus指标开箱使用，因此不必额外配置`-storage_driver`参数。默认情况下，这些指标在 `/metrics` 接口下提供。可以通过设置`-prometheus_endpoint`命令行参考来定制此接口。
+
+下述示例配置是prometheus.yml文件的一个片段，cAdvisor在运行时对外服务端口映射为3002。完整示例请参考[监控方案](/dcos-admin-monitoring-solutions.md)。
+
+```
+scrape_configs:
+
+  # dcos_cadvisor
+  - job_name: 'dcos_cdvisor'
+
+    scrape_interval: 1m
+    scrape_timeout: 10s
+
+    target_groups:
+      - targets: ['192.168.1.80:3002','192.168.1.81:3002',...]
+        labels:
+          group: 'development'
+```
 
 #### ElasticSearch
 
+cAdvisor支持将容器统计信息传递给ElasticSearch，要启用此功能，需要额外配置下述参数：
+
+设置存储驱动：
+
+```
+-storage_driver=elasticsearch
+```
+
+设置ElasticSearch服务器地址：
+
+```
+-storage_driver_es_host="http://elasticsearch:9200"
+```
+
+其它可选参数：
+
+```
+# ElasticSearch type name. By default it's "stats".
+ -storage_driver_es_type="stats"
+ # ElasticSearch can use a sniffing process to find all nodes of your cluster automatically. False by default.
+ -storage_driver_es_enable_sniffer=false
+```
+
+完整示例请参考[监控方案](/dcos-admin-monitoring-solutions.md)。
+
 ### 在DCOS中部署cAdvisor
+
+
 
 ### 参考
 
