@@ -298,6 +298,10 @@ cAdvisor服务的Marathon应用程序JSON定义如下：
 }
 ```
 
+### 应用指标采集
+
+cAdvisor除了可采集容器运行指标之外，还可以采集容器内应用的应用指标。关于cAdvisor采集应用指标的详细信息请参考[官方文档](https://github.com/google/cadvisor/blob/master/docs/application_metrics.md)。
+
 ### 参考
 
 - [cadvisor](https://github.com/google/cadvisor)
