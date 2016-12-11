@@ -19,3 +19,25 @@
 支持多种模式的图形和仪表板
 
 
+### 组件
+
+Prometheus生态系统由多个组件组成，其中许多组件是可选的：
+
+Prometheus Server作为核心组件，负责采集和存储时间序列数据
+
+客户端库可用于开发检测应用程序代码
+
+推送网关（Pushgateway）组件用于支持短期任务（short-lived jobs）
+
+基于Rails/SQL实现的GUI仪表板构建器
+
+多种指特定的标信息采集器（exporters），如：HAProxy，StatsD，Ganglia等
+
+告警管理器组件，支持多种方式报警
+
+提供命令行查询工具
+
+其它众多支持工具
+
+### 架构
+
