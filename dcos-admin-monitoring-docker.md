@@ -242,6 +242,24 @@ cAdvisor支持将容器统计信息传递给ElasticSearch，要启用此功能�
 
 完整示例请参考[监控方案](/dcos-admin-monitoring-solutions.md)。
 
+#### InfluxDB
+
+```
+# Set the storage driver as InfluxDB.
+-storage_driver=influxdb
+
+# The *ip:port* of the database. Default is 'localhost:8086'
+-storage_driver_host=ip:port
+# database name. Uses db 'cadvisor' by default
+-storage_driver_db
+# database username. Default is 'root'
+-storage_driver_user
+# database password. Default is 'root'
+-storage_driver_password
+# Use secure connection with database. False by default
+-storage_driver_secure
+```
+
 ### 在DC/OS中部署cAdvisor
 
 在DC/OS上可以通过Marathon部署cAdvisor服务。由于DC/OS中Agent节点具有动态性，要让cAdvisor能够监控到所有Agent节点上的容器，需要借助Marathon的约束和DCOS服务动态伸缩的特性。
@@ -258,6 +276,7 @@ cAdvisor服务的Marathon应用程序JSON定义如下：
   "disk": 0,
   "instances": 8,    // 当前集群内Agent节点数
   "constraints": [["hostname", "UNIQUE"]],
+  "args": null,
   "container": {
     "type": "DOCKER",
     "volumes": [
@@ -297,6 +316,15 @@ cAdvisor服务的Marathon应用程序JSON定义如下：
   }
 }
 ```
+
+**说明**：
+
+1. 部署cAdvisor时，如果需要ElasticSearch或InfluxDB作为存储驱动，可以在**`args`**字段中配置需要的参数设置，以InfluxDB为例：
+```
+"args": ["-storage_driver=influxdb", "-storage_driver_db=cadvisor", "-storage_driver_host=localhost:8086"]
+```
+
+2. 在DC/OS中，可以直接部署Universe中预先打包的cAdvisor版本（该版本支持InfluxDB）。
 
 ### 应用指标采集
 
