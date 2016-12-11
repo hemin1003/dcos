@@ -101,6 +101,7 @@
     * [DC\/OS的监控](dcos-admin-monitoring-dcos.md)
     * [信息采集](dcos-admin-monitoring-collect.md)
         * [cAdvisor](dcos-admin-monitoring-docker.md)
+        * [Prometheus](dcos-admin-monitoring-prometheus-instrumenting.md)
     * [数据存储查询](dcos-admin-monitoring-storage.md)
         * [Prometheus](dcos-admin-monitoring-storage-prometheus.md)
             * [概念与使用](dcos-admin-monitoring-prometheus-concepts.md)
