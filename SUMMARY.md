@@ -104,6 +104,7 @@
     * [数据存储查询](dcos-admin-monitoring-storage.md)
         * [Prometheus](dcos-admin-monitoring-storage-prometheus.md)
     * [展示与告警](dcos-admin-monitoring-dashboard.md)
+        * [Grafana](dcos-admin-monitoring-dashboard-grafana.md)
     * [监控方案](dcos-admin-monitoring-solutions.md)
 * [日志管理](dcos-admin-logging.md)
 * [存储管理](dcos-admin-storage.md)
