@@ -104,6 +104,27 @@ api_http_requests_total{method="POST", handler="/messages"}
 
 在Prometheus的世界中，任何单独抓取的目标称为**实例(instance)**，通常对应于单个进程。相同类型的实例的集合（为了可伸缩性或可靠性而复制）被称为**作业(job)**。
 
+下述是监控一个API服务器的任务，该任务有四个复制实例：
+
+- job: api-server
+  - instance 1: 1.2.3.4:5670
+  - instance 2: 1.2.3.4:5671
+  - instance 3: 5.6.7.8:5670
+  - instance 4: 5.6.7.8:5671
 
 
+当Prometheus采集目标指标时，它会自动将一些标签附加到抓取的时间序列中，用于识别被抓取的目标：
 
+- `job`：抓取目标关联的已配置的作业名称
+
+- `instance`：抓取的目标地址的`<host>:<port>`部分
+
+如果上述两个标签中的任何一个在已抓取的数据中已存在，如何处理取决于`honor_labels`配置选项。
+
+对于每一次instance的抓取操作，Prometheus按照以下时间序列存储样本：
+
+- `up{job="<job-name>", instance="<instance-id>"}`: 1，如果该instance正常，即正常抓取；0，如果抓取失败。
+
+- `scrape_duration_seconds{job="<job-name>", instance="<instance-id>"}`: 抓取的持续时间。
+
+`up`时间序列对于实例可用性监控是有用的。
