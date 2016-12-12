@@ -20,14 +20,14 @@ Prometheus本质上以时间序列存储所有的数据，时间序列是指属�
 
 1. 指标名称
 
-应该具有与该指标所属的域相关的（单字）应用前缀。前缀有时被客户端库称为命名空间，前缀通常是应用程序名称本身。然而，有时，度量指标更通用，如由客户端库发布的标准化的度量指标。示例：
+指标名称应该具有与该指标所属的域相关的（单字）应用前缀。前缀有时被客户端库称为命名空间（namespace），前缀通常是应用程序名称本身。不过，某些时候度量指标更通用，如由客户端库发布的标准化的度量指标。示例：
 
-- **prometheus**_notifications_total (specific to the Prometheus server)
+- **prometheus**_notifications_total (特定于Prometheus服务器)
 
-- **process**_cpu_seconds_total (exported by many client libraries)
+- **process**_cpu_seconds_total (许多客户端库公布的指标)
 s)
 
-- **http**_request_duration_seconds (for all HTTP requests)
+- **http**_request_duration_seconds (针对HTTP请求)
 
 #### 样本（Samples）
 
