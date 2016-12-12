@@ -4,8 +4,56 @@
 
 Prometheus本质上以时间序列存储所有的数据，时间序列是指属于相同度量和相同标记维度集合的时间戳值构成的数据流。除了存储的时间序列，Prometheus也可以将查询结果生成临时导出的时间序列。
 
-指标名称和标签
+#### 指标名称和标签
 
 每个时间序列都由其**指标名称**和**一组键值对**（也称为**标签**）唯一标识。
 
 **指标名称**用来指定所测量的系统的某项功能特性（例如，`http_requests_total` - 收到的HTTP请求的总数）。指标名称可以包含ASCII字母和数字，以及下划线和冒号。它必须匹配正则表达式：`[a-zA-Z_:][a-zA-Z0-9_:]*`。
+
+标签是Prometheus的多维数据模型的基础：对于同一指标名称的任何给定的标签组合标识了该指标的特定维度的实例（例如：使用方法POST到`/api/tracks`处理程序的所有HTTP请求）。查询语言允许基于这些维度进行过滤和聚合。更改任何标签值（包括添加或删除标签）将创建新的时间系列。
+
+标签名称可以包含ASCII字母，数字以及下划线。它们必须匹配正则表达式`[a-zA-Z_][a-zA-Z0-9_]*`。以`__`开头的标签名称保留供内部使用。
+
+标签值可以包含任何Unicode字符。
+
+**最佳实践**
+
+1. 指标名称
+
+应该具有与该指标所属的域相关的（单字）应用前缀。前缀有时被客户端库称为命名空间，前缀通常是应用程序名称本身。然而，有时，度量指标更通用，如由客户端库发布的标准化的度量指标。示例：
+
+- **prometheus**_notifications_total (specific to the Prometheus server)
+
+- **process**_cpu_seconds_total (exported by many client libraries)
+s)
+
+- **http**_request_duration_seconds (for all HTTP requests)
+
+#### 样本（Samples）
+
+样本形成实际的时间序列数据。每个样本包括：
+
+* 一个64位浮点值
+
+* 精度为毫秒时间戳
+
+#### 符号（Notation）
+
+给定一个指标名称和一组标签，时间序列通常使用以下表示法标识：
+
+```
+<metric name>{<label name>=<label value>, ...}
+```
+例如，具有指标名称`api_http_requests_total`和标签`method=“POST”`和`handler =“/messages”`的时间系列可以写成这样：
+
+```
+api_http_requests_total{method="POST", handler="/messages"}
+```
+
+注意，这与[OpenTSDB](http://opentsdb.net/)使用的符号相同。
+
+
+必须具有单个单元（即，不混合具有毫秒的秒，或具有字节的秒）
+
+
+
