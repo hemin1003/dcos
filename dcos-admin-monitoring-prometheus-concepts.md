@@ -110,6 +110,8 @@ Histogram对监测样本进行采样，并在配置的区间内对这些样本�
 
 类似于Histogram，Summary也对监测样本进行采样。尽管它也提供监测样本的总数和监测值的总和，它还在滑动时间窗口上按可配置的分位数（quantiles）进行统计。
 
+Histogram和Summary的区别参考[此处](https://prometheus.io/docs/practices/histograms/)。
+
 ### 任务和实例
 
 在Prometheus的世界中，任何单独抓取的目标称为**实例(instance)**，通常对应于单个进程。相同类型的实例的集合（为了可伸缩性或可靠性而复制）被称为**作业(job)**。
