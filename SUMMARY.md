@@ -106,7 +106,7 @@
         * [Prometheus](dcos-admin-monitoring-storage-prometheus.md)
             * [概念与使用](dcos-admin-monitoring-prometheus-concepts.md)
             * [安装与配置](dcos-admin-monitoring-prometheus-install.md)
-            * [检测与采集](dcos-admin-monitoring-prometheus-instrumenting.md)
+            * [监测与采集](dcos-admin-monitoring-prometheus-instrumenting.md)
             * [分析与报警](dcos-admin-monitoring-prometheus-alerting.md)
     * [展示与告警](dcos-admin-monitoring-dashboard.md)
         * [Grafana](dcos-admin-monitoring-dashboard-grafana.md)
