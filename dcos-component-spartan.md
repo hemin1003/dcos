@@ -6,11 +6,24 @@ DNS是DC/OS的一个重要的组成部分。因为在DC/OS中，任务会经常�
 
 在所有的子系统（Agent节点及Agent节点上所有运行的容器）中，DC/OS将每个Master节点上的Mesos DNS服务地址添加到`/etc/resolv.conf`中。如果其中一个Master节点故障，对该Master节点的DNS查询将超时，这是有问题的。Spartan通过将DNS查询双调度到多个Master节点并返回第一个结果来解决这个问题。
 
-除此之外，为了降低风险，Spartan将查询操作路由到它认为最适合执行查询的节点。具体来说，如果域以`mesos`结束，它只会将查询分派给Mesos的Master节点；如果没有，它将发送查询请求到配置的2个上行DNS代理（初始安装DC/OS时，在安装UI界面或`genconf/config.yaml`文件中配置的两个`resolvers`）。
+除此之外，为了降低风险，Spartan将查询操作路由到它认为最适合执行查询的节点。具体来说，如果域以`mesos`结束，它只会将查询分派给Mesos的Master节点；如果没有，它将发送查询请求到配置的2个上行DNS代理（初始安装DC/OS时，在安装UI界面或`genconf/config.yaml`文件中配置的两个`resolvers`；安装完成后，可从`/opt/mesosphere/etc/spartan.json`查看）。
 
 ### 实现
 
-Spartan的实现很简单，它具有双调度逻辑，并且还托管一个域`spartan`，这个域只有一条记录：`ready.spartan`。
+Spartan的实现很简单，它具有双调度逻辑，并且还托管一个域`spartan`，这个域只有一条记录：`ready.spartan`。这条记录用来检查Spartan的可用性，许多服务在启动之前都先ping(ICMP)此地址，确认可达。
+
+Spartan从Exhibitor（Zookeeper）服务那里获取自身的信息，因此，Exhibitor在Master节点上配置的正确性是至关重要的。另外，如果集群在安装时Master节点的列表是静态配置的，Spartan将从静态配置文件(位于`/opt/mesosphere/etc/master_list`)加载它们。
+
+### Zookeeper
+
+Spartan还实现了Zookeeper的高可用性，在DC/OS中可以随时使用地址`zk-1.zk`，`zk-2.zk`，`zk-3.zk`，`zk-4.zk`，`zk-5.zk`。如果少于5个Zookeeper，Spartan将多个记录指向同一个Zookeeper节点。
+
+### Watchdog
+
+由于DNS是一个如此特殊，敏感的系统服务，DC/OS为此采用Watchdog(`dcos-spartan-watchdog.timer`)来保护它。Watchdog会安装在每个节点上，每5分钟运行一次，检查`ready.spartan`域名是否可达。为了避免与Spartan竞争产生谐波效应，Watchdog在启动后休眠1分钟。
+
+除了这个Watchdog，还有一个genresolv的Watchdog
+（`dcos-gen-resolvconf.timer`），它检查Spartan是否存活并能够生成`resolv.conf`。如果它检查到Spartan不活动，那么它将使用在DC/OS群集中配置的上游解析器重写resolv.conf（`/etc/resolv.conf`）。
 
 ### 参考
 
