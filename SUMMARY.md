@@ -46,6 +46,7 @@
     * [Minuteman](dcos-component-minuteman.md)
     * [Spartan](dcos-component-spartan.md)
     * [Mesos-DNS](dcos-component-mesos-dns.md)
+    * [Metronome](dcos-component-metronome.md)
 * [容器化](dcos-mesos-containerizer.md)
     * [容器化实现细节](dcos-mesos-containerizer-internals.md)
     * [Mesos容器化](dcos-mesos-mesos-containerizer.md)

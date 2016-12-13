@@ -1,4 +1,4 @@
-## **3DT**
+## 3DT
 
 DC/OS Distributed Diagnostics Tool & Aggregation Service
 
