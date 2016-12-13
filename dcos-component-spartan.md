@@ -2,5 +2,5 @@
 
 ### 参考
 
-https:\/\/github.com\/dcos\/spartan
+https://github.com/dcos/spartan
 
