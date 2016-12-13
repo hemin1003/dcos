@@ -8,6 +8,10 @@ DNS是DC/OS的一个重要的组成部分。因为在DC/OS中，任务会经常�
 
 除此之外，为了降低风险，Spartan将查询操作路由到它认为最适合执行查询的节点。具体来说，如果域以`mesos`结束，它只会将查询分派给Mesos的Master节点；如果没有，它将发送查询请求到配置的2个上行DNS代理（初始安装DC/OS时，在安装UI界面或`genconf/config.yaml`文件中配置的两个`resolvers`）。
 
+### 实现
+
+Spartan的实现很简单，它具有双调度逻辑，并且还托管一个域`spartan`，这个域只有一条记录：`ready.spartan`。
+
 ### 参考
 
 https://github.com/dcos/spartan
