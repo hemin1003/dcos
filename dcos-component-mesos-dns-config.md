@@ -2,5 +2,5 @@
 
 参考
 
-https:\/\/mesosphere.github.io\/mesos-dns\/docs\/configuration-parameters.html
+https://mesosphere.github.io/mesos-dns/docs/configuration-parameters.html
 
