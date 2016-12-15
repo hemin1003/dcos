@@ -25,3 +25,4 @@ DC/OS即数据中心操作系统，是一个架构于现有单机操作系统之
 ![](/assets/microservice_resource_docker.png)
 ### DC/OS
 ![](/assets/microservice_overlay.png)
+![](/assets/microservice_cluster_overview.png)
