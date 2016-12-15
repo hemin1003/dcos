@@ -1,4 +1,4 @@
-![](/assets/ms-cluster-7-1.png)![](/assets/ms-cluster-6-1.png)![](/assets/ms-cluster-5-1.png)# DC/OS修炼之路
+![](/assets/ms-cluster-8-1.png)![](/assets/ms-cluster-7-1.png)![](/assets/ms-cluster-6-1.png)![](/assets/ms-cluster-5-1.png)# DC/OS修炼之路
 
 在这个“移动为先，云为先”的时代，一切的技术，架构都以Cloud Native为衡量标准。在这样的环境下，如何快速构建可靠的大规模应用集群，成为大家关注的一个焦点。本书既是作者以微服务、容器和数据中心操作系统为基石快速构建大规模应用集群的实践总结，也是一本关于DC/OS的修炼之书，记录了一次新的探索旅程。
 
@@ -87,6 +87,10 @@
 ![](/assets/ms-cluster-7-1.png)
 
 前述过程完成了服务在集群中动态部署，这些服务最终是要向外部用户提供服务的，因此需要有网络入口。外部用户如何从INTERNET访问到我们提供的服务？常用的解决方案是以云端SLB、ELB、DNS等为入口提供接入负载。在内部集群之前用Nginx、HAProxy等提供内部负载调度，解决方案如下图所示：
+
+![](/assets/ms-cluster-8-1.png)
+
+为了进一步提升安全和可控性，我们需要将内部主机集群与外部INTERNET之间架设一层缓冲区，位于缓冲区内的主机通常有公网IP地址，称之为Public Agents，而内部隔离区内的主机无法被外部直接访问，称之为Private Agents。负责内部负载调度和服务发现的Nginx和HAProxy等通常部署在缓冲区内的Public Agents上。因此，新的调整方案的架构图如下：
 
 
 
